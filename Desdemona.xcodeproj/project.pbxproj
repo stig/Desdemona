@@ -1,0 +1,490 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		536F1711096AB307007E3514 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536F170F096AB307007E3514 /* AlphaBeta.framework */; };
+		536F1712096AB307007E3514 /* Reversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536F1710096AB307007E3514 /* Reversi.framework */; };
+		536F171F096AB432007E3514 /* AlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 536F170F096AB307007E3514 /* AlphaBeta.framework */; };
+		536F1720096AB432007E3514 /* Reversi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 536F1710096AB307007E3514 /* Reversi.framework */; };
+		536F1725096AB73E007E3514 /* Desdemona.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 536F1723096AB73E007E3514 /* Desdemona.h */; };
+		536F1726096AB73E007E3514 /* Desdemona.m in Sources */ = {isa = PBXBuildFile; fileRef = 536F1724096AB73E007E3514 /* Desdemona.m */; };
+		536F17A5096AC6A8007E3514 /* DesdemonaBoard.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 536F17A3096AC6A8007E3514 /* DesdemonaBoard.h */; };
+		536F17A6096AC6A8007E3514 /* DesdemonaBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 536F17A4096AC6A8007E3514 /* DesdemonaBoard.m */; };
+		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		4A9504CCFFE6A4B311CA0CBA /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PREBINDING = NO;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		4A9504CDFFE6A4B311CA0CBA /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PREBINDING = NO;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		536F176A096ABDA5007E3514 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = AlphaBeta;
+		};
+		536F176C096ABDA5007E3514 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53C397CD095566D700E6E128;
+			remoteInfo = Reversi;
+		};
+		536F176E096ABDA5007E3514 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5357B5180955D68100E12436;
+			remoteInfo = TicTacToe;
+		};
+		536F1770096ABDA5007E3514 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53238ECB0963622C0064AFCD;
+			remoteInfo = UnitTests;
+		};
+		536F1772096ABDC4007E3514 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = AlphaBeta;
+		};
+		536F1774096ABDC4007E3514 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 53C397CC095566D700E6E128;
+			remoteInfo = Reversi;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		536F1717096AB419007E3514 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				536F171F096AB432007E3514 /* AlphaBeta.framework in CopyFiles */,
+				536F1720096AB432007E3514 /* Reversi.framework in CopyFiles */,
+				536F1725096AB73E007E3514 /* Desdemona.h in CopyFiles */,
+				536F17A5096AC6A8007E3514 /* DesdemonaBoard.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* Desdemona_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona_Prefix.pch; sourceTree = "<group>"; };
+		536F170F096AB307007E3514 /* AlphaBeta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlphaBeta.framework; path = ../AlphaBeta/build/Release/AlphaBeta.framework; sourceTree = SOURCE_ROOT; };
+		536F1710096AB307007E3514 /* Reversi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reversi.framework; path = ../AlphaBeta/build/Release/Reversi.framework; sourceTree = SOURCE_ROOT; };
+		536F1723096AB73E007E3514 /* Desdemona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona.h; sourceTree = "<group>"; };
+		536F1724096AB73E007E3514 /* Desdemona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Desdemona.m; sourceTree = "<group>"; };
+		536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AlphaBeta.xcodeproj; path = ../AlphaBeta/AlphaBeta.xcodeproj; sourceTree = SOURCE_ROOT; };
+		536F17A3096AC6A8007E3514 /* DesdemonaBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesdemonaBoard.h; sourceTree = SOURCE_ROOT; };
+		536F17A4096AC6A8007E3514 /* DesdemonaBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesdemonaBoard.m; sourceTree = SOURCE_ROOT; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* Desdemona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desdemona.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				536F1711096AB307007E3514 /* AlphaBeta.framework in Frameworks */,
+				536F1712096AB307007E3514 /* Reversi.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				536F17A3096AC6A8007E3514 /* DesdemonaBoard.h */,
+				536F17A4096AC6A8007E3514 /* DesdemonaBoard.m */,
+				536F1723096AB73E007E3514 /* Desdemona.h */,
+				536F1724096AB73E007E3514 /* Desdemona.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				536F170F096AB307007E3514 /* AlphaBeta.framework */,
+				536F1710096AB307007E3514 /* Reversi.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* Desdemona.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* Desdemona */ = {
+			isa = PBXGroup;
+			children = (
+				536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = Desdemona;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* Desdemona_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107310486CEB800E47090 /* Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		536F1764096ABDA5007E3514 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				536F176B096ABDA5007E3514 /* AlphaBeta.framework */,
+				536F176D096ABDA5007E3514 /* Reversi.framework */,
+				536F176F096ABDA5007E3514 /* TicTacToe.framework */,
+				536F1771096ABDA5007E3514 /* UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* Desdemona */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 536F1705096AB2FA007E3514 /* Build configuration list for PBXNativeTarget "Desdemona" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				536F1717096AB419007E3514 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Desdemona_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = Desdemona;
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+				536F1773096ABDC4007E3514 /* PBXTargetDependency */,
+				536F1775096ABDC4007E3514 /* PBXTargetDependency */,
+			);
+			name = Desdemona;
+			productInstallPath = "$(HOME)/Applications";
+			productName = Desdemona;
+			productReference = 8D1107320486CEB800E47090 /* Desdemona.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 536F1709096AB2FA007E3514 /* Build configuration list for PBXProject "Desdemona" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				4A9504CCFFE6A4B311CA0CBA /* Debug */,
+				4A9504CDFFE6A4B311CA0CBA /* Release */,
+			);
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* Desdemona */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 536F1764096ABDA5007E3514 /* Products */;
+					ProjectRef = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
+				},
+			);
+			targets = (
+				8D1107260486CEB800E47090 /* Desdemona */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		536F176B096ABDA5007E3514 /* AlphaBeta.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AlphaBeta.framework;
+			remoteRef = 536F176A096ABDA5007E3514 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		536F176D096ABDA5007E3514 /* Reversi.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Reversi.framework;
+			remoteRef = 536F176C096ABDA5007E3514 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		536F176F096ABDA5007E3514 /* TicTacToe.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TicTacToe.framework;
+			remoteRef = 536F176E096ABDA5007E3514 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		536F1771096ABDA5007E3514 /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = 536F1770096ABDA5007E3514 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				536F1726096AB73E007E3514 /* Desdemona.m in Sources */,
+				536F17A6096AC6A8007E3514 /* DesdemonaBoard.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		536F1773096ABDC4007E3514 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AlphaBeta;
+			targetProxy = 536F1772096ABDC4007E3514 /* PBXContainerItemProxy */;
+		};
+		536F1775096ABDC4007E3514 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Reversi;
+			targetProxy = 536F1774096ABDC4007E3514 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29B97319FDCFA39411CA2CEA /* English */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		536F1706096AB2FA007E3514 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../AlphaBeta/build/Release\"";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Desdemona_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PREBINDING = NO;
+				PRODUCT_NAME = Desdemona;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		536F1707096AB2FA007E3514 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../AlphaBeta/build/Release\"";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Desdemona_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PREBINDING = NO;
+				PRODUCT_NAME = Desdemona;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		536F1708096AB2FA007E3514 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../AlphaBeta/build/Release\"";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Desdemona_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = Desdemona;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+		536F170A096AB2FA007E3514 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		536F170B096AB2FA007E3514 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		536F170C096AB2FA007E3514 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		536F1705096AB2FA007E3514 /* Build configuration list for PBXNativeTarget "Desdemona" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				536F1706096AB2FA007E3514 /* Debug */,
+				536F1707096AB2FA007E3514 /* Release */,
+				536F1708096AB2FA007E3514 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		536F1709096AB2FA007E3514 /* Build configuration list for PBXProject "Desdemona" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				536F170A096AB2FA007E3514 /* Debug */,
+				536F170B096AB2FA007E3514 /* Release */,
+				536F170C096AB2FA007E3514 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

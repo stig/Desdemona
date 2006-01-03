@@ -1,0 +1,19 @@
+{
+    IBClasses = (
+        {
+            CLASS = Desdemona; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                ab = AlphaBeta; 
+                black = NSTextField; 
+                board = DesdemonaBoard; 
+                turn = NSTextField; 
+                white = NSTextField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = DesdemonaBoard; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
+    ); 
+    IBVersion = 1; 
+}
