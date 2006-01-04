@@ -1,10 +1,10 @@
 {
     IBClasses = (
         {
+            ACTIONS = {undo = id; }; 
             CLASS = Desdemona; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                ab = AlphaBeta; 
                 black = NSTextField; 
                 board = DesdemonaBoard; 
                 turn = NSTextField; 

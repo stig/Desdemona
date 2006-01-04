@@ -14,6 +14,8 @@
     id st = [[ReversiState alloc] initWithBoardSize:6];
     ab = [[AlphaBeta alloc] initWithState:st];
 
+    isAI[BLACK] = YES;
+    
     [self updateViews];
 }
 
@@ -27,17 +29,45 @@
     [board setNeedsDisplay:YES];
 }
 
+- (void)autoMove
+{
+    int player = [[self state] player];
+    NSLog(@"states: %u, moves: %u", [ab countStates], [ab countMoves]);
+    if (isAI[player]) {
+        [self aiMove];
+        NSLog(@"states: %u, moves: %u (after aiMove)", [ab countStates], [ab countMoves]);
+    }
+}
+
+- (IBAction)undo:(id)sender
+{
+    [ab undo];
+    [self updateViews];
+    [ab undo];
+    [self autoMove];
+    [self updateViews];
+}
+
+- (void)aiMove
+{
+    if ([ab aiMove]) {
+        [self autoMove];
+    }
+    else {
+        NSLog(@"AI cannot move");
+    }
+    [self updateViews];
+}
+
 - (void)move:(ReversiMove *)m
 {
     if ([ab move:m]) {
-        [self updateViews];
-        if ([ab aiMove]) {
-            [self updateViews];
-        }
-    }	
+        [self autoMove];
+    } 
     else {
         NSLog(@"Illegal move attempted");
     }
+    [self updateViews];
 }
 
 - (ReversiState *)state

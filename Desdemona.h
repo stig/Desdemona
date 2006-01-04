@@ -9,14 +9,20 @@
 
 @interface Desdemona : NSObject
 {
-    IBOutlet AlphaBeta *ab;
+    BOOL isAI[3];
+    AlphaBeta *ab;
     IBOutlet DesdemonaBoard *board;
     IBOutlet NSTextField *black;
     IBOutlet NSTextField *white;
     IBOutlet NSTextField *turn;
 }
 
+- (IBAction)undo:(id)sender;
+
 - (ReversiState *)state;
 - (void)move:(ReversiMove *)move;
+- (void)updateViews;
+- (void)autoMove;
+- (void)aiMove;
 
 @end
