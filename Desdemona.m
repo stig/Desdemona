@@ -57,8 +57,24 @@
 	[self move:[ReversiMove newWithCol:-1 andRow:-1]];
 }
 
+- (void)gameOverAlert
+{
+	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+	[alert setMessageText:@"Game Over!"];
+	[alert setInformativeText:@"Do you want to start a new game?"];
+	[alert addButtonWithTitle:@"Yes"];
+	[alert addButtonWithTitle:@"No"];
+	if ([alert runModal] == NSAlertFirstButtonReturn) {
+		[self resetGame];
+	}
+}
+
 - (void)autoMove
 {
+    if ([ab isGameOver]) {
+        [self gameOverAlert];
+    }
+    
     if ([self mustPass]) {
         NSLog(@"applying pass move");
         [self passAlert];
