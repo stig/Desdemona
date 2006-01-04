@@ -47,11 +47,21 @@
     return NO;
 }
 
+- (void)passAlert
+{
+	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+	[alert setMessageText:@"No move possible"];
+	[alert setInformativeText:@"You cannot make a move and are forced to pass."];
+	[alert addButtonWithTitle:@"Ok"];
+	[alert runModal];
+	[self move:[ReversiMove newWithCol:-1 andRow:-1]];
+}
+
 - (void)autoMove
 {
     if ([self mustPass]) {
         NSLog(@"applying pass move");
-        [self aiMove];
+        [self passAlert];
     }
     
     int player = [[self state] player];
@@ -68,7 +78,6 @@
     [self autoMove];
     [self updateViews];
 }
-
 
 - (void)newGameAlert
 {
