@@ -29,13 +29,25 @@
     [board setNeedsDisplay:YES];
 }
 
+- (BOOL)mustPass
+{
+    NSArray *moves = [[self state] listAvailableMoves];
+    if ([moves count] == 1 && [[[moves lastObject] string] isEqualToString: @"-1-1"]) {
+        return YES;
+    }
+    return NO;
+}
+
 - (void)autoMove
 {
+    if ([self mustPass]) {
+        NSLog(@"applying pass move");
+        [self aiMove];
+    }
+    
     int player = [[self state] player];
-    NSLog(@"states: %u, moves: %u", [ab countStates], [ab countMoves]);
     if (isAI[player]) {
         [self aiMove];
-        NSLog(@"states: %u, moves: %u (after aiMove)", [ab countStates], [ab countMoves]);
     }
 }
 
@@ -51,23 +63,23 @@
 - (void)aiMove
 {
     if ([ab aiMove]) {
+        [self updateViews];
         [self autoMove];
     }
     else {
         NSLog(@"AI cannot move");
     }
-    [self updateViews];
 }
 
 - (void)move:(ReversiMove *)m
 {
     if ([ab move:m]) {
+        [self updateViews];
         [self autoMove];
     } 
     else {
         NSLog(@"Illegal move attempted");
     }
-    [self updateViews];
 }
 
 - (ReversiState *)state
