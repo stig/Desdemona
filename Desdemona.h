@@ -9,6 +9,7 @@
 
 @interface Desdemona : NSObject
 {
+    unsigned size;
     BOOL isAI[3];
     AlphaBeta *ab;
     IBOutlet DesdemonaBoard *board;
@@ -18,6 +19,7 @@
 }
 
 - (IBAction)undo:(id)sender;
+- (IBAction)newGame:(id)sender;
 
 - (ReversiState *)state;
 - (void)move:(ReversiMove *)move;

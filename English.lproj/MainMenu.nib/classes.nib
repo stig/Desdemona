@@ -1,7 +1,7 @@
 {
     IBClasses = (
         {
-            ACTIONS = {undo = id; }; 
+            ACTIONS = {newGame = id; undo = id; }; 
             CLASS = Desdemona; 
             LANGUAGE = ObjC; 
             OUTLETS = {

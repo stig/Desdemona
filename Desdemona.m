@@ -6,17 +6,26 @@
 
 @implementation Desdemona
 
+
+- (void)resetGame
+{
+    [ab release];
+    ab = [[AlphaBeta alloc] initWithState:
+        [[ReversiState alloc] initWithBoardSize:
+            size]];
+    
+    [self updateViews];
+}
+
 - (void)awakeFromNib
 {
     [[board window] makeKeyAndOrderFront:self];
     [board setController:self];
     
-    id st = [[ReversiState alloc] initWithBoardSize:6];
-    ab = [[AlphaBeta alloc] initWithState:st];
-
+    size = 6;
     isAI[BLACK] = YES;
     
-    [self updateViews];
+    [self resetGame];
 }
 
 - (void)updateViews
@@ -58,6 +67,30 @@
     [ab undo];
     [self autoMove];
     [self updateViews];
+}
+
+
+- (void)newGameAlert
+{
+	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+	[alert setMessageText:@"Start a new game"];
+	[alert setInformativeText:@"Are you sure you want to terminate the current game and start a new one?"];
+	[alert addButtonWithTitle:@"Yes"];
+	[alert addButtonWithTitle:@"No"];
+	if ([alert runModal] == NSAlertFirstButtonReturn) {
+		[self resetGame];
+	}
+}
+
+- (IBAction)newGame:(id)sender
+{
+    if ([ab countMoves]) {
+//        NSLog(@"Game in progress");
+		[self newGameAlert];
+	}
+	else {
+		[self resetGame];
+	}
 }
 
 - (void)aiMove
