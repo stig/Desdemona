@@ -11,11 +11,14 @@
 {
     BOOL isAI[3];
     AlphaBeta *ab;
+    
     IBOutlet DesdemonaBoard *board;
-    IBOutlet NSTextField *level;
+    
     IBOutlet NSStepper *levelStepper;
-    IBOutlet NSTextField *size;
     IBOutlet NSStepper *sizeStepper;
+    
+    IBOutlet NSTextField *level;
+    IBOutlet NSTextField *size;
     IBOutlet NSTextField *turn;
     IBOutlet NSTextField *black;
     IBOutlet NSTextField *white;
