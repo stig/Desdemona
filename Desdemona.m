@@ -14,7 +14,7 @@
         [[ReversiState alloc] initWithBoardSize:
             [sizeStepper intValue]]];
     
-    [self updateViews];
+    [self autoMove];
 }
 
 - (void)awakeFromNib
@@ -40,6 +40,7 @@
     [sizeStepper setEnabled: [ab countMoves] ? NO : YES];
     [levelStepper setEnabled: [ab countMoves] ? NO : YES];
     [board setNeedsDisplay:YES];
+    [board display];
 }
 
 - (BOOL)mustPass
@@ -75,18 +76,19 @@
 
 - (void)autoMove
 {
+    [self updateViews];
+    
     if ([ab isGameOver]) {
         [self gameOverAlert];
     }
-    
-    if ([self mustPass]) {
-        NSLog(@"applying pass move");
+    else if ([self mustPass]) {
         [self passAlert];
     }
     
     int player = [[self state] player];
     if (isAI[player]) {
         [self aiMove];
+        [self updateViews];
     }
 }
 
@@ -96,7 +98,6 @@
     [self updateViews];
     [ab undo];
     [self autoMove];
-    [self updateViews];
 }
 
 - (IBAction)changeSize:(id)sender
@@ -127,7 +128,6 @@
 - (IBAction)newGame:(id)sender
 {
     if ([ab countMoves]) {
-//        NSLog(@"Game in progress");
 		[self newGameAlert];
 	}
 	else {
@@ -138,7 +138,6 @@
 - (void)aiMove
 {
     if ([ab aiMove]) {
-        [self updateViews];
         [self autoMove];
     }
     else {
@@ -149,7 +148,6 @@
 - (void)move:(ReversiMove *)m
 {
     if ([ab move:m]) {
-        [self updateViews];
         [self autoMove];
     } 
     else {
