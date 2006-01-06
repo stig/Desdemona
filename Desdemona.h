@@ -9,15 +9,20 @@
 
 @interface Desdemona : NSObject
 {
-    unsigned size;
     BOOL isAI[3];
     AlphaBeta *ab;
     IBOutlet DesdemonaBoard *board;
+    IBOutlet NSTextField *level;
+    IBOutlet NSStepper *levelStepper;
+    IBOutlet NSTextField *size;
+    IBOutlet NSStepper *sizeStepper;
+    IBOutlet NSTextField *turn;
     IBOutlet NSTextField *black;
     IBOutlet NSTextField *white;
-    IBOutlet NSTextField *turn;
 }
-
+- (IBAction)changeLevel:(id)sender;
+- (IBAction)changeSize:(id)sender;
+- (IBAction)newGame:(id)sender;
 - (IBAction)undo:(id)sender;
 - (IBAction)newGame:(id)sender;
 

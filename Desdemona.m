@@ -12,7 +12,7 @@
     [ab release];
     ab = [[AlphaBeta alloc] initWithState:
         [[ReversiState alloc] initWithBoardSize:
-            size]];
+            [sizeStepper intValue]]];
     
     [self updateViews];
 }
@@ -21,9 +21,11 @@
 {
     [[board window] makeKeyAndOrderFront:self];
     [board setController:self];
-    
-    size = 6;
+
     isAI[BLACK] = YES;
+    
+    [size setIntValue:[sizeStepper intValue]];
+    [level setIntValue:[levelStepper intValue]];
     
     [self resetGame];
 }
@@ -32,9 +34,11 @@
 {
     ReversiState *s = [self state];
     ReversiStateCount counts = [s countSquares];
-	[white setIntValue:counts.c[WHITE]];
-	[black setIntValue:counts.c[BLACK]];
-	[turn setStringValue: [s player] == WHITE ? @"White" : @"Black"];
+    [white setIntValue:counts.c[WHITE]];
+    [black setIntValue:counts.c[BLACK]];
+    [turn setStringValue: [s player] == WHITE ? @"White" : @"Black"];
+    [sizeStepper setEnabled: [ab countMoves] ? NO : YES];
+    [levelStepper setEnabled: [ab countMoves] ? NO : YES];
     [board setNeedsDisplay:YES];
 }
 
@@ -93,6 +97,17 @@
     [ab undo];
     [self autoMove];
     [self updateViews];
+}
+
+- (IBAction)changeSize:(id)sender
+{
+    [size setIntValue:[sender intValue]];
+    [self resetGame];
+}
+
+- (IBAction)changeLevel:(id)sender
+{
+    [level setIntValue:[sender intValue]];
 }
 
 - (void)newGameAlert
