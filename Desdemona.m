@@ -107,7 +107,9 @@
 
 - (IBAction)changeLevel:(id)sender
 {
-    [level setIntValue:[sender intValue]];
+    unsigned val = [sender intValue];
+    [level setIntValue:val];
+    [ab setMaxPly:val];
 }
 
 - (void)newGameAlert
