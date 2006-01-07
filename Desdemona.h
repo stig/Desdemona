@@ -16,6 +16,7 @@
     
     IBOutlet NSStepper *levelStepper;
     IBOutlet NSStepper *sizeStepper;
+    IBOutlet NSButton *aiButton;
     
     IBOutlet NSTextField *level;
     IBOutlet NSTextField *size;
@@ -23,6 +24,7 @@
     IBOutlet NSTextField *black;
     IBOutlet NSTextField *white;
 }
+- (IBAction)changeAi:(id)sender;
 - (IBAction)changeLevel:(id)sender;
 - (IBAction)changeSize:(id)sender;
 - (IBAction)newGame:(id)sender;

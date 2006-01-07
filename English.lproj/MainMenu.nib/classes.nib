@@ -1,23 +1,17 @@
 {
     IBClasses = (
         {
-            ACTIONS = {
-                changeLevel = id; 
-                changeSize = id; 
-                newGame = id; 
-                toggleDrawer = id; 
-                undo = id; 
-            }; 
+            ACTIONS = {changeAi = id; changeLevel = id; changeSize = id; newGame = id; undo = id; }; 
             CLASS = Desdemona; 
             LANGUAGE = ObjC; 
             OUTLETS = {
+                aiButton = NSButton; 
                 black = NSTextField; 
                 board = DesdemonaBoard; 
-                drawer = id; 
-                level = id; 
-                levelStepper = id; 
-                size = id; 
-                sizeStepper = id; 
+                level = NSTextField; 
+                levelStepper = NSStepper; 
+                size = NSTextField; 
+                sizeStepper = NSStepper; 
                 turn = NSTextField; 
                 white = NSTextField; 
             }; 

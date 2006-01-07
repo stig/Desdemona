@@ -22,8 +22,7 @@
     [[board window] makeKeyAndOrderFront:self];
     [board setController:self];
 
-    ai = BLACK;
-    
+    [self changeAi:aiButton];
     [self changeSize:sizeStepper];
     [self changeLevel:levelStepper];
     
@@ -34,9 +33,10 @@
 {
     ReversiState *s = [self state];
     ReversiStateCount counts = [s countSquares];
-    [white setIntValue:counts.c[WHITE]];
-    [black setIntValue:counts.c[BLACK]];
+    [white setIntValue:counts.c[3 - ai]];
+    [black setIntValue:counts.c[ai]];
     [turn setStringValue: ai == [s player] ? @"Desdemona is searching for a move..." : @"Your move"];
+    [aiButton setEnabled: [ab countMoves] ? NO : YES];
     [sizeStepper setEnabled: [ab countMoves] ? NO : YES];
     [levelStepper setEnabled: [ab countMoves] ? NO : YES];
     [board setNeedsDisplay:YES];
@@ -96,6 +96,12 @@
     [ab undo];
     [self updateViews];
     [ab undo];
+    [self autoMove];
+}
+
+- (IBAction)changeAi:(id)sender
+{
+    ai = [aiButton state] == NSOnState ? WHITE : BLACK;
     [self autoMove];
 }
 
