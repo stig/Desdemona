@@ -36,11 +36,11 @@
     ReversiStateCount counts = [s countSquares];
     [white setIntValue:counts.c[WHITE]];
     [black setIntValue:counts.c[BLACK]];
-    [turn setStringValue: [s player] == WHITE ? @"White" : @"Black"];
+    [turn setStringValue: isAI[[s player]] ? @"Desdemona is searching for a move..." : @"Your move"];
     [sizeStepper setEnabled: [ab countMoves] ? NO : YES];
     [levelStepper setEnabled: [ab countMoves] ? NO : YES];
     [board setNeedsDisplay:YES];
-    [board display];
+    [[board window] display];
 }
 
 - (BOOL)mustPass
