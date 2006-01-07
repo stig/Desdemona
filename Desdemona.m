@@ -87,7 +87,7 @@
     
     int player = [[self state] player];
     if (isAI[player]) {
-        [self aiMove];
+        [self fixedDepthSearch];
         [self updateViews];
     }
 }
@@ -135,9 +135,9 @@
 	}
 }
 
-- (void)aiMove
+- (void)fixedDepthSearch
 {
-    if ([ab aiMove]) {
+    if ([ab fixedDepthSearch]) {
         [self autoMove];
     }
     else {
