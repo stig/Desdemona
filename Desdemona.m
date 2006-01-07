@@ -24,8 +24,8 @@
 
     isAI[BLACK] = YES;
     
-    [size setIntValue:[sizeStepper intValue]];
-    [level setIntValue:[levelStepper intValue]];
+    [self changeSize:sizeStepper];
+    [self changeLevel:levelStepper];
     
     [self resetGame];
 }
@@ -87,7 +87,7 @@
     
     int player = [[self state] player];
     if (isAI[player]) {
-        [self fixedDepthSearch];
+        [self aiMove];
         [self updateViews];
     }
 }
@@ -108,9 +108,10 @@
 
 - (IBAction)changeLevel:(id)sender
 {
-    unsigned val = [sender intValue];
+    int val = [sender intValue];
     [level setIntValue:val];
-    [ab setMaxPly:val];
+    val *= 10;
+    [ab setMaxTime: (NSTimeInterval)(val * val / 1000.0) ];
 }
 
 - (void)newGameAlert
@@ -135,9 +136,9 @@
 	}
 }
 
-- (void)fixedDepthSearch
+- (void)aiMove
 {
-    if ([ab fixedDepthSearch]) {
+    if ([ab iterativeSearch]) {
         [self autoMove];
     }
     else {
