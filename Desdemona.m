@@ -22,7 +22,7 @@
     [[board window] makeKeyAndOrderFront:self];
     [board setController:self];
 
-    isAI[BLACK] = YES;
+    ai = BLACK;
     
     [self changeSize:sizeStepper];
     [self changeLevel:levelStepper];
@@ -36,7 +36,7 @@
     ReversiStateCount counts = [s countSquares];
     [white setIntValue:counts.c[WHITE]];
     [black setIntValue:counts.c[BLACK]];
-    [turn setStringValue: isAI[[s player]] ? @"Desdemona is searching for a move..." : @"Your move"];
+    [turn setStringValue: ai == [s player] ? @"Desdemona is searching for a move..." : @"Your move"];
     [sizeStepper setEnabled: [ab countMoves] ? NO : YES];
     [levelStepper setEnabled: [ab countMoves] ? NO : YES];
     [board setNeedsDisplay:YES];
@@ -85,8 +85,7 @@
         [self passAlert];
     }
     
-    int player = [[self state] player];
-    if (isAI[player]) {
+    if (ai == [[self state] player]) {
         [self aiMove];
         [self updateViews];
     }

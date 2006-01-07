@@ -9,7 +9,7 @@
 
 @interface Desdemona : NSObject
 {
-    BOOL isAI[3];
+    int ai;
     AlphaBeta *ab;
     
     IBOutlet DesdemonaBoard *board;
