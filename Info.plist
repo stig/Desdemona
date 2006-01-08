@@ -6,6 +6,10 @@
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>Desdemona</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>Desdemona Help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>Desdemona Help</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
