@@ -151,7 +151,7 @@
     }
 }
 
-- (void)move:(ReversiMove *)m
+- (void)move:(id)m
 {
     if ([ab move:m]) {
         [self autoMove];
@@ -161,7 +161,7 @@
     }
 }
 
-- (ReversiState *)state
+- (id)state
 {
     return [ab currentState];
 }

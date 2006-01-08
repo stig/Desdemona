@@ -31,8 +31,8 @@
 - (IBAction)undo:(id)sender;
 - (IBAction)newGame:(id)sender;
 
-- (ReversiState *)state;
-- (void)move:(ReversiMove *)move;
+- (id)state;
+- (void)move:(id)move;
 - (void)updateViews;
 - (void)autoMove;
 - (void)aiMove;
