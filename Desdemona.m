@@ -14,6 +14,10 @@
         [[ReversiState alloc] initWithBoardSize:
             [sizeStepper intValue]]];
     
+    [aiButton setEnabled:YES];
+    [aiButton setState:NSOffState];
+    [self changeAi:aiButton];
+
     [self autoMove];
 }
 
@@ -22,7 +26,6 @@
     [[board window] makeKeyAndOrderFront:self];
     [board setController:self];
 
-    [self changeAi:aiButton];
     [self changeSize:sizeStepper];
     [self changeLevel:levelStepper];
     
