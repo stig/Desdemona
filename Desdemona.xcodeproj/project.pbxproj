@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5335D9A90970778A00E4C323 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5335D9A80970778A00E4C323 /* Credits.rtf */; };
 		536F1711096AB307007E3514 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536F170F096AB307007E3514 /* AlphaBeta.framework */; };
 		536F1712096AB307007E3514 /* Reversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536F1710096AB307007E3514 /* Reversi.framework */; };
 		536F171F096AB432007E3514 /* AlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 536F170F096AB307007E3514 /* AlphaBeta.framework */; };
@@ -114,10 +115,11 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; explicitFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Desdemona_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona_Prefix.pch; sourceTree = "<group>"; };
+		5335D9A80970778A00E4C323 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		536F170F096AB307007E3514 /* AlphaBeta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlphaBeta.framework; path = ../AlphaBeta/build/Release/AlphaBeta.framework; sourceTree = SOURCE_ROOT; };
 		536F1710096AB307007E3514 /* Reversi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reversi.framework; path = ../AlphaBeta/build/Release/Reversi.framework; sourceTree = SOURCE_ROOT; };
 		536F1723096AB73E007E3514 /* Desdemona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona.h; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5335D9A80970778A00E4C323 /* Credits.rtf */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
@@ -334,6 +337,7 @@
 			files = (
 				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				5335D9A90970778A00E4C323 /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
