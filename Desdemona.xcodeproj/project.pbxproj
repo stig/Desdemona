@@ -7,105 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5335D9A90970778A00E4C323 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5335D9A80970778A00E4C323 /* Credits.rtf */; };
-		5335D9CE09712DEC00E4C323 /* Desdemona Help in Resources */ = {isa = PBXBuildFile; fileRef = 5335D9CA09712DEC00E4C323 /* Desdemona Help */; };
-		536F1711096AB307007E3514 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536F170F096AB307007E3514 /* AlphaBeta.framework */; };
-		536F1712096AB307007E3514 /* Reversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536F1710096AB307007E3514 /* Reversi.framework */; };
-		536F171F096AB432007E3514 /* AlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 536F170F096AB307007E3514 /* AlphaBeta.framework */; };
-		536F1720096AB432007E3514 /* Reversi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 536F1710096AB307007E3514 /* Reversi.framework */; };
-		536F1725096AB73E007E3514 /* Desdemona.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 536F1723096AB73E007E3514 /* Desdemona.h */; };
-		536F1726096AB73E007E3514 /* Desdemona.m in Sources */ = {isa = PBXBuildFile; fileRef = 536F1724096AB73E007E3514 /* Desdemona.m */; };
-		536F17A5096AC6A8007E3514 /* DesdemonaBoard.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 536F17A3096AC6A8007E3514 /* DesdemonaBoard.h */; };
-		536F17A6096AC6A8007E3514 /* DesdemonaBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 536F17A4096AC6A8007E3514 /* DesdemonaBoard.m */; };
+		535024A30B3ACC510012DAE7 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535024A10B3ACC510012DAE7 /* SBAlphaBeta.framework */; };
+		535024A40B3ACC510012DAE7 /* SBReversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535024A20B3ACC510012DAE7 /* SBReversi.framework */; };
+		535024CE0B3ACD370012DAE7 /* ABController.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024C90B3ACD370012DAE7 /* ABController.m */; };
+		535024CF0B3ACD370012DAE7 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024CB0B3ACD370012DAE7 /* BoardView.m */; };
+		535024D00B3ACD370012DAE7 /* classic.png in Resources */ = {isa = PBXBuildFile; fileRef = 535024CC0B3ACD370012DAE7 /* classic.png */; };
+		535024D10B3ACD370012DAE7 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 535024CD0B3ACD370012DAE7 /* Credits.html */; };
+		535024F10B3ACE7A0012DAE7 /* Desdemona.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024F00B3ACE7A0012DAE7 /* Desdemona.m */; };
+		5350261A0B3AFC9B0012DAE7 /* SBAlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 535024A10B3ACC510012DAE7 /* SBAlphaBeta.framework */; };
+		5350261B0B3AFC9B0012DAE7 /* SBReversi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 535024A20B3ACC510012DAE7 /* SBReversi.framework */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildStyle section */
-		4A9504CCFFE6A4B311CA0CBA /* Debug */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PREBINDING = NO;
-				ZERO_LINK = YES;
-			};
-			name = Debug;
-		};
-		4A9504CDFFE6A4B311CA0CBA /* Release */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				PREBINDING = NO;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-/* End PBXBuildStyle section */
-
-/* Begin PBXContainerItemProxy section */
-		536F176A096ABDA5007E3514 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = AlphaBeta;
-		};
-		536F176C096ABDA5007E3514 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 53C397CD095566D700E6E128;
-			remoteInfo = Reversi;
-		};
-		536F176E096ABDA5007E3514 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5357B5180955D68100E12436;
-			remoteInfo = TicTacToe;
-		};
-		536F1770096ABDA5007E3514 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 53238ECB0963622C0064AFCD;
-			remoteInfo = UnitTests;
-		};
-		536F1772096ABDC4007E3514 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = AlphaBeta;
-		};
-		536F1774096ABDC4007E3514 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 53C397CC095566D700E6E128;
-			remoteInfo = Reversi;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		536F1717096AB419007E3514 /* CopyFiles */ = {
+		535026150B3AFC8B0012DAE7 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				536F171F096AB432007E3514 /* AlphaBeta.framework in CopyFiles */,
-				536F1720096AB432007E3514 /* Reversi.framework in CopyFiles */,
-				536F1725096AB73E007E3514 /* Desdemona.h in CopyFiles */,
-				536F17A5096AC6A8007E3514 /* DesdemonaBoard.h in CopyFiles */,
+				5350261A0B3AFC9B0012DAE7 /* SBAlphaBeta.framework in CopyFiles */,
+				5350261B0B3AFC9B0012DAE7 /* SBReversi.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,19 +41,20 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; explicitFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Desdemona_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona_Prefix.pch; sourceTree = "<group>"; };
-		5335D9A80970778A00E4C323 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
-		5335D9CB09712DEC00E4C323 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "English.lproj/Desdemona Help"; sourceTree = "<group>"; };
-		536F170F096AB307007E3514 /* AlphaBeta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlphaBeta.framework; path = ../AlphaBeta/build/Release/AlphaBeta.framework; sourceTree = SOURCE_ROOT; };
-		536F1710096AB307007E3514 /* Reversi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reversi.framework; path = ../AlphaBeta/build/Release/Reversi.framework; sourceTree = SOURCE_ROOT; };
-		536F1723096AB73E007E3514 /* Desdemona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona.h; sourceTree = "<group>"; };
-		536F1724096AB73E007E3514 /* Desdemona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Desdemona.m; sourceTree = "<group>"; };
-		536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AlphaBeta.xcodeproj; path = ../AlphaBeta/AlphaBeta.xcodeproj; sourceTree = SOURCE_ROOT; };
-		536F17A3096AC6A8007E3514 /* DesdemonaBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DesdemonaBoard.h; sourceTree = SOURCE_ROOT; };
-		536F17A4096AC6A8007E3514 /* DesdemonaBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesdemonaBoard.m; sourceTree = SOURCE_ROOT; };
+		535024A10B3ACC510012DAE7 /* SBAlphaBeta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBAlphaBeta.framework; path = ../../../../Library/Frameworks/SBAlphaBeta.framework; sourceTree = SOURCE_ROOT; };
+		535024A20B3ACC510012DAE7 /* SBReversi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBReversi.framework; path = ../../../../Library/Frameworks/SBReversi.framework; sourceTree = SOURCE_ROOT; };
+		535024C80B3ACD370012DAE7 /* ABController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABController.h; sourceTree = "<group>"; };
+		535024C90B3ACD370012DAE7 /* ABController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABController.m; sourceTree = "<group>"; };
+		535024CA0B3ACD370012DAE7 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
+		535024CB0B3ACD370012DAE7 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
+		535024CC0B3ACD370012DAE7 /* classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classic.png; sourceTree = "<group>"; };
+		535024CD0B3ACD370012DAE7 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		535024EF0B3ACE7A0012DAE7 /* Desdemona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona.h; sourceTree = "<group>"; };
+		535024F00B3ACE7A0012DAE7 /* Desdemona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Desdemona.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Desdemona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desdemona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -139,8 +65,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				536F1711096AB307007E3514 /* AlphaBeta.framework in Frameworks */,
-				536F1712096AB307007E3514 /* Reversi.framework in Frameworks */,
+				535024A30B3ACC510012DAE7 /* SBAlphaBeta.framework in Frameworks */,
+				535024A40B3ACC510012DAE7 /* SBReversi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,10 +76,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				536F17A3096AC6A8007E3514 /* DesdemonaBoard.h */,
-				536F17A4096AC6A8007E3514 /* DesdemonaBoard.m */,
-				536F1723096AB73E007E3514 /* Desdemona.h */,
-				536F1724096AB73E007E3514 /* Desdemona.m */,
+				535024EF0B3ACE7A0012DAE7 /* Desdemona.h */,
+				535024F00B3ACE7A0012DAE7 /* Desdemona.m */,
+				535024C80B3ACD370012DAE7 /* ABController.h */,
+				535024C90B3ACD370012DAE7 /* ABController.m */,
+				535024CA0B3ACD370012DAE7 /* BoardView.h */,
+				535024CB0B3ACD370012DAE7 /* BoardView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -161,8 +89,8 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				536F170F096AB307007E3514 /* AlphaBeta.framework */,
-				536F1710096AB307007E3514 /* Reversi.framework */,
+				535024A10B3ACC510012DAE7 /* SBAlphaBeta.framework */,
+				535024A20B3ACC510012DAE7 /* SBReversi.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -189,7 +117,6 @@
 		29B97314FDCFA39411CA2CEA /* Desdemona */ = {
 			isa = PBXGroup;
 			children = (
-				536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -211,8 +138,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5335D9CA09712DEC00E4C323 /* Desdemona Help */,
-				5335D9A80970778A00E4C323 /* Credits.rtf */,
+				535024CC0B3ACD370012DAE7 /* classic.png */,
+				535024CD0B3ACD370012DAE7 /* Credits.html */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
@@ -229,45 +156,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		536F1764096ABDA5007E3514 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				536F176B096ABDA5007E3514 /* AlphaBeta.framework */,
-				536F176D096ABDA5007E3514 /* Reversi.framework */,
-				536F176F096ABDA5007E3514 /* TicTacToe.framework */,
-				536F1771096ABDA5007E3514 /* UnitTests.octest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
 		8D1107260486CEB800E47090 /* Desdemona */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 536F1705096AB2FA007E3514 /* Build configuration list for PBXNativeTarget "Desdemona" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Desdemona" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				536F1717096AB419007E3514 /* CopyFiles */,
+				535026150B3AFC8B0012DAE7 /* CopyFiles */,
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Desdemona_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = Desdemona;
-				WRAPPER_EXTENSION = app;
-			};
 			dependencies = (
-				536F1773096ABDC4007E3514 /* PBXTargetDependency */,
-				536F1775096ABDC4007E3514 /* PBXTargetDependency */,
 			);
 			name = Desdemona;
 			productInstallPath = "$(HOME)/Applications";
@@ -280,58 +183,15 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 536F1709096AB2FA007E3514 /* Build configuration list for PBXProject "Desdemona" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				4A9504CCFFE6A4B311CA0CBA /* Debug */,
-				4A9504CDFFE6A4B311CA0CBA /* Release */,
-			);
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Desdemona" */;
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Desdemona */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 536F1764096ABDA5007E3514 /* Products */;
-					ProjectRef = 536F1763096ABDA5007E3514 /* AlphaBeta.xcodeproj */;
-				},
-			);
 			targets = (
 				8D1107260486CEB800E47090 /* Desdemona */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		536F176B096ABDA5007E3514 /* AlphaBeta.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AlphaBeta.framework;
-			remoteRef = 536F176A096ABDA5007E3514 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		536F176D096ABDA5007E3514 /* Reversi.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Reversi.framework;
-			remoteRef = 536F176C096ABDA5007E3514 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		536F176F096ABDA5007E3514 /* TicTacToe.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = TicTacToe.framework;
-			remoteRef = 536F176E096ABDA5007E3514 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		536F1771096ABDA5007E3514 /* UnitTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
-			remoteRef = 536F1770096ABDA5007E3514 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D1107290486CEB800E47090 /* Resources */ = {
@@ -340,8 +200,8 @@
 			files = (
 				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				5335D9A90970778A00E4C323 /* Credits.rtf in Resources */,
-				5335D9CE09712DEC00E4C323 /* Desdemona Help in Resources */,
+				535024D00B3ACD370012DAE7 /* classic.png in Resources */,
+				535024D10B3ACD370012DAE7 /* Credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,25 +213,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				536F1726096AB73E007E3514 /* Desdemona.m in Sources */,
-				536F17A6096AC6A8007E3514 /* DesdemonaBoard.m in Sources */,
+				535024CE0B3ACD370012DAE7 /* ABController.m in Sources */,
+				535024CF0B3ACD370012DAE7 /* BoardView.m in Sources */,
+				535024F10B3ACE7A0012DAE7 /* Desdemona.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		536F1773096ABDC4007E3514 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AlphaBeta;
-			targetProxy = 536F1772096ABDC4007E3514 /* PBXContainerItemProxy */;
-		};
-		536F1775096ABDC4007E3514 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Reversi;
-			targetProxy = 536F1774096ABDC4007E3514 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
@@ -390,115 +238,95 @@
 			name = MainMenu.nib;
 			sourceTree = "<group>";
 		};
-		5335D9CA09712DEC00E4C323 /* Desdemona Help */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5335D9CB09712DEC00E4C323 /* English */,
-			);
-			name = "Desdemona Help";
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		536F1706096AB2FA007E3514 /* Debug */ = {
+		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../AlphaBeta/build/Release\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../../../Library/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Desdemona_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PREBINDING = NO;
 				PRODUCT_NAME = Desdemona;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
-		536F1707096AB2FA007E3514 /* Release */ = {
+		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../AlphaBeta/build/Release\"";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../../../Library/Frameworks\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Desdemona_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PREBINDING = NO;
 				PRODUCT_NAME = Desdemona;
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
-		536F1708096AB2FA007E3514 /* Default */ = {
+		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../AlphaBeta/build/Release\"";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Desdemona_Prefix.pch;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = Desdemona;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
-		536F170A096AB2FA007E3514 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
+				OTHER_CFLAGS = "-fobjc-exceptions";
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Debug;
 		};
-		536F170B096AB2FA007E3514 /* Release */ = {
+		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-fobjc-exceptions";
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Release;
-		};
-		536F170C096AB2FA007E3514 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Default;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		536F1705096AB2FA007E3514 /* Build configuration list for PBXNativeTarget "Desdemona" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Desdemona" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				536F1706096AB2FA007E3514 /* Debug */,
-				536F1707096AB2FA007E3514 /* Release */,
-				536F1708096AB2FA007E3514 /* Default */,
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
-		536F1709096AB2FA007E3514 /* Build configuration list for PBXProject "Desdemona" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Desdemona" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				536F170A096AB2FA007E3514 /* Debug */,
-				536F170B096AB2FA007E3514 /* Release */,
-				536F170C096AB2FA007E3514 /* Default */,
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

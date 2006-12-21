@@ -2,7 +2,7 @@
 //  main.m
 //  Desdemona
 //
-//  Created by Stig Brautaset on 03/01/2006.
+//  Created by Stig Brautaset on 21/12/2006.
 //  Copyright Stig Brautaset 2006. All rights reserved.
 //
 
