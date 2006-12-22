@@ -12,7 +12,6 @@
 		535024CE0B3ACD370012DAE7 /* ABController.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024C90B3ACD370012DAE7 /* ABController.m */; };
 		535024CF0B3ACD370012DAE7 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024CB0B3ACD370012DAE7 /* BoardView.m */; };
 		535024D00B3ACD370012DAE7 /* classic.png in Resources */ = {isa = PBXBuildFile; fileRef = 535024CC0B3ACD370012DAE7 /* classic.png */; };
-		535024D10B3ACD370012DAE7 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 535024CD0B3ACD370012DAE7 /* Credits.html */; };
 		535024F10B3ACE7A0012DAE7 /* Desdemona.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024F00B3ACE7A0012DAE7 /* Desdemona.m */; };
 		5350261A0B3AFC9B0012DAE7 /* SBAlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 535024A10B3ACC510012DAE7 /* SBAlphaBeta.framework */; };
 		5350261B0B3AFC9B0012DAE7 /* SBReversi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 535024A20B3ACC510012DAE7 /* SBReversi.framework */; };
@@ -52,7 +51,6 @@
 		535024CA0B3ACD370012DAE7 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		535024CB0B3ACD370012DAE7 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		535024CC0B3ACD370012DAE7 /* classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classic.png; sourceTree = "<group>"; };
-		535024CD0B3ACD370012DAE7 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		535024EF0B3ACE7A0012DAE7 /* Desdemona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona.h; sourceTree = "<group>"; };
 		535024F00B3ACE7A0012DAE7 /* Desdemona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Desdemona.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				535024CC0B3ACD370012DAE7 /* classic.png */,
-				535024CD0B3ACD370012DAE7 /* Credits.html */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
@@ -201,7 +198,6 @@
 				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				535024D00B3ACD370012DAE7 /* classic.png in Resources */,
-				535024D10B3ACD370012DAE7 /* Credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
