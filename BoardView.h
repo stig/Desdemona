@@ -20,7 +20,7 @@
  */
 #import <Cocoa/Cocoa.h>
 
-#import "ABController.h"
+@class ABController;
 
 @interface BoardView : NSMatrix
 {
@@ -31,6 +31,7 @@
 }
 
 - (void)setController:(id)ctrl;
+- (void)setTheme:(id)ctrl;
 - (void)setState:(id)this;
 
 @end
