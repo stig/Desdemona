@@ -20,12 +20,12 @@
  */
 #import <Cocoa/Cocoa.h>
 
-@class ABController;
+#import "Desdemona.h"
 
 @interface BoardView : NSMatrix
 {
     NSArray *disks;
-    ABController *controller;
+    Desdemona *controller;
     NSArray *state;
     int rows, cols;
 }

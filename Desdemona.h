@@ -23,16 +23,49 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #import <SBReversi/SBReversiState.h>
 #import <SBReversi/SBReversiMove.h>
 
-#import "ABController.h"
+#define WHITE 1
+#define BLACK 2
 
-@interface Desdemona : ABController
-{    
+@class BoardView;
+
+@interface Desdemona : NSObject
+{
+    int ai;
+    SBAlphaBeta *ab;
+    
+    IBOutlet BoardView *board;
+    IBOutlet NSStepper *levelStepper;
+    IBOutlet NSButton *aiButton;
+    
+    IBOutlet NSTextField *level;
+    IBOutlet NSTextField *turn;
+
     IBOutlet NSStepper *sizeStepper;
     
     IBOutlet NSTextField *size;
     IBOutlet NSTextField *black;
     IBOutlet NSTextField *white;
 }
+
+- (IBAction)changeAi:(id)sender;
+- (IBAction)changeLevel:(id)sender;
+- (IBAction)newGame:(id)sender;
+- (IBAction)undo:(id)sender;
+- (IBAction)newGame:(id)sender;
+
+- (id)state;
+- (void)move:(id)move;
+- (void)gameOverAlert;
+- (void)aiMove;
+
+- (void)updateViews;
+- (void)autoMove;
+- (void)resetGame;
+
+- (void)clickAtRow:(int)r col:(int)c;
+
+- (NSArray *)buildState;
+
 - (IBAction)changeSize:(id)sender;
 
 - (void)passAlert;
