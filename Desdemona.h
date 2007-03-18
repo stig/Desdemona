@@ -20,8 +20,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #import <Cocoa/Cocoa.h>
+#import <SBAlphaBeta/SBAlphaBeta.h>
 #import <SBReversi/SBReversiState.h>
-#import <SBReversi/SBReversiMove.h>
 
 #define WHITE 1
 #define BLACK 2
@@ -30,29 +30,33 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @interface Desdemona : NSObject
 {
-    int ai;
+    int ai, maxPly;
+    double maxTime;
     SBAlphaBeta *ab;
     
     IBOutlet BoardView *board;
-    IBOutlet NSStepper *levelStepper;
     IBOutlet NSButton *aiButton;
-    
+
+    IBOutlet NSStepper *levelStepper;
     IBOutlet NSTextField *level;
-    IBOutlet NSTextField *turn;
 
     IBOutlet NSStepper *sizeStepper;
-    
     IBOutlet NSTextField *size;
+    
+    IBOutlet NSTextField *turn;
     IBOutlet NSTextField *black;
     IBOutlet NSTextField *white;
 }
 
 - (IBAction)changeAi:(id)sender;
+- (IBAction)changeSize:(id)sender;
 - (IBAction)changeLevel:(id)sender;
 - (IBAction)newGame:(id)sender;
 - (IBAction)undo:(id)sender;
 - (IBAction)newGame:(id)sender;
 
+- (int)winner;
+- (int)player;
 - (id)state;
 - (void)move:(id)move;
 - (void)gameOverAlert;
@@ -64,11 +68,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)clickAtRow:(int)r col:(int)c;
 
-- (NSArray *)buildState;
-
-- (IBAction)changeSize:(id)sender;
-
 - (void)passAlert;
-- (BOOL)mustPass;
 
 @end

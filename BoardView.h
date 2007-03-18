@@ -32,6 +32,6 @@
 
 - (void)setController:(id)ctrl;
 - (void)setTheme:(id)ctrl;
-- (void)setState:(id)this;
+- (void)setBoard:(id)this;
 
 @end

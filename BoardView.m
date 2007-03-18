@@ -82,7 +82,7 @@
     [self setNeedsDisplay:YES];
 }
 
-- (void)setState:(id)this
+- (void)setBoard:(id)this
 {
     if (state != this) {
         [state release];
