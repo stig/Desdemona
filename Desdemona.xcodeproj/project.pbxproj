@@ -20,6 +20,51 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		53350E3C0BC07C3800E83830 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* SBAlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = SBAlphaBeta;
+		};
+		53350E3E0BC07C3800E83830 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* SBAlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 535024600B3AC2D90012DAE7;
+			remoteInfo = SBReversi;
+		};
+		53350E400BC07C3800E83830 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* SBAlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 535023DF0B3AB87F0012DAE7;
+			remoteInfo = TTT;
+		};
+		53350E420BC07C3800E83830 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* SBAlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 535023F40B3AB9000012DAE7;
+			remoteInfo = Tests;
+		};
+		53350E440BC07C5100E83830 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* SBAlphaBeta.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = SBAlphaBeta;
+		};
+		53350E460BC07C5100E83830 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* SBAlphaBeta.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5350245F0B3AC2D90012DAE7;
+			remoteInfo = SBReversi;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		535026150B3AFC8B0012DAE7 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -45,13 +90,15 @@
 		32CA4F630368D1EE00C91783 /* Desdemona_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona_Prefix.pch; sourceTree = "<group>"; };
 		53350DEF0BC0782000E83830 /* SBAlphaBeta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBAlphaBeta.framework; path = ../SBAlphaBeta/build/Release/SBAlphaBeta.framework; sourceTree = SOURCE_ROOT; };
 		53350E010BC078BF00E83830 /* SBReversi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBReversi.framework; path = ../SBAlphaBeta/build/Release/SBReversi.framework; sourceTree = SOURCE_ROOT; };
+		53350E350BC07C3800E83830 /* SBAlphaBeta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SBAlphaBeta.xcodeproj; path = ../SBAlphaBeta/SBAlphaBeta.xcodeproj; sourceTree = SOURCE_ROOT; };
+		53350E690BC07DED00E83830 /* SBAlphaBeta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SBAlphaBeta.framework; path = build/Release/SBAlphaBeta.framework; sourceTree = "<group>"; };
 		535024CA0B3ACD370012DAE7 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		535024CB0B3ACD370012DAE7 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		535024CC0B3ACD370012DAE7 /* classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classic.png; sourceTree = "<group>"; };
 		535024EF0B3ACE7A0012DAE7 /* Desdemona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona.h; sourceTree = "<group>"; };
 		535024F00B3ACE7A0012DAE7 /* Desdemona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Desdemona.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Desdemona.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Desdemona.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* Desdemona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desdemona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Desdemona.app */,
+				53350E690BC07DED00E83830 /* SBAlphaBeta.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,6 +158,7 @@
 		29B97314FDCFA39411CA2CEA /* Desdemona */ = {
 			isa = PBXGroup;
 			children = (
+				53350E350BC07C3800E83830 /* SBAlphaBeta.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -148,6 +197,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		53350E360BC07C3800E83830 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				53350E3D0BC07C3800E83830 /* SBAlphaBeta.framework */,
+				53350E3F0BC07C3800E83830 /* SBReversi.framework */,
+				53350E410BC07C3800E83830 /* TTT.framework */,
+				53350E430BC07C3800E83830 /* Tests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -163,6 +223,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				53350E450BC07C5100E83830 /* PBXTargetDependency */,
+				53350E470BC07C5100E83830 /* PBXTargetDependency */,
 			);
 			name = Desdemona;
 			productInstallPath = "$(HOME)/Applications";
@@ -179,11 +241,48 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Desdemona */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 53350E360BC07C3800E83830 /* Products */;
+					ProjectRef = 53350E350BC07C3800E83830 /* SBAlphaBeta.xcodeproj */;
+				},
+			);
 			targets = (
 				8D1107260486CEB800E47090 /* Desdemona */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		53350E3D0BC07C3800E83830 /* SBAlphaBeta.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SBAlphaBeta.framework;
+			remoteRef = 53350E3C0BC07C3800E83830 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		53350E3F0BC07C3800E83830 /* SBReversi.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SBReversi.framework;
+			remoteRef = 53350E3E0BC07C3800E83830 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		53350E410BC07C3800E83830 /* TTT.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TTT.framework;
+			remoteRef = 53350E400BC07C3800E83830 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		53350E430BC07C3800E83830 /* Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.octest;
+			remoteRef = 53350E420BC07C3800E83830 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D1107290486CEB800E47090 /* Resources */ = {
@@ -210,6 +309,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		53350E450BC07C5100E83830 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SBAlphaBeta;
+			targetProxy = 53350E440BC07C5100E83830 /* PBXContainerItemProxy */;
+		};
+		53350E470BC07C5100E83830 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SBReversi;
+			targetProxy = 53350E460BC07C5100E83830 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
