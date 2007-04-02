@@ -55,8 +55,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (IBAction)undo:(id)sender;
 - (IBAction)newGame:(id)sender;
 
-- (int)winner;
-- (int)player;
 - (id)state;
 - (void)move:(id)move;
 - (void)gameOverAlert;

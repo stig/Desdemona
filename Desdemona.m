@@ -43,7 +43,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     NSAlert *alert = [[[NSAlert alloc] init] autorelease];
 
-    int winner = [self winner];
+    int winner = [ab winner];
     NSString *msg = winner == ai
         ? @"You lost!"
         : !winner
@@ -140,16 +140,6 @@ and updates views in between. */
     return [ab currentState];
 }
 
-- (int)winner
-{
-    return [ab winner];
-}
-
-- (int)player
-{
-    return [ab playerTurn];
-}
-
 - (void)dealloc
 {
     [ab release];
@@ -168,7 +158,7 @@ and updates views in between. */
         [self passAlert];
     }
     
-    if (ai == [self player]) {
+    if (ai == [ab playerTurn]) {
         [self aiMove];
         [self updateViews];
     }
