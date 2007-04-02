@@ -142,12 +142,12 @@ and updates views in between. */
 
 - (int)winner
 {
-    return [[self state] winner];
+    return [ab winner];
 }
 
 - (int)player
 {
-    return [[self state] player];
+    return [ab playerTurn];
 }
 
 - (void)dealloc
@@ -195,7 +195,7 @@ and updates views in between. */
     SBReversiStateCount counts = [s countSquares];
     [white setIntValue:counts.c[3 - ai]];
     [black setIntValue:counts.c[ai]];
-    [turn setStringValue: ai == [s player]
+    [turn setStringValue: ai == [ab playerTurn]
         ? @"Desdemona is searching for a move..."
         : @"Your move"];
     [aiButton setEnabled: [ab countMoves] ? NO : YES];
