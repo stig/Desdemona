@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		53350DF00BC0782000E83830 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53350DEF0BC0782000E83830 /* SBAlphaBeta.framework */; };
-		53350E020BC078BF00E83830 /* SBReversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53350E010BC078BF00E83830 /* SBReversi.framework */; };
-		53350E0A0BC078C500E83830 /* SBReversi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53350E010BC078BF00E83830 /* SBReversi.framework */; };
-		53350E0B0BC078C500E83830 /* SBAlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53350DEF0BC0782000E83830 /* SBAlphaBeta.framework */; };
 		535024CF0B3ACD370012DAE7 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024CB0B3ACD370012DAE7 /* BoardView.m */; };
 		535024D00B3ACD370012DAE7 /* classic.png in Resources */ = {isa = PBXBuildFile; fileRef = 535024CC0B3ACD370012DAE7 /* classic.png */; };
 		535024F10B3ACE7A0012DAE7 /* Desdemona.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024F00B3ACE7A0012DAE7 /* Desdemona.m */; };
+		53E864820BC1967C00580DBC /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53350E3D0BC07C3800E83830 /* SBAlphaBeta.framework */; };
+		53E864830BC1967C00580DBC /* SBReversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53350E3F0BC07C3800E83830 /* SBReversi.framework */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -72,8 +70,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				53350E0A0BC078C500E83830 /* SBReversi.framework in CopyFiles */,
-				53350E0B0BC078C500E83830 /* SBAlphaBeta.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,10 +84,8 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Desdemona_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona_Prefix.pch; sourceTree = "<group>"; };
-		53350DEF0BC0782000E83830 /* SBAlphaBeta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBAlphaBeta.framework; path = ../SBAlphaBeta/build/Release/SBAlphaBeta.framework; sourceTree = SOURCE_ROOT; };
-		53350E010BC078BF00E83830 /* SBReversi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBReversi.framework; path = ../SBAlphaBeta/build/Release/SBReversi.framework; sourceTree = SOURCE_ROOT; };
 		53350E350BC07C3800E83830 /* SBAlphaBeta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SBAlphaBeta.xcodeproj; path = ../SBAlphaBeta/SBAlphaBeta.xcodeproj; sourceTree = SOURCE_ROOT; };
-		53350E690BC07DED00E83830 /* SBAlphaBeta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SBAlphaBeta.framework; path = build/Release/SBAlphaBeta.framework; sourceTree = "<group>"; };
+		53350E690BC07DED00E83830 /* SBAlphaBeta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SBAlphaBeta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		535024CA0B3ACD370012DAE7 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		535024CB0B3ACD370012DAE7 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		535024CC0B3ACD370012DAE7 /* classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classic.png; sourceTree = "<group>"; };
@@ -107,8 +101,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				53350DF00BC0782000E83830 /* SBAlphaBeta.framework in Frameworks */,
-				53350E020BC078BF00E83830 /* SBReversi.framework in Frameworks */,
+				53E864820BC1967C00580DBC /* SBAlphaBeta.framework in Frameworks */,
+				53E864830BC1967C00580DBC /* SBReversi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,8 +123,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				53350E010BC078BF00E83830 /* SBReversi.framework */,
-				53350DEF0BC0782000E83830 /* SBAlphaBeta.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -347,13 +339,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
-				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../SBAlphaBeta/build/Release\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/../Library/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -373,13 +359,7 @@
 					ppc,
 					i386,
 				);
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
-				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../SBAlphaBeta/build/Release\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/../Library/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
