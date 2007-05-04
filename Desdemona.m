@@ -27,6 +27,22 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @implementation Desdemona
 
+
+- (void)resetGame
+{
+    [ab release];
+    ab = [[SBAlphaBeta alloc] initWithState:
+        [[SBReversiState alloc] initWithBoardSize:
+            [sizeStepper intValue]]];
+    
+    [aiButton setEnabled:YES];
+    [aiButton setState:NSOffState];
+    [self changeAi:aiButton];
+    [self changeLevel:levelStepper];
+    
+    [self autoMove];
+}
+
 - (void)awakeFromNib
 {
     [[board window] makeKeyAndOrderFront:self];
@@ -37,6 +53,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [self resetGame];
 }
 
+- (void)dealloc
+{
+    [ab release];
+    [super dealloc];
+}
+
+#pragma mark Alerts
 
 /** Displays an alert when "Game Over" is detected. */
 - (void)gameOverAlert
@@ -44,11 +67,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     NSAlert *alert = [[[NSAlert alloc] init] autorelease];
 
     int winner = [ab winner];
-    NSString *msg = winner == ai
-        ? @"You lost!"
-        : !winner
-            ? @"You managed a draw!"
-            : @"You won!";
+    NSString *msg = winner == ai ? @"You lost!" :
+                    !winner      ? @"You managed a draw!" :
+                                   @"You won!";
     
     [alert setMessageText:msg];
     [alert setInformativeText:@"Do you want to play another game?"];
@@ -59,14 +80,52 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     }
 }
 
-/** Performs undo twice (once for AI, once for human) 
-and updates views in between. */
+/** Displays an alert when the "New Game" action is chosen. */
+- (void)newGameAlert
+{
+    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    [alert setMessageText:@"Start a new game"];
+    [alert setInformativeText:@"Are you sure you want to terminate the current game and start a new one?"];
+    [alert addButtonWithTitle:@"Yes"];
+    [alert addButtonWithTitle:@"No"];
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        [self resetGame];
+    }
+}
+
+- (void)passAlert
+{
+    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    [alert setMessageText:@"No move possible"];
+    [alert setInformativeText:@"You cannot make a move and are forced to pass."];
+    [alert addButtonWithTitle:@"Ok"];
+    [alert runModal];
+    [self move:[NSMutableArray arrayWithObject:[NSNull null]]];
+}
+
+#pragma mark IBActions
+
+/**
+Performs undo twice (once for AI, once for human) 
+and updates views in between.
+*/
 - (IBAction)undo:(id)sender
 {
     [ab undoLastMove];
     [self updateViews];
     [ab undoLastMove];
     [self autoMove];
+}
+
+/** Initiate a new game. */
+- (IBAction)newGame:(id)sender
+{
+    if ([ab countMoves]) {
+        [self newGameAlert];
+    }
+    else {
+        [self resetGame];
+    }
 }
 
 /** Toggle whether the AI is WHITE or BLACK. */
@@ -76,29 +135,19 @@ and updates views in between. */
     [self autoMove];
 }
 
-/** Displays an alert when the "New Game" action is chosen. */
-- (void)newGameAlert
+- (IBAction)changeLevel:(id)sender
 {
-	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
-	[alert setMessageText:@"Start a new game"];
-	[alert setInformativeText:@"Are you sure you want to terminate the current game and start a new one?"];
-	[alert addButtonWithTitle:@"Yes"];
-	[alert addButtonWithTitle:@"No"];
-	if ([alert runModal] == NSAlertFirstButtonReturn) {
-		[self resetGame];
-	}
+    [level setIntValue:[sender intValue]];
 }
 
-/** Initiate a new game. */
-- (IBAction)newGame:(id)sender
+- (IBAction)changeSize:(id)sender
 {
-    if ([ab countMoves]) {
-		[self newGameAlert];
-	}
-	else {
-		[self resetGame];
-	}
+    [size setIntValue:[sender intValue]];
+    [self resetGame];
 }
+
+#pragma mark Actions
+
 
 /** Make the AI perform a move. */
 - (void)aiMove
@@ -140,12 +189,6 @@ and updates views in between. */
     return [ab currentState];
 }
 
-- (void)dealloc
-{
-    [ab release];
-    [super dealloc];
-}
-
 /** Figure out if the AI should move "by itself". */
 - (void)autoMove
 {
@@ -164,21 +207,6 @@ and updates views in between. */
     }
 }
 
-- (void)resetGame
-{
-    [ab release];
-    ab = [[SBAlphaBeta alloc] initWithState:
-        [[SBReversiState alloc] initWithBoardSize:
-            [sizeStepper intValue]]];
-    
-    [aiButton setEnabled:YES];
-    [aiButton setState:NSOffState];
-    [self changeAi:aiButton];
-    [self changeLevel:levelStepper];
-    
-    [self autoMove];
-}
-
 - (void)updateViews
 {
     SBReversiState *s = [self state];
@@ -195,27 +223,6 @@ and updates views in between. */
     [board setBoard:[[ab currentState] board]];
     [board setNeedsDisplay:YES];
     [[board window] display];
-}
-
-- (IBAction)changeLevel:(id)sender
-{
-    [level setIntValue:[sender intValue]];
-}
-
-- (IBAction)changeSize:(id)sender
-{
-    [size setIntValue:[sender intValue]];
-    [self resetGame];
-}
-
-- (void)passAlert
-{
-	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
-	[alert setMessageText:@"No move possible"];
-	[alert setInformativeText:@"You cannot make a move and are forced to pass."];
-	[alert addButtonWithTitle:@"Ok"];
-	[alert runModal];
-	[self move:[NSMutableArray arrayWithObject:[NSNull null]]];
 }
 
 - (void)clickAtRow:(int)y col:(int)x
