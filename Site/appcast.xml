@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"> 
+
+    <channel> 
+        <title>Desdemona Changelog</title> 
+        <link>http://code.brautaset/Desdemona/appcast.xml</link> 
+        <description>Most recent changes with links to updates.</description> 
+        <language>en</language> 
+
+        <item> 
+            <title>Desdemona 0.2</title> 
+            <description><![CDATA[
+            <ul>
+                <li>Added a progress indicator for things that go on in the background.</li>
+                <li>Added a "Move hint" menu item. Selecting this makes the AI
+                    give you a hint for a move.</li>
+                <li>Added a "Check for updates" menu item to check if new 
+                    versions are available, using the wonderful <a
+                    href="http://sparkle.andymatuschak.org/">Sparkle</a>
+                    framework. You also have the option to automatically check
+                    for new versions on startup.</li>
+                </ul>
+            ]]></description>
+            <pubDate>Sat, May  5 2007 15:48:24 BST</pubDate>
+            <enclosure url='http://code.brautaset.org/files/Desdemona_1.1.dmg' 
+                length='114985' type="application/octet-stream"/>
+        </item> 
+
+        <item> 
+            <title>Desdemona 1.0&mdash;initial release</title> 
+            <description><![CDATA[
+                <p>Initial release of Desdemona, a Reversi game for Mac OS X.</p>
+            ]]></description> 
+            <pubDate>Sun, Apr  2 2006 16:56:00 BST</pubDate>
+            <enclosure url="http://code.brautaset.org/files/Desdemona_1.0.dmg"
+                 length="146245" type="application/octet-stream"/> 
+        </item> 
+
+    </channel> 
+</rss> 
+
