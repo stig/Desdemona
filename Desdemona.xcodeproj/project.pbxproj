@@ -10,6 +10,10 @@
 		535024CF0B3ACD370012DAE7 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024CB0B3ACD370012DAE7 /* BoardView.m */; };
 		535024D00B3ACD370012DAE7 /* classic.png in Resources */ = {isa = PBXBuildFile; fileRef = 535024CC0B3ACD370012DAE7 /* classic.png */; };
 		535024F10B3ACE7A0012DAE7 /* Desdemona.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024F00B3ACE7A0012DAE7 /* Desdemona.m */; };
+		539AB00B0BECD25400908522 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539AB00A0BECD25400908522 /* Sparkle.framework */; };
+		539AB0490BECD34100908522 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 539AB00A0BECD25400908522 /* Sparkle.framework */; };
+		539AB04A0BECD35300908522 /* SBAlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53350E3D0BC07C3800E83830 /* SBAlphaBeta.framework */; };
+		539AB04B0BECD35300908522 /* SBReversi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53350E3F0BC07C3800E83830 /* SBReversi.framework */; };
 		53E864820BC1967C00580DBC /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53350E3D0BC07C3800E83830 /* SBAlphaBeta.framework */; };
 		53E864830BC1967C00580DBC /* SBReversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53350E3F0BC07C3800E83830 /* SBReversi.framework */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
@@ -70,6 +74,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				539AB04A0BECD35300908522 /* SBAlphaBeta.framework in CopyFiles */,
+				539AB04B0BECD35300908522 /* SBReversi.framework in CopyFiles */,
+				539AB0490BECD34100908522 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +98,7 @@
 		535024CC0B3ACD370012DAE7 /* classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classic.png; sourceTree = "<group>"; };
 		535024EF0B3ACE7A0012DAE7 /* Desdemona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona.h; sourceTree = "<group>"; };
 		535024F00B3ACE7A0012DAE7 /* Desdemona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Desdemona.m; sourceTree = "<group>"; };
+		539AB00A0BECD25400908522 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../Library/Frameworks/Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Desdemona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desdemona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,6 +111,7 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				53E864820BC1967C00580DBC /* SBAlphaBeta.framework in Frameworks */,
 				53E864830BC1967C00580DBC /* SBReversi.framework in Frameworks */,
+				539AB00B0BECD25400908522 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +132,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				539AB00A0BECD25400908522 /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -339,7 +349,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Library/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -359,7 +373,11 @@
 					ppc,
 					i386,
 				);
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Library/Frameworks\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;

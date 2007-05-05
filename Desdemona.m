@@ -27,18 +27,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @implementation Desdemona
 
++ (void)initialise
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
+        @"8",           @"boardsize",
+        @"3",           @"ai_level",
+        nil]];
+  
+}
 
 - (void)resetGame
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [ab release];
     ab = [[SBAlphaBeta alloc] initWithState:
         [[SBReversiState alloc] initWithBoardSize:
-            [sizeStepper intValue]]];
-    
-    [aiButton setEnabled:YES];
-    [aiButton setState:NSOffState];
-    [self changeAi:aiButton];
-    [self changeLevel:levelStepper];
+            [defaults integerForKey:@"boardsize"]]];
+    level = [defaults integerForKey:@"ai_level"];
+    ai = 2;
     
     [self autoMove];
 }
@@ -48,8 +55,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [[board window] makeKeyAndOrderFront:self];
     [board setController:self];
     [board setTheme:[NSImage imageNamed:@"classic"]];
-    [self changeSize:sizeStepper];
-    [self changeLevel:levelStepper];
     [self resetGame];
 }
 
@@ -128,36 +133,17 @@ and updates views in between.
     }
 }
 
-/** Toggle whether the AI is WHITE or BLACK. */
-- (IBAction)changeAi:(id)sender
-{
-    ai = [aiButton state] == NSOnState ? WHITE : BLACK;
-    [self autoMove];
-}
-
-- (IBAction)changeLevel:(id)sender
-{
-    [level setIntValue:[sender intValue]];
-}
-
-- (IBAction)changeSize:(id)sender
-{
-    [size setIntValue:[sender intValue]];
-    [self resetGame];
-}
-
 #pragma mark Actions
 
 
 /** Make the AI perform a move. */
 - (void)aiMove
 {
-    int ply = [levelStepper intValue];
     id st = nil;
-    if (ply < 4) {
-        st = [ab applyMoveFromSearchWithPly:ply];
+    if (level < 4) {
+        st = [ab applyMoveFromSearchWithPly:level];
     } else {
-        ply *= 10.0;
+        int ply = level * 10.0;
         NSTimeInterval interval = (NSTimeInterval)(ply * ply / 1000.0);
         st = [ab applyMoveFromSearchWithInterval:interval];
     }
@@ -216,9 +202,6 @@ and updates views in between.
     [turn setStringValue: ai == [ab playerTurn]
         ? @"Desdemona is searching for a move..."
         : @"Your move"];
-    [aiButton setEnabled: [ab countMoves] ? NO : YES];
-    [sizeStepper setEnabled: [ab countMoves] ? NO : YES];
-    [levelStepper setEnabled: [ab countMoves] ? NO : YES];
     
     [board setBoard:[[ab currentState] board]];
     [board setNeedsDisplay:YES];

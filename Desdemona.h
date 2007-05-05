@@ -23,34 +23,20 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #import <SBAlphaBeta/SBAlphaBeta.h>
 #import <SBReversi/SBReversiState.h>
 
-#define WHITE 1
-#define BLACK 2
-
 @class BoardView;
 
 @interface Desdemona : NSObject
 {
-    int ai, maxPly;
-    double maxTime;
+    int ai, level;
     SBAlphaBeta *ab;
     
     IBOutlet BoardView *board;
-    IBOutlet NSButton *aiButton;
 
-    IBOutlet NSStepper *levelStepper;
-    IBOutlet NSTextField *level;
-
-    IBOutlet NSStepper *sizeStepper;
-    IBOutlet NSTextField *size;
-    
     IBOutlet NSTextField *turn;
     IBOutlet NSTextField *black;
     IBOutlet NSTextField *white;
 }
 
-- (IBAction)changeAi:(id)sender;
-- (IBAction)changeSize:(id)sender;
-- (IBAction)changeLevel:(id)sender;
 - (IBAction)newGame:(id)sender;
 - (IBAction)undo:(id)sender;
 - (IBAction)newGame:(id)sender;
