@@ -1,5 +1,5 @@
 NAME=Desdemona
-VERSION=1.1
+VERSION=0.3
 
 INSTALLPATH=/tmp/$(NAME).dst/Users/stig/Applications/$(NAME).app
 RELEASENAME=$(NAME)_$(VERSION)
@@ -20,7 +20,7 @@ site: Site/index.html Site/appcast.xml
 	perl -pi -e 's{\@VERSION\@}{$(VERSION)}g' _site/*.html
 
 upload-site: site
-	rsync -e ssh -ruv --delete --exclude download* _site/ stig@brautaset.org:code/$(NAME)/
+	rsync -e ssh -ruv --delete _site/ stig@brautaset.org:code/$(NAME)/
 
 install: *.m
 	setCFBundleVersion.pl $(VERSION)

@@ -1,0 +1,10 @@
+This project uses Xcode's cross-project dependencies. If you're using
+Xcode and are hacking on this program, then you also need to make sure
+that you:
+
+    1. Check out a version of http://code.brautaset.org/SBAlphaBeta into
+       the same directory.
+
+    2. Have set Xcode to put build products in a common location. I use
+       /tmp/build, but you are free to chose something else.
+
