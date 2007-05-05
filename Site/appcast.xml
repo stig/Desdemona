@@ -9,12 +9,12 @@
         <language>en</language> 
 
         <item> 
-            <title>Desdemona 0.2</title> 
+            <title>Desdemona 1.1</title> 
             <description><![CDATA[
             <ul>
+                <li>Cleaned up the interface somewhat and put some of the 
+                    existing clutter in a preferences pane.</li>
                 <li>Added a progress indicator for things that go on in the background.</li>
-                <li>Added a "Move hint" menu item. Selecting this makes the AI
-                    give you a hint for a move.</li>
                 <li>Added a "Check for updates" menu item to check if new 
                     versions are available, using the wonderful <a
                     href="http://sparkle.andymatuschak.org/">Sparkle</a>

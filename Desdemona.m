@@ -188,7 +188,9 @@ and updates views in between.
     }
     
     if (ai == [ab playerTurn]) {
+        [progressIndicator startAnimation:self];
         [self aiMove];
+        [progressIndicator stopAnimation:self];
         [self updateViews];
     }
 }

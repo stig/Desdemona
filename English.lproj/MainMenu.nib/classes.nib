@@ -15,17 +15,13 @@
         }, 
         {CLASS = BoardView; LANGUAGE = ObjC; SUPERCLASS = NSMatrix; }, 
         {
-            ACTIONS = {changeAi = id; changeLevel = id; changeSize = id; newGame = id; undo = id; }; 
+            ACTIONS = {newGame = id; undo = id; }; 
             CLASS = Desdemona; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                aiButton = NSButton; 
                 black = NSTextField; 
                 board = BoardView; 
-                level = NSTextField; 
-                levelStepper = NSStepper; 
-                size = NSTextField; 
-                sizeStepper = NSStepper; 
+                progressIndicator = NSProgressIndicator; 
                 turn = NSTextField; 
                 white = NSTextField; 
             }; 
