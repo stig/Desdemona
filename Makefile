@@ -1,5 +1,5 @@
 NAME=Desdemona
-VERSION=0.3
+VERSION=0.3.1
 
 INSTALLPATH=/tmp/$(NAME).dst/Users/stig/Applications/$(NAME).app
 RELEASENAME=$(NAME)_$(VERSION)

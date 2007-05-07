@@ -10,6 +10,18 @@
 
         <item> 
             <title>Desdemona 0.3</title> 
+            <description>Fixed a bug that caused the default values for
+                the preferences not to be registered. This could cause
+                the AI level and board size to be used uninitialised,
+                and could lead to crashes.
+            </description>
+            <pubDate>Mon, May  7 2007 21:43:32 BST</pubDate>
+            <enclosure url='http://code.brautaset.org/files/Desdemona_0.3.1.dmg' 
+                length='252999' type="application/octet-stream"/>
+        </item>
+
+        <item> 
+            <title>Desdemona 0.3</title> 
             <description><![CDATA[
             <ul>
                 <li>Cleaned up the interface somewhat and put some of the 

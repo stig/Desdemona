@@ -27,14 +27,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @implementation Desdemona
 
-+ (void)initialise
++ (void)initialize
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
         @"8",           @"boardsize",
         @"3",           @"ai_level",
         nil]];
-  
 }
 
 - (void)resetGame
