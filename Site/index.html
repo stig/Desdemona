@@ -3,24 +3,7 @@
 <html>
 <head>
     <title>Desdemona - Reversi for Mac OS X</title>
-    <style type="text/css">
-    body {  width: 40em;
-            margin: 2em;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 0.8em;
-            font-family: Verdana, Arial, sans-serif;
-    }
-    img {   float: left;
-            margin-right: 1.5em;
-            margin-bottom: 1.5em;
-            width: 18.75em; /* 18.75 * 2 + 1.5 = 40 */
-    }
-    h1 { color: #921; text-align: center; font-size: 1.6em; }
-    a:hover { background:#888; }
-    .blurb { font-weight: bold; }
-    .meta { color: grey; clear: both }
-    </style>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
 </head>
 
 <body>
@@ -35,15 +18,17 @@
     
     <p><a href="@URL@">Download Desdemona @VERSION@</a> (0.25&nbsp;MB
     disk image). This is a Universal Binary, and should run on Mac OS X
-    10.3.9 and later. </p> 
+    10.3.9 and later. New in this release:</p> 
+    
+    @DESCRIPTION@
 
-    <p>Defaults to the classic 8x8 board, but also supports board sizes
-    from 4x4 up to 20x20. Multiple difficulty levels are also supported.
-    </p>
+    <p>The AI beats it creator about 70% of the time at the default
+    level, but stronger and weaker settings are available. However, no
+    opening- or end-game database is used, so it is doubtful that it
+    will perform well against really strong players.</p>
 
-    <p>In creating this game I borrowed some ideas and high-quality
-    graphics from <a href="http://live.gnome.org/Iagno">Gnome Iagno</a>.
-    </p>
+    <p>Defaults to the classic 8x8 board, but supports board sizes from
+    4x4 up to 20x20. Unlimited undo is available should you need it. </p>
 
     <div class="meta">
 
@@ -54,6 +39,9 @@
     Subversion repository. If you want to hack on Desdemona you also
     need <a href="http://code.brautaset.org/SBAlphaBeta/">
     SBAlphaBeta</a>.</p>
+
+    <p>High-quality graphics shamelessly stolen from <a
+    href="http://live.gnome.org/Iagno">Gnome Iagno</a>. </p>
     
     </div>
 
