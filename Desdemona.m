@@ -104,7 +104,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [alert setInformativeText:@"You cannot make a move and are forced to pass."];
     [alert addButtonWithTitle:@"Ok"];
     [alert runModal];
-    [self move:[NSMutableArray arrayWithObject:[NSNull null]]];
+    [self move:[NSNull null]];
 }
 
 #pragma mark IBActions
@@ -133,7 +133,6 @@ and updates views in between.
 }
 
 #pragma mark Actions
-
 
 /** Make the AI perform a move. */
 - (void)aiMove
