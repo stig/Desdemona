@@ -8,6 +8,17 @@
         <description>Most recent changes with links to updates.</description> 
         <language>en</language> 
 
+        <item>
+            <title>Desdemona 0.3.2</title>
+            <description><![CDATA[
+                <p>Fixed a bug regarding pass moves that could cause you
+                to be stuck in an infinite loop of modal dialogues.</p>
+            ]]></description>
+            <pubDate>Fri, May 11 2007 21:16:08 BST</pubDate>
+            <enclosure url='http://code.brautaset.org/files/Desdemona_0.3.2.dmg' 
+                length='252473' type="application/octet-stream"/>
+        </item>
+
         <item> 
             <title>Desdemona 0.3.1</title> 
             <description><![CDATA[

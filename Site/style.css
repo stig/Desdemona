@@ -6,8 +6,8 @@ body {  width: 40em;
         font-family: Verdana, Arial, sans-serif;
 }
 img {   float: right;
-        margin-right: 1.5em;
-        margin-bottom: 1.5em;
+        margin-left: 1.5em;
+        margin-bottom: 1em;
         width: 18.75em; /* 18.75 * 2 + 1.5 = 40 */
 }
 h1 { color: #921; text-align: center; font-size: 1.6em; }
