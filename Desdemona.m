@@ -39,12 +39,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)resetGame
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [ab release];
-    ab = [[SBAlphaBeta alloc] initWithState:
-        [[SBReversiState alloc] initWithBoardSize:
-            [defaults integerForKey:@"boardsize"]]];
     level = [defaults integerForKey:@"ai_level"];
     ai = 2;
+
+    id st = [[[SBReversiState alloc] initWithBoardSize:
+                [defaults integerForKey:@"boardsize"]]
+                    autorelease];
+    [ab release];
+    ab = [[SBAlphaBeta alloc] initWithState:st];
     
     [self autoMove];
 }
