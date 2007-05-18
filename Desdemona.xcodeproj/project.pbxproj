@@ -21,6 +21,8 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		E7036F920BFE40ED00A3F0B4 /* ABController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7036F900BFE40ED00A3F0B4 /* ABController.h */; };
+		E7036F930BFE40ED00A3F0B4 /* ABController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7036F910BFE40ED00A3F0B4 /* ABController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,7 @@
 				539AB04A0BECD35300908522 /* SBAlphaBeta.framework in CopyFiles */,
 				539AB04B0BECD35300908522 /* SBReversi.framework in CopyFiles */,
 				539AB0490BECD34100908522 /* Sparkle.framework in CopyFiles */,
+				E7036F920BFE40ED00A3F0B4 /* ABController.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +106,8 @@
 		539AB00A0BECD25400908522 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = /Library/Frameworks/Sparkle.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Desdemona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desdemona.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7036F900BFE40ED00A3F0B4 /* ABController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABController.h; sourceTree = "<group>"; };
+		E7036F910BFE40ED00A3F0B4 /* ABController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +132,8 @@
 				535024F00B3ACE7A0012DAE7 /* Desdemona.m */,
 				535024CA0B3ACD370012DAE7 /* BoardView.h */,
 				535024CB0B3ACD370012DAE7 /* BoardView.m */,
+				E7036F900BFE40ED00A3F0B4 /* ABController.h */,
+				E7036F910BFE40ED00A3F0B4 /* ABController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -311,6 +318,7 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				535024CF0B3ACD370012DAE7 /* BoardView.m in Sources */,
 				535024F10B3ACE7A0012DAE7 /* Desdemona.m in Sources */,
+				E7036F930BFE40ED00A3F0B4 /* ABController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

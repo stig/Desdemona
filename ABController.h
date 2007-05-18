@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2006 Stig Brautaset. All rights reserved.
+Copyright (C) 2007 Stig Brautaset. All rights reserved.
 
 This file is part of Desdemona.
 
@@ -19,20 +19,34 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-#import <SBReversi/SBReversiState.h>
-#import "ABController.h"
 
-@class BoardView;
+#import <Cocoa/Cocoa.h>
+#import <SBAlphaBeta/SBAlphaBeta.h>
 
-@interface Desdemona : ABController
+@interface ABController : NSObject
 {
-    IBOutlet BoardView *board;
-
-    IBOutlet NSTextField *black;
-    IBOutlet NSTextField *white;
+    unsigned ai, level;
+    SBAlphaBeta *ab;
+    IBOutlet NSProgressIndicator *progressIndicator;
 }
 
-- (void)clickAtRow:(int)r col:(int)c;
-- (void)passAlert;
+- (IBAction)newGame:(id)sender;
+- (IBAction)undo:(id)sender;
+- (IBAction)newGame:(id)sender;
+
+- (void)setLevel:(unsigned)x;
+- (unsigned)level;
+- (void)setAi:(unsigned)x;
+- (unsigned)ai;
+- (void)setAlphaBeta:(id)x;
+- (id)alphaBeta;
+
+- (id)state;
+- (void)move:(id)move;
+- (void)gameOverAlert;
+- (void)aiMove;
+- (void)updateViews;
+- (void)autoMove;
+- (void)resetGame;
 
 @end
