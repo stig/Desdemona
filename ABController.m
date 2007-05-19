@@ -192,13 +192,13 @@ and updates views in between.
 - (void)setLevel:(unsigned)x { level = x; }
 - (unsigned)level { return level; }
 
-- (void)setAlphaBeta:(unsigned)x
+- (void)setAlphaBeta:(id)x
 {
     if (alphaBeta != x) {
         [alphaBeta release];
         alphaBeta = [x retain];
     }
 }
-- (unsigned)alphaBeta { return alphaBeta; }
+- (id)alphaBeta { return alphaBeta; }
 
 @end

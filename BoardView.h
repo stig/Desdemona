@@ -25,12 +25,10 @@
 @interface BoardView : NSMatrix
 {
     NSArray *disks;
-    Desdemona *controller;
     NSArray *state;
     int rows, cols;
 }
 
-- (void)setController:(id)ctrl;
 - (void)setTheme:(id)ctrl;
 - (void)setBoard:(id)this;
 

@@ -23,20 +23,6 @@
 
 @implementation BoardView
 
-- (void)dealloc
-{
-    [controller release];
-    [super dealloc];
-}
-
-- (void)setController:(id)this
-{
-    if (controller != this) {
-        [controller release];
-        controller = [this retain];
-    }
-}
-
 - (void)setTheme:(id)this
 {
     id sq = [NSMutableArray array];
@@ -108,12 +94,16 @@
 
 - (void)mouseDown:(NSEvent *)event
 {
-    if (!controller)
-        return;
-    NSPoint p = [self convertPoint:[event locationInWindow] fromView:nil];
-    int r, c;
-    [self getRow:&r column:&c forPoint:p];
-    [controller clickAtRow:r col:c];
+    if ([self delegate]) {
+        NSPoint p = [self convertPoint:[event locationInWindow] fromView:nil];
+        int r, c;
+        [self getRow:&r column:&c forPoint:p];
+        [[self delegate] clickAtRow:r col:c];
+
+    } else {
+        NSLog(@"No delegate set.");
+    
+    }
 }
 
 @end

@@ -49,7 +49,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)awakeFromNib
 {
     [[board window] makeKeyAndOrderFront:self];
-    [board setController:self];
+    [board setDelegate:self];
     [board setTheme:[NSImage imageNamed:@"classic"]];
     [self resetGame];
 }
