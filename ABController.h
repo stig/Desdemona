@@ -26,11 +26,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 @interface ABController : NSObject
 {
     unsigned ai, level;
-    SBAlphaBeta *ab;
+    SBAlphaBeta *alphaBeta;
     IBOutlet NSProgressIndicator *progressIndicator;
 }
 
-- (IBAction)newGame:(id)sender;
 - (IBAction)undo:(id)sender;
 - (IBAction)newGame:(id)sender;
 
@@ -43,10 +42,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (id)state;
 - (void)move:(id)move;
-- (void)gameOverAlert;
 - (void)aiMove;
 - (void)updateViews;
 - (void)autoMove;
 - (void)resetGame;
+
+- (void)gameOverAlert;
+- (void)passAlert;
 
 @end

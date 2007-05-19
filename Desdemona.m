@@ -40,8 +40,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     id st = [[[SBReversiState alloc] initWithBoardSize:
                 [defaults integerForKey:@"boardsize"]]
                     autorelease];
-    [ab release];
-    ab = [[SBAlphaBeta alloc] initWithState:st];
+
+    [self setAlphaBeta:[[SBAlphaBeta alloc] initWithState:st]];
 
     [super resetGame];
 }
@@ -56,41 +56,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 
 
-#pragma mark Alerts
-
-- (void)passAlert
-{
-    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
-    [alert setMessageText:@"No move possible"];
-    [alert setInformativeText:@"You cannot make a move and are forced to pass."];
-    [alert addButtonWithTitle:@"Ok"];
-    [alert runModal];
-    [self move:[NSNull null]];
-}
-
 #pragma mark IBActions
 
 #pragma mark Actions
-
-/** Figure out if the AI should move "by itself". */
-- (void)autoMove
-{
-    [self updateViews];
-    
-    if ([ab isGameOver]) {
-        [self gameOverAlert];
-    }
-    else if ([ab currentPlayerMustPass]) {
-        [self passAlert];
-    }
-    
-    if ([self ai] == [ab playerTurn]) {
-        [progressIndicator startAnimation:self];
-        [self aiMove];
-        [progressIndicator stopAnimation:self];
-        [self updateViews];
-    }
-}
 
 - (void)updateViews
 {
@@ -98,7 +66,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     SBReversiStateCount counts = [s countSquares];
     [white setIntValue:counts.c[3 - [self ai]]];
     [black setIntValue:counts.c[[self ai]]];
-    [board setBoard:[[ab currentState] board]];
+    [board setBoard:[[self state] board]];
     [board setNeedsDisplay:YES];
     [[board window] display];
 }

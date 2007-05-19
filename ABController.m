@@ -44,7 +44,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)dealloc
 {
-    [ab release];
+    [alphaBeta release];
     [super dealloc];
 }
 
@@ -55,8 +55,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     NSAlert *alert = [[[NSAlert alloc] init] autorelease];
 
-    int winner = [ab winner];
-    NSString *msg = winner == [self ai] ? @"You lost!" :
+    int winner = [alphaBeta winner];
+    NSString *msg = winner == ai ? @"You lost!" :
                     !winner      ? @"You managed a draw!" :
                                    @"You won!";
     
@@ -82,6 +82,17 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     }
 }
 
+- (void)passAlert
+{
+    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    [alert setMessageText:@"No move possible"];
+    [alert setInformativeText:@"You cannot make a move and are forced to pass."];
+    [alert addButtonWithTitle:@"Ok"];
+    [alert runModal];
+    [self move:[NSNull null]];
+}
+
+
 #pragma mark IBActions
 
 /**
@@ -90,16 +101,16 @@ and updates views in between.
 */
 - (IBAction)undo:(id)sender
 {
-    [ab undoLastMove];
+    [alphaBeta undoLastMove];
     [self updateViews];
-    [ab undoLastMove];
+    [alphaBeta undoLastMove];
     [self autoMove];
 }
 
 /** Initiate a new game. */
 - (IBAction)newGame:(id)sender
 {
-    if ([ab countMoves]) {
+    if ([alphaBeta countMoves]) {
         [self newGameAlert];
     }
     else {
@@ -113,12 +124,12 @@ and updates views in between.
 - (void)aiMove
 {
     id st = nil;
-    if ([self level] < 4) {
-        st = [ab applyMoveFromSearchWithPly:[self level]];
+    if (level < 4) {
+        st = [alphaBeta applyMoveFromSearchWithPly:level];
     } else {
-        int ply = [self level] * 10.0;
+        int ply = level * 10.0;
         NSTimeInterval interval = (NSTimeInterval)(ply * ply / 1000.0);
-        st = [ab applyMoveFromSearchWithInterval:interval];
+        st = [alphaBeta applyMoveFromSearchWithInterval:interval];
     }
 
     if (st) {
@@ -132,7 +143,7 @@ and updates views in between.
 - (void)move:(id)m
 {
     @try {
-        [ab applyMove:m];
+        [alphaBeta applyMove:m];
     }
     @catch (id any) {
         NSLog(@"Illegal move attempted: %@", m);
@@ -145,7 +156,7 @@ and updates views in between.
 /** Return the current state (pass-through to SBAlphaBeta). */
 - (id)state
 {
-    return [ab currentState];
+    return [alphaBeta currentState];
 }
 
 /** Figure out if the AI should move "by itself". */
@@ -153,11 +164,14 @@ and updates views in between.
 {
     [self updateViews];
     
-    if ([ab isGameOver]) {
+    if ([alphaBeta isGameOver]) {
         [self gameOverAlert];
     }
+    else if ([alphaBeta currentPlayerMustPass]) {
+        [self passAlert];
+    }
     
-    if ([self ai] == [ab playerTurn]) {
+    if (ai == [alphaBeta playerTurn]) {
         [progressIndicator startAnimation:self];
         [self aiMove];
         [progressIndicator stopAnimation:self];
@@ -167,7 +181,7 @@ and updates views in between.
 
 - (void)updateViews
 {
-    NSLog(@"-(void)updateViews; in ABController is abstract. override it please.");
+    NSLog(@"-(void)updateViews is abstract. Override it please.");
 }
 
 #pragma mark Accessors
@@ -177,5 +191,14 @@ and updates views in between.
 
 - (void)setLevel:(unsigned)x { level = x; }
 - (unsigned)level { return level; }
+
+- (void)setAlphaBeta:(unsigned)x
+{
+    if (alphaBeta != x) {
+        [alphaBeta release];
+        alphaBeta = [x retain];
+    }
+}
+- (unsigned)alphaBeta { return alphaBeta; }
 
 @end
