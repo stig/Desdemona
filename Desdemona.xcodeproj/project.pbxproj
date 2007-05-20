@@ -21,8 +21,8 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		E7036F920BFE40ED00A3F0B4 /* ABController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7036F900BFE40ED00A3F0B4 /* ABController.h */; };
-		E7036F930BFE40ED00A3F0B4 /* ABController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7036F910BFE40ED00A3F0B4 /* ABController.m */; };
+		E7E519520BFF6A5A006956FE /* BoardGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E5194D0BFF68C7006956FE /* BoardGame.framework */; };
+		E7E519530BFF6A6F006956FE /* BoardGame.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E5194D0BFF68C7006956FE /* BoardGame.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +68,20 @@
 			remoteGlobalIDString = 5350245F0B3AC2D90012DAE7;
 			remoteInfo = SBReversi;
 		};
+		E7E5194C0BFF68C7006956FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = BoardGame;
+		};
+		E7E519500BFF6A52006956FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = BoardGame;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,10 +91,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E7E519530BFF6A6F006956FE /* BoardGame.framework in CopyFiles */,
 				539AB04A0BECD35300908522 /* SBAlphaBeta.framework in CopyFiles */,
 				539AB04B0BECD35300908522 /* SBReversi.framework in CopyFiles */,
 				539AB0490BECD34100908522 /* Sparkle.framework in CopyFiles */,
-				E7036F920BFE40ED00A3F0B4 /* ABController.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,8 +120,7 @@
 		539AB00A0BECD25400908522 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = /Library/Frameworks/Sparkle.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Desdemona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desdemona.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7036F900BFE40ED00A3F0B4 /* ABController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABController.h; sourceTree = "<group>"; };
-		E7036F910BFE40ED00A3F0B4 /* ABController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABController.m; sourceTree = "<group>"; };
+		E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoardGame.xcodeproj; path = ../BoardGame/BoardGame.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +132,7 @@
 				53E864820BC1967C00580DBC /* SBAlphaBeta.framework in Frameworks */,
 				53E864830BC1967C00580DBC /* SBReversi.framework in Frameworks */,
 				539AB00B0BECD25400908522 /* Sparkle.framework in Frameworks */,
+				E7E519520BFF6A5A006956FE /* BoardGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,8 +146,6 @@
 				535024F00B3ACE7A0012DAE7 /* Desdemona.m */,
 				535024CA0B3ACD370012DAE7 /* BoardView.h */,
 				535024CB0B3ACD370012DAE7 /* BoardView.m */,
-				E7036F900BFE40ED00A3F0B4 /* ABController.h */,
-				E7036F910BFE40ED00A3F0B4 /* ABController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -169,6 +181,7 @@
 		29B97314FDCFA39411CA2CEA /* Desdemona */ = {
 			isa = PBXGroup;
 			children = (
+				E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */,
 				53350E350BC07C3800E83830 /* SBAlphaBeta.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -220,6 +233,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E7E519490BFF68C7006956FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7E5194D0BFF68C7006956FE /* BoardGame.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -237,6 +258,7 @@
 			dependencies = (
 				53350E450BC07C5100E83830 /* PBXTargetDependency */,
 				53350E470BC07C5100E83830 /* PBXTargetDependency */,
+				E7E519510BFF6A52006956FE /* PBXTargetDependency */,
 			);
 			name = Desdemona;
 			productInstallPath = "$(HOME)/Applications";
@@ -254,6 +276,10 @@
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Desdemona */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = E7E519490BFF68C7006956FE /* Products */;
+					ProjectRef = E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */;
+				},
 				{
 					ProductGroup = 53350E360BC07C3800E83830 /* Products */;
 					ProjectRef = 53350E350BC07C3800E83830 /* SBAlphaBeta.xcodeproj */;
@@ -294,6 +320,13 @@
 			remoteRef = 53350E420BC07C3800E83830 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E7E5194D0BFF68C7006956FE /* BoardGame.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BoardGame.framework;
+			remoteRef = E7E5194C0BFF68C7006956FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -318,7 +351,6 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				535024CF0B3ACD370012DAE7 /* BoardView.m in Sources */,
 				535024F10B3ACE7A0012DAE7 /* Desdemona.m in Sources */,
-				E7036F930BFE40ED00A3F0B4 /* ABController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +366,11 @@
 			isa = PBXTargetDependency;
 			name = SBReversi;
 			targetProxy = 53350E460BC07C5100E83830 /* PBXContainerItemProxy */;
+		};
+		E7E519510BFF6A52006956FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BoardGame;
+			targetProxy = E7E519500BFF6A52006956FE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

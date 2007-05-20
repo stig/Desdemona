@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2006 Stig Brautaset. All rights reserved.
+Copyright (C) 2006,2007 Stig Brautaset. All rights reserved.
 
 This file is part of Desdemona.
 

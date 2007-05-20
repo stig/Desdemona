@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2006 Stig Brautaset. All rights reserved.
+Copyright (C) 2006,2007 Stig Brautaset. All rights reserved.
 
 This file is part of Desdemona.
 
@@ -20,11 +20,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #import <SBReversi/SBReversiState.h>
-#import "ABController.h"
+#import <BoardGame/SBGame.h>
 
 @class BoardView;
 
-@interface Desdemona : ABController
+@interface Desdemona : SBGame
 {
     IBOutlet BoardView *board;
 
