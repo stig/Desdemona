@@ -11,75 +11,79 @@
 		535024CF0B3ACD370012DAE7 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024CB0B3ACD370012DAE7 /* BoardView.m */; };
 		535024D00B3ACD370012DAE7 /* classic.png in Resources */ = {isa = PBXBuildFile; fileRef = 535024CC0B3ACD370012DAE7 /* classic.png */; };
 		535024F10B3ACE7A0012DAE7 /* Desdemona.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024F00B3ACE7A0012DAE7 /* Desdemona.m */; };
+		5362B2440C8A2CBF005A0C19 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5362B2360C8A2BDB005A0C19 /* AlphaBeta.framework */; };
+		5362B2450C8A2CC1005A0C19 /* SBReversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5362B2380C8A2BDB005A0C19 /* SBReversi.framework */; };
+		5362B2460C8A2CC6005A0C19 /* BoardGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5362B2140C8A2BC7005A0C19 /* BoardGame.framework */; };
 		539AB00B0BECD25400908522 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539AB00A0BECD25400908522 /* Sparkle.framework */; };
 		539AB0490BECD34100908522 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 539AB00A0BECD25400908522 /* Sparkle.framework */; };
-		539AB04A0BECD35300908522 /* AlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53350E3D0BC07C3800E83830 /* AlphaBeta.framework */; };
-		539AB04B0BECD35300908522 /* SBReversi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53350E3F0BC07C3800E83830 /* SBReversi.framework */; };
-		53E864820BC1967C00580DBC /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53350E3D0BC07C3800E83830 /* AlphaBeta.framework */; };
-		53E864830BC1967C00580DBC /* SBReversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53350E3F0BC07C3800E83830 /* SBReversi.framework */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		E7E519520BFF6A5A006956FE /* BoardGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E5194D0BFF68C7006956FE /* BoardGame.framework */; };
-		E7E519530BFF6A6F006956FE /* BoardGame.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7E5194D0BFF68C7006956FE /* BoardGame.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		53350E3C0BC07C3800E83830 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = AlphaBeta;
-		};
-		53350E3E0BC07C3800E83830 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 535024600B3AC2D90012DAE7;
-			remoteInfo = SBReversi;
-		};
-		53350E400BC07C3800E83830 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 535023DF0B3AB87F0012DAE7;
-			remoteInfo = TTT;
-		};
-		53350E420BC07C3800E83830 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 535023F40B3AB9000012DAE7;
-			remoteInfo = Tests;
-		};
-		53350E440BC07C5100E83830 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = AlphaBeta;
-		};
-		53350E460BC07C5100E83830 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5350245F0B3AC2D90012DAE7;
-			remoteInfo = SBReversi;
-		};
-		E7E5194C0BFF68C7006956FE /* PBXContainerItemProxy */ = {
+		5362B2130C8A2BC7005A0C19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* BoardGame.framework */;
 			remoteInfo = BoardGame;
 		};
-		E7E519500BFF6A52006956FE /* PBXContainerItemProxy */ = {
+		5362B2350C8A2BDB005A0C19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */;
+			remoteInfo = AlphaBeta;
+		};
+		5362B2370C8A2BDB005A0C19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 535024600B3AC2D90012DAE7 /* SBReversi.framework */;
+			remoteInfo = SBReversi;
+		};
+		5362B2390C8A2BDB005A0C19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 535023DF0B3AB87F0012DAE7 /* TTT.framework */;
+			remoteInfo = TTT;
+		};
+		5362B23B0C8A2BDB005A0C19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 535023F40B3AB9000012DAE7 /* Tests.octest */;
+			remoteInfo = Tests;
+		};
+		5362B23D0C8A2BDB005A0C19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5305DF520C81A8A1009D7D04 /* ReversiProfile */;
+			remoteInfo = ReversiProfile;
+		};
+		5362B25A0C8A2D3D005A0C19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* AlphaBeta */;
+			remoteInfo = AlphaBeta;
+		};
+		5362B25C0C8A2D3D005A0C19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5350245F0B3AC2D90012DAE7 /* SBReversi */;
+			remoteInfo = SBReversi;
+		};
+		5362B25E0C8A2D3D005A0C19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* BoardGame */;
 			remoteInfo = BoardGame;
 		};
 /* End PBXContainerItemProxy section */
@@ -91,9 +95,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E7E519530BFF6A6F006956FE /* BoardGame.framework in CopyFiles */,
-				539AB04A0BECD35300908522 /* AlphaBeta.framework in CopyFiles */,
-				539AB04B0BECD35300908522 /* SBReversi.framework in CopyFiles */,
 				539AB0490BECD34100908522 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,7 +111,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Desdemona_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona_Prefix.pch; sourceTree = "<group>"; };
 		5307C7A80BED2F8300AD99B2 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
-		53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AlphaBeta.xcodeproj; path = ../AlphaBeta/AlphaBeta.xcodeproj; sourceTree = SOURCE_ROOT; };
+		53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AlphaBeta.xcodeproj; path = vendor/AlphaBeta/AlphaBeta.xcodeproj; sourceTree = SOURCE_ROOT; };
 		53350E690BC07DED00E83830 /* AlphaBeta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlphaBeta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		535024CA0B3ACD370012DAE7 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		535024CB0B3ACD370012DAE7 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
@@ -120,7 +121,7 @@
 		539AB00A0BECD25400908522 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = /Library/Frameworks/Sparkle.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Desdemona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desdemona.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoardGame.xcodeproj; path = ../BoardGame/BoardGame.xcodeproj; sourceTree = SOURCE_ROOT; };
+		E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoardGame.xcodeproj; path = vendor/BoardGame/BoardGame.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,10 +130,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				53E864820BC1967C00580DBC /* AlphaBeta.framework in Frameworks */,
-				53E864830BC1967C00580DBC /* SBReversi.framework in Frameworks */,
 				539AB00B0BECD25400908522 /* Sparkle.framework in Frameworks */,
-				E7E519520BFF6A5A006956FE /* BoardGame.framework in Frameworks */,
+				5362B2440C8A2CBF005A0C19 /* AlphaBeta.framework in Frameworks */,
+				5362B2450C8A2CC1005A0C19 /* SBReversi.framework in Frameworks */,
+				5362B2460C8A2CC6005A0C19 /* BoardGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,21 +223,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		53350E360BC07C3800E83830 /* Products */ = {
+		5362B2100C8A2BC7005A0C19 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				53350E3D0BC07C3800E83830 /* AlphaBeta.framework */,
-				53350E3F0BC07C3800E83830 /* SBReversi.framework */,
-				53350E410BC07C3800E83830 /* TTT.framework */,
-				53350E430BC07C3800E83830 /* Tests.octest */,
+				5362B2140C8A2BC7005A0C19 /* BoardGame.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E7E519490BFF68C7006956FE /* Products */ = {
+		5362B22E0C8A2BDB005A0C19 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E7E5194D0BFF68C7006956FE /* BoardGame.framework */,
+				5362B2360C8A2BDB005A0C19 /* AlphaBeta.framework */,
+				5362B2380C8A2BDB005A0C19 /* SBReversi.framework */,
+				5362B23A0C8A2BDB005A0C19 /* TTT.framework */,
+				5362B23C0C8A2BDB005A0C19 /* Tests.octest */,
+				5362B23E0C8A2BDB005A0C19 /* ReversiProfile */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -256,9 +258,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				53350E450BC07C5100E83830 /* PBXTargetDependency */,
-				53350E470BC07C5100E83830 /* PBXTargetDependency */,
-				E7E519510BFF6A52006956FE /* PBXTargetDependency */,
+				5362B25B0C8A2D3D005A0C19 /* PBXTargetDependency */,
+				5362B25D0C8A2D3D005A0C19 /* PBXTargetDependency */,
+				5362B25F0C8A2D3D005A0C19 /* PBXTargetDependency */,
 			);
 			name = Desdemona;
 			productInstallPath = "$(HOME)/Applications";
@@ -277,11 +279,11 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 53350E360BC07C3800E83830 /* Products */;
+					ProductGroup = 5362B22E0C8A2BDB005A0C19 /* Products */;
 					ProjectRef = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
 				},
 				{
-					ProductGroup = E7E519490BFF68C7006956FE /* Products */;
+					ProductGroup = 5362B2100C8A2BC7005A0C19 /* Products */;
 					ProjectRef = E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */;
 				},
 			);
@@ -292,39 +294,46 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		53350E3D0BC07C3800E83830 /* AlphaBeta.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = AlphaBeta.framework;
-			remoteRef = 53350E3C0BC07C3800E83830 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		53350E3F0BC07C3800E83830 /* SBReversi.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SBReversi.framework;
-			remoteRef = 53350E3E0BC07C3800E83830 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		53350E410BC07C3800E83830 /* TTT.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = TTT.framework;
-			remoteRef = 53350E400BC07C3800E83830 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		53350E430BC07C3800E83830 /* Tests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = Tests.octest;
-			remoteRef = 53350E420BC07C3800E83830 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E7E5194D0BFF68C7006956FE /* BoardGame.framework */ = {
+		5362B2140C8A2BC7005A0C19 /* BoardGame.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = BoardGame.framework;
-			remoteRef = E7E5194C0BFF68C7006956FE /* PBXContainerItemProxy */;
+			remoteRef = 5362B2130C8A2BC7005A0C19 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5362B2360C8A2BDB005A0C19 /* AlphaBeta.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AlphaBeta.framework;
+			remoteRef = 5362B2350C8A2BDB005A0C19 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5362B2380C8A2BDB005A0C19 /* SBReversi.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SBReversi.framework;
+			remoteRef = 5362B2370C8A2BDB005A0C19 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5362B23A0C8A2BDB005A0C19 /* TTT.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TTT.framework;
+			remoteRef = 5362B2390C8A2BDB005A0C19 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5362B23C0C8A2BDB005A0C19 /* Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.octest;
+			remoteRef = 5362B23B0C8A2BDB005A0C19 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5362B23E0C8A2BDB005A0C19 /* ReversiProfile */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = ReversiProfile;
+			remoteRef = 5362B23D0C8A2BDB005A0C19 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -357,20 +366,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		53350E450BC07C5100E83830 /* PBXTargetDependency */ = {
+		5362B25B0C8A2D3D005A0C19 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AlphaBeta;
-			targetProxy = 53350E440BC07C5100E83830 /* PBXContainerItemProxy */;
+			targetProxy = 5362B25A0C8A2D3D005A0C19 /* PBXContainerItemProxy */;
 		};
-		53350E470BC07C5100E83830 /* PBXTargetDependency */ = {
+		5362B25D0C8A2D3D005A0C19 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SBReversi;
-			targetProxy = 53350E460BC07C5100E83830 /* PBXContainerItemProxy */;
+			targetProxy = 5362B25C0C8A2D3D005A0C19 /* PBXContainerItemProxy */;
 		};
-		E7E519510BFF6A52006956FE /* PBXTargetDependency */ = {
+		5362B25F0C8A2D3D005A0C19 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BoardGame;
-			targetProxy = E7E519500BFF6A52006956FE /* PBXContainerItemProxy */;
+			targetProxy = 5362B25E0C8A2D3D005A0C19 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

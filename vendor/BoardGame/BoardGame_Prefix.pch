@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'BoardGame' target in the 'BoardGame' project.
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

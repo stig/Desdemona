@@ -1,0 +1,37 @@
+v0.3 @ 2007-XX-XX)
+
+* Fixed several major bugs:
+  - Alpha-Beta cut-offs are now in effect. This speeds up searches enormously.
+  - The iterative search routines would end a search early if it found
+    an early end state (rather than if _all_ the 'leaf' states it saw were
+    early end states).
+* Speeded up search a bit by not computing available moves if we have
+  reached the maximum search depth.
+* Added an -endStateScore method to both the state protocols.
+* Added -playerTurn method to SBAlphaBeta. For simplicity SBAlphaBeta
+  enumerates the players 1 and 2, regardless of how the states
+  internally thinks of them, and 1 _always starts_.
+* Added -winner method to SBAlphaBeta now that it is capable of deducing
+  the winner of a game.
+* Renamed the project (not the classes) and added an AlphaBeta.h header.
+* Greatly improved the documentation.
+* Greatly improved the timekeeping of the iterative search.
+
+v0.2 @ 2007-03-27
+
+This release has seen substantial updates. This is _not_ a drop-in
+replacement for version 0.1. Rather, this is a "back to sanity" release.
+
+* Classes and interfaces have received a prefix to make their names more
+  unique.
+* The interfaces for states have been renamed to SBAlphaBetaState and
+  SBMutableAlphaBetaState.
+* There are now some minor restrictions on moves, which allows us to do
+  more error checking in the controller.
+* Several confusing "convenience" methods have been dropped.
+* Many methods have been renamed for clarity.
+
+v0.1 @ 2006-03-11
+
+This was the initial release.
+

@@ -1,0 +1,154 @@
+INTRODUCTION
+
+Timings have been taken for fixed-depth search to various plies from the
+initial position in Reversi. There are superficially two sets of
+measurements. In the initial ReversiStates were using dynamic arrays to
+hold board state internally. The second set changed that to use static
+arrays for the state. We expect to see an improvement in the case of
+immutable states as there should be a lot less memory movement.
+
+All measurements are taken with a shell loop similar to the following:
+
+    for ply in 3 4 5 ; do
+        for mutable in 0 1 ; do
+            echo -n "Mutable/ply: $mutable/$ply - "
+            /tmp/build/Release/ReversiProfile 100 $ply $mutable | avg
+    done ; echo ; done
+
+What waries is the ply and the number of runs to average over (the first
+argument to ReversiProfile; 100 in this case).
+
+INITIAL MEASUREMENTS
+
+First I ran some measurements for relatively low plies. I ran 100 of
+these, as they take very little time.
+
+    Mutable/ply: 0/3 - avg/stddev/range: 0.039608 0.000666 0.002794
+    Mutable/ply: 1/3 - avg/stddev/range: 0.039623 0.000867 0.005181
+
+    Mutable/ply: 0/4 - avg/stddev/range: 0.175492 0.001791 0.008500
+    Mutable/ply: 1/4 - avg/stddev/range: 0.173180 0.001130 0.004967
+
+    Mutable/ply: 0/5 - avg/stddev/range: 1.008757 0.026803 0.101017
+    Mutable/ply: 1/5 - avg/stddev/range: 0.958873 0.003296 0.013120
+
+
+The difference at these low plies is negligible. Next up were plies 6 &
+7. Each search now start to take a considerable time (especially for 7)
+so I limited the count to 10. Still, the difference in results is
+basically negligible until ply 7.
+
+    Mutable/ply: 0/6 - avg/stddev/range: 5.839756 0.136928 0.423490
+    Mutable/ply: 1/6 - avg/stddev/range: 5.645557 0.018011 0.053170
+
+    Mutable/ply: 0/7 - avg/stddev/range: 42.956067 3.521976 10.496303
+    Mutable/ply: 1/7 - avg/stddev/range: 37.355157 0.273884 0.823050
+
+Finally I fired off two runs to ply 8 for each type of state. These
+takes serious amount of time for each run.
+
+    Mutable/ply: 0/8 - avg/stddev/range: 318.617202 38.225855 54.059523
+    Mutable/ply: 1/8 - avg/stddev/range: 260.696860 0.248446 0.351355
+
+Subsequently a memory leak has found which _could_ be the reason why the
+standard deviation is so high in the immutable version above. For the
+second run there was a much higher memory pressure than for the first
+run; this might have caused it to take more time. More samples would be
+needed to answer this question.
+
+
+SECONDARY MEASUREMENTS
+
+After removing the dynamic arrays used internally, and fixing a memory
+leak that caused the program to fail, the following data was gathered.
+(As can be seen, the output format of the 'avg' utility has changed.)
+
+    Mutable/ply: 0/7 - count/avg/stddev: 50 36.481652 0.164270
+    Mutable/ply: 1/7 - count/avg/stddev: 50 36.845099 0.104681
+    
+    Mutable/ply: 0/8 - count/avg/stddev: 50 257.880506 0.731970
+    Mutable/ply: 1/8 - count/avg/stddev: 50 260.393508 0.744224
+    
+And another set of 100 runs each:
+
+    Mutable/ply: 0/7 - count/avg/stddev: 100 36.559194 0.109744
+    Mutable/ply: 1/7 - count/avg/stddev: 100 36.685173 0.112432
+    
+    Mutable/ply: 0/8 - count/avg/stddev: 100 259.623813 0.785928
+    Mutable/ply: 1/8 - count/avg/stddev: 100 260.576741 0.791036
+    
+    Mutable/ply: 0/9 - count/avg/stddev: 100 1969.072089 5.709694
+    Mutable/ply: 1/9 - n/a
+
+We see that now there is no practical difference between the two types
+of states. It is interesting to observe the differences in the standard deviation
+of mutable and immutable results in the initial measurements, and how
+these disappeared in the secondary ones.
+ At this point I found a couple of bugs with the alpha-beta
+pruning; fixing these caused _massive_ speedups for search and the
+results now became:
+    
+    Mutable/ply: 0/3 - count/avg/stddev: 10 0.017673 0.000326
+    Mutable/ply: 1/3 - count/avg/stddev: 10 0.017812 0.000346
+    
+    Mutable/ply: 0/4 - count/avg/stddev: 10 0.039824 0.000445
+    Mutable/ply: 1/4 - count/avg/stddev: 10 0.040192 0.000477
+    
+    Mutable/ply: 0/5 - count/avg/stddev: 10 0.207775 0.001173
+    Mutable/ply: 1/5 - count/avg/stddev: 10 0.208699 0.001178
+    
+    Mutable/ply: 0/6 - count/avg/stddev: 10 0.487798 0.004194
+    Mutable/ply: 1/6 - count/avg/stddev: 10 0.495750 0.008385
+    
+    Mutable/ply: 0/7 - count/avg/stddev: 10 2.423618 0.016757
+    Mutable/ply: 1/7 - count/avg/stddev: 10 2.444532 0.016262
+    
+    Mutable/ply: 0/8 - count/avg/stddev: 10 5.362002 0.043955
+    Mutable/ply: 1/8 - count/avg/stddev: 10 5.390972 0.036712
+    
+    Mutable/ply: 0/9 - count/avg/stddev: 10 25.935738 0.287476
+    Mutable/ply: 1/9 - count/avg/stddev: 10 26.088441 0.143592
+    
+    Mutable/ply: 0/10 - count/avg/stddev: 10 96.165890 0.806947
+    Mutable/ply: 1/10 - count/avg/stddev: 10 96.769864 0.673480
+
+We see that although we manage to search much deeper in the same amount
+of time, there is no appreciatiable difference between using mutable or
+immutable states.
+
+After adding functionality to count the number of states we encounter
+during a search, the following numbers were measured. These results are
+very slightly slower, but this could be partially due to iTunes running.
+
+    Mutable/ply: 0/3 - count/avg/stddev: 10 0.018050 0.000488
+    Mutable/ply: 1/3 - count/avg/stddev: 10 0.018012 0.000411
+    
+    Mutable/ply: 0/4 - count/avg/stddev: 10 0.040565 0.000802
+    Mutable/ply: 1/4 - count/avg/stddev: 10 0.040696 0.000669
+    
+    Mutable/ply: 0/5 - count/avg/stddev: 10 0.210767 0.001301
+    Mutable/ply: 1/5 - count/avg/stddev: 10 0.211381 0.001640
+    
+    Mutable/ply: 0/6 - count/avg/stddev: 10 0.502121 0.004253
+    Mutable/ply: 1/6 - count/avg/stddev: 10 0.503658 0.004083
+    
+    Mutable/ply: 0/7 - count/avg/stddev: 10 2.449615 0.009620
+    Mutable/ply: 1/7 - count/avg/stddev: 10 2.455594 0.009774
+    
+    Mutable/ply: 0/8 - count/avg/stddev: 10 5.442232 0.043275
+    Mutable/ply: 1/8 - count/avg/stddev: 10 5.478281 0.106905
+
+DISCUSSION & FUTURE WORK
+
+Reducing the amount of dynamic array creation speeded up the immutable
+state class, without having any effect on mutable states. Now both types
+of states takes about the same time. Immutable states now perform
+marginally *better* than mutable ones. This is not completely
+unexpected, but it is certainly nice to have it confirmed.
+
+We might want to consider decreasing the maximum boardsize a little, as
+this would save memory. Each instance is currently 2k in size (20x20
+board of ints takes 1600bytes alone). Setting a max boardsize to 10^2
+_could_ get us down to 512, depending on the runtime. Another idea to
+try achieving that would be to try to use chars instead of ints.
+
