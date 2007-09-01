@@ -1,31 +1,18 @@
 {
     IBClasses = (
         {
-            ACTIONS = {changeAi = id; changeLevel = id; newGame = id; undo = id; }; 
+            ACTIONS = {newGame = id; undo = id; }; 
             CLASS = ABController; 
             LANGUAGE = ObjC; 
-            OUTLETS = {
-                aiButton = NSButton; 
-                board = BoardView; 
-                level = NSTextField; 
-                levelStepper = NSStepper; 
-                turn = NSTextField; 
-            }; 
+            OUTLETS = {progressIndicator = NSProgressIndicator; }; 
             SUPERCLASS = NSObject; 
         }, 
         {CLASS = BoardView; LANGUAGE = ObjC; SUPERCLASS = NSMatrix; }, 
         {
-            ACTIONS = {newGame = id; undo = id; }; 
             CLASS = Desdemona; 
             LANGUAGE = ObjC; 
-            OUTLETS = {
-                black = NSTextField; 
-                board = BoardView; 
-                progressIndicator = NSProgressIndicator; 
-                turn = NSTextField; 
-                white = NSTextField; 
-            }; 
-            SUPERCLASS = NSObject; 
+            OUTLETS = {black = NSTextField; board = BoardView; white = NSTextField; }; 
+            SUPERCLASS = ABController; 
         }, 
         {CLASS = DesdemonaBoard; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 

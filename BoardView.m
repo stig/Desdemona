@@ -1,20 +1,20 @@
 /*
- Copyright (C) 2006 Stig Brautaset. All rights reserved.
+ Copyright (C) 2006,2007 Stig Brautaset. All rights reserved.
  
- This file is part of CocoaGames.
+ This file is part of Desdemona.
  
- CocoaGames is free software; you can redistribute it and/or modify
+ Desdemona is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
  
- CocoaGames is distributed in the hope that it will be useful,
+ Desdemona is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
  
  You should have received a copy of the GNU General Public License
- along with CocoaGames; if not, write to the Free Software
+ along with Desdemona; if not, write to the Free Software
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  
  */
@@ -22,20 +22,6 @@
 #import "Desdemona.h"
 
 @implementation BoardView
-
-- (void)dealloc
-{
-    [controller release];
-    [super dealloc];
-}
-
-- (void)setController:(id)this
-{
-    if (controller != this) {
-        [controller release];
-        controller = [this retain];
-    }
-}
 
 - (void)setTheme:(id)this
 {
@@ -108,12 +94,16 @@
 
 - (void)mouseDown:(NSEvent *)event
 {
-    if (!controller)
-        return;
-    NSPoint p = [self convertPoint:[event locationInWindow] fromView:nil];
-    int r, c;
-    [self getRow:&r column:&c forPoint:p];
-    [controller clickAtRow:r col:c];
+    if ([self delegate]) {
+        NSPoint p = [self convertPoint:[event locationInWindow] fromView:nil];
+        int r, c;
+        [self getRow:&r column:&c forPoint:p];
+        [[self delegate] clickAtRow:r col:c];
+
+    } else {
+        NSLog(@"No delegate set.");
+    
+    }
 }
 
 @end
