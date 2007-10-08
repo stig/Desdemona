@@ -27,63 +27,63 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* BoardGame.framework */;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = BoardGame;
 		};
 		5362B2350C8A2BDB005A0C19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = AlphaBeta;
 		};
 		5362B2370C8A2BDB005A0C19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 535024600B3AC2D90012DAE7 /* SBReversi.framework */;
+			remoteGlobalIDString = 535024600B3AC2D90012DAE7;
 			remoteInfo = SBReversi;
 		};
 		5362B2390C8A2BDB005A0C19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 535023DF0B3AB87F0012DAE7 /* TTT.framework */;
+			remoteGlobalIDString = 535023DF0B3AB87F0012DAE7;
 			remoteInfo = TTT;
 		};
 		5362B23B0C8A2BDB005A0C19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 535023F40B3AB9000012DAE7 /* Tests.octest */;
+			remoteGlobalIDString = 535023F40B3AB9000012DAE7;
 			remoteInfo = Tests;
 		};
 		5362B23D0C8A2BDB005A0C19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 5305DF520C81A8A1009D7D04 /* ReversiProfile */;
+			remoteGlobalIDString = 5305DF520C81A8A1009D7D04;
 			remoteInfo = ReversiProfile;
 		};
 		5362B25A0C8A2D3D005A0C19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* AlphaBeta */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = AlphaBeta;
 		};
 		5362B25C0C8A2D3D005A0C19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 5350245F0B3AC2D90012DAE7 /* SBReversi */;
+			remoteGlobalIDString = 5350245F0B3AC2D90012DAE7;
 			remoteInfo = SBReversi;
 		};
 		5362B25E0C8A2D3D005A0C19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* BoardGame */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = BoardGame;
 		};
 /* End PBXContainerItemProxy section */

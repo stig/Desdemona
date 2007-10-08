@@ -10,7 +10,18 @@ img {   float: right;
         margin-bottom: 1em;
         width: 18.75em; /* 18.75 * 2 + 1.5 = 40 */
 }
-h1 { color: #921; text-align: center; font-size: 1.6em; }
-a:hover { background:#888; }
+h1 {
+    color: darkblue;
+    text-align: center;
+    font-size: 1.6em;
+}
+a:hover {
+    background: darkblue;
+    color: white;
+
+}
 .blurb { font-weight: bold; }
-.meta { color: grey; clear: both }
+.meta {
+    color: grey;
+    clear: both;
+}
