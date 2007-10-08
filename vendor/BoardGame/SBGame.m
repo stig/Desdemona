@@ -131,14 +131,11 @@ and updates views in between.
 /** Make the AI perform a move. */
 - (void)aiMove
 {
-    id st = nil;
-    if (level < 4) {
-        st = [alphaBeta applyMoveFromSearchWithPly:level];
-    } else {
-        int ply = level * 10.0;
-        NSTimeInterval interval = (NSTimeInterval)(ply * ply / 1000.0);
-        st = [alphaBeta applyMoveFromSearchWithInterval:interval];
-    }
+    // This turns out to be a pretty good formula for going from
+    // sequential levels to suitable intervals for search. At least
+    // for Reversi, where x+1 often reaches one more ply than x.
+    NSTimeInterval interval = exp(level) / 1000.0;
+    id st = [alphaBeta applyMoveFromSearchWithInterval:interval];
 
     if (st) {
         [self autoMove];
