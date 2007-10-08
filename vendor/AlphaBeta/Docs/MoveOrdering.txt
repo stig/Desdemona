@@ -1,0 +1,20 @@
+Doing an iterative search from the starting state in Reversi, here are
+the accumulated numbers of states visited at each ply:
+
+ply  MiniMax  AB     R      MO      MO+R
+1    4        4      4      4       4
+2    20       18     16     16      18
+3    92       66     72     68      74
+4    408      183    187    180     186
+5    2120     755    764    752     763
+6    12032    2151   1909   1897    2228
+7    77036    8771   8388   8236    8707
+8    532256   23890  23343  25242   25713
+9    3992764  93985  83225  95337   85595
+
+Key:
+
+AB  = AlphaBeta
+R   = In top-level ab, iterate over moves in reverse order.
+MO  = order the moves by their fitness values in the top-level iterative ab
+

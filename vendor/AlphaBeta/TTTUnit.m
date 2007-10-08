@@ -238,7 +238,7 @@ interlinked, so it makes sense to test them together. -applyMove and
 
 - (void)test06SearchWithPly0
 {
-    STAssertNil([ab applyMoveFromSearchWithPly:0], nil);
+    STAssertThrows([ab applyMoveFromSearchWithPly:0], nil);
 }
 
 - (void)test06SearchWithPly1
@@ -268,7 +268,9 @@ interlinked, so it makes sense to test them together. -applyMove and
 
 - (void)test07SearchWithInterval0
 {
-    STAssertNil([ab applyMoveFromSearchWithInterval:0.0], nil);
+    STAssertNotNil([ab applyMoveFromSearchWithInterval:0.0], nil);
+    STAssertEquals([ab countStatesVisited], (unsigned)9, nil);
+    STAssertEquals([ab plyReachedForSearch], (unsigned)1, nil);
 }
 
 /* This tests relies on being able to search to ply 9 in 300 seconds.

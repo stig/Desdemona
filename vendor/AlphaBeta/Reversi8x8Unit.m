@@ -143,5 +143,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     }
 }
 
+- (void)test06iterativeSearchAlwaysReachesPly1
+{
+    STAssertNotNil([ab moveFromSearchWithInterval:0.0], nil);
+    STAssertEquals([ab countStatesVisited], (unsigned)4, nil);
+    STAssertEquals([ab plyReachedForSearch], (unsigned)1, nil);
+}
 
 @end

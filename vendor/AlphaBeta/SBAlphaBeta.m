@@ -179,6 +179,9 @@ Returns the best move found.
     double alpha = -INFINITY;
     double beta  = +INFINITY;
     
+    if (ply < 1)
+        [NSException raise:@"ply-too-low" format:@"Ply must be 1 or greater"];
+    
     statesVisited = 0;
     dateLimit = nil;
     
@@ -266,8 +269,7 @@ search that lasts up to 300 milliseconds.
         accumulatedStatesVisited += statesVisited;
 
         /* If we found a leaf state for every move, then we're done. We
-           don't need to search deeper.
-         */
+           don't need to search deeper. */
         if (leafCount == [mvs count]) {
             /* See note above in the internal ab method. */
             plyReached--;
@@ -276,8 +278,14 @@ search that lasts up to 300 milliseconds.
     }
 
 time_is_up:
-    statesVisited = accumulatedStatesVisited;
-    return best;
+    if (statesVisited = accumulatedStatesVisited)
+        return best;
+
+    /* If we got here then we didn't even finish searching to 1 ply. This is
+       probably because someone gave a ridiculously low interval. Simply set
+       plyReached and perform a fixed-depth search in that case. */
+    plyReached = 1;
+    return [self moveFromSearchWithPly:1];
 }
 
 /**
