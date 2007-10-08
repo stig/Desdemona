@@ -1,7 +1,7 @@
 NAME=Desdemona
-VERSION=0.3.2
+VERSION=0.4
 
-INSTALLPATH=/tmp/$(NAME).dst$(HOME)/Applications/$(NAME).app
+INSTALLPATH=/tmp/build/Release/$(NAME).app
 RELEASENAME=$(NAME)_$(VERSION)
 DMG=$(RELEASENAME).dmg
 DMGURL=http://code.brautaset.org/$(NAME)/files/$(DMG)
@@ -36,7 +36,7 @@ dmg: install
 	rm -rf $(DMG)
 	hdiutil create -fs HFS+ -volname $(RELEASENAME) -srcfolder $(INSTALLPATH) $(DMG)
 
-upload-dmg: 
-	curl --head $(URL) 2>/dev/null | grep -q "200 OK" && echo "$(DMG) already uploaded"
+upload-dmg: $(DMG)
+	curl --head $(DMGURL) 2>/dev/null | grep -q "404 Not Found" || false
 	scp $(DMG) $(SCPUP)
 

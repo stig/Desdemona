@@ -3,10 +3,39 @@
     xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"> 
 
     <channel> 
-        <title>Desdemona Changelog</title> 
-        <link>http://code.brautaset/Desdemona/appcast.xml</link> 
+        <title>Desdemona news</title> 
+        <link>http://code.brautaset/Desdemona/</link> 
         <description>Most recent changes with links to updates.</description> 
         <language>en</language> 
+
+        <item>
+            <title>Desdemona 0.4</title>
+            <description><![CDATA[
+
+                <p>Fixed a nasty bug in the AI which could lead it to
+                make strange (and terrible) moves near the end of the
+                game. Also fixed an error in the search optimisation
+                code that caused the AI to perform much weaker than it
+                should be.</p>
+
+                <p>Given the latter fix I also took the opportunity to
+                overhaul the difficulty levels. There was too little
+                difference between them. The same range of levels from
+                1-10 is available, but they now represent a wider
+                range of ability in the AI.</p>
+
+                <p>Difficulty level 1 is about the same as it was
+                before. However, at level 10 it will now take about 22
+                seconds to search for a move, up from about 10 seconds
+                previously. (Because of the bugfixes, however, the
+                previous version would have to use about <em>5 minutes
+                or more</em> to perform as well!)</p>
+
+            ]]></description>
+            <pubDate>Mon, Oct  8 2007 22:45:14 BST</pubDate>
+            <enclosure url='http://code.brautaset.org/Desdemona/files/Desdemona_0.4.dmg' 
+                length='218529' type="application/octet-stream"/>
+        </item>
 
         <item>
             <title>Desdemona 0.3.2</title>
