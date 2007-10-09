@@ -126,7 +126,7 @@
 		535024F00B3ACE7A0012DAE7 /* Desdemona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Desdemona.m; sourceTree = "<group>"; };
 		539AB00A0BECD25400908522 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = /Library/Frameworks/Sparkle.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Desdemona.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Desdemona.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* Desdemona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desdemona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoardGame.xcodeproj; path = vendor/BoardGame/BoardGame.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 

@@ -5,7 +5,6 @@ INSTALLEDAPP=/tmp/$(NAME).dst$(HOME)/Applications/$(NAME).app
 RELEASENAME=$(NAME)_$(VERSION)
 DMG=$(RELEASENAME).dmg
 DMGURL=http://code.brautaset.org/$(NAME)/files/$(DMG)
-SCPUP=stig@brautaset.org:code/$(NAME)/files/$(DMG)
 
 
 enclosure: $(DMG)
@@ -19,10 +18,10 @@ enclosure: $(DMG)
 	@echo    ' type="application/octet-stream"/>'
 	@echo 	 "</item>"
 
-_site: Site/*
+_site: Site/* Makefile
 	rm -rf _site; cp -r Site _site
-	perl -pi -e 's{__DMGURL__}{$(DMGURL)}g' _site/*.html
-	perl -pi -e 's{__VERSION__}{$(VERSION)}g' _site/*.html
+	perl -pi -e 's{__DMGURL__}{$(DMGURL)}g' _site/*
+	perl -pi -e 's{__VERSION__}{$(VERSION)}g' _site/*
 
 site: _site
 
@@ -30,8 +29,7 @@ upload-site: _site
 	rsync -e ssh -ruv --delete _site/ --exclude files stig@brautaset.org:code/$(NAME)/
 
 
-
-$(INSTALLEDAPP): *.m vendor/*/*.m 
+$(INSTALLEDAPP): *.m vendor/*/*.m Makefile
 	setCFBundleVersion.pl $(VERSION)
 	-chmod -R +w /tmp/Frameworks ; rm -rf /tmp/Frameworks
 	-chmod -R +w /tmp/$(NAME).dst ; rm -rf /tmp/$(NAME).dst
@@ -47,5 +45,5 @@ dmg: $(DMG)
 
 upload-dmg: $(DMG)
 	curl --head $(DMGURL) 2>/dev/null | grep -q "404 Not Found" || false
-	scp $(DMG) $(SCPUP)
+	scp $(DMG) stig@brautaset.org:code/$(NAME)/files/$(DMG)
 
