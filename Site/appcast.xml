@@ -12,6 +12,11 @@
         <item>
             <title>Desdemona 0.4.1</title>
             <description><![CDATA[
+            
+                <p><em>Version 0.4 had a serious bug in which it would
+                only run on my machine, because I had failed to bundle
+                all the necessary libraries with the application.
+                Sorry about that!</em></p>
 
                 <p>Fixed a nasty bug in the AI which could lead it to
                 make strange (and terrible) moves near the end of the
