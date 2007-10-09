@@ -20,8 +20,8 @@ enclosure: $(DMG)
 
 _site: Site/* Makefile
 	rm -rf _site; cp -r Site _site
-	perl -pi -e 's{__DMGURL__}{$(DMGURL)}g' _site/*
-	perl -pi -e 's{__VERSION__}{$(VERSION)}g' _site/*
+	perl -pi -e 's{__DMGURL__}{$(DMGURL)}g' _site/*.*
+	perl -pi -e 's{__VERSION__}{$(VERSION)}g' _site/*.*
 
 site: _site
 
