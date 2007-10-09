@@ -26,12 +26,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 + (void)initialize
 {
-    [super initialize];
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
+        @"3",           @"ai_level",
         @"8",           @"boardsize",
         nil]];
+}
+
+- (void)awakeFromNib
+{
+    [[board window] makeKeyAndOrderFront:self];
+    [board setDelegate:self];
+    [board setTheme:[NSImage imageNamed:@"classic"]];
+    [self resetGame];
+}
+
+- (void)dealloc
+{
+    [alphaBeta release];
+    [super dealloc];
 }
 
 - (void)resetGame
@@ -43,20 +56,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
     [self setAlphaBeta:[[SBAlphaBeta alloc] initWithState:st]];
 
-    [super resetGame];
+    [self setLevel:[defaults integerForKey:@"ai_level"]];
+    [self setAi: 2];
+    [self setAutomatic: NO];    /* Should the AI move for both players? */
+    [self autoMove];
 }
-
-- (void)awakeFromNib
-{
-    [[board window] makeKeyAndOrderFront:self];
-    [board setDelegate:self];
-    [board setTheme:[NSImage imageNamed:@"classic"]];
-    [self resetGame];
-}
-
-
-
-#pragma mark IBActions
 
 #pragma mark Actions
 
@@ -75,5 +79,162 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     [self move:[[self state] moveForCol:y andRow:x]];
 }
+
+
+/** Make the AI perform a move. */
+- (void)aiMove
+{
+    // This turns out to be a pretty good formula for going from
+    // sequential levels to suitable intervals for search. At least
+    // for Reversi, where x+1 often reaches one more ply than x.
+    NSTimeInterval interval = exp(level) / 1000.0;
+    id st = [alphaBeta applyMoveFromSearchWithInterval:interval];
+
+    if (st) {
+        [self autoMove];
+    } else {
+        NSLog(@"AI cannot move");
+    }
+}
+
+/** Perform the given move. */
+- (void)move:(id)m
+{
+    @try {
+        [alphaBeta applyMove:m];
+    }
+    @catch (id any) {
+        NSLog(@"Illegal move attempted: %@", m);
+    }
+    @finally {
+        [self autoMove];
+    }
+}
+
+/** Return the current state (pass-through to SBAlphaBeta). */
+- (id)state
+{
+    return [alphaBeta currentState];
+}
+
+/** Figure out if the AI should move "by itself". */
+- (void)autoMove
+{
+    [self updateViews];
+    
+    if ([alphaBeta isGameOver]) {
+        [self setAutomatic: NO];
+        [self gameOverAlert];
+    }
+    else if ([alphaBeta currentPlayerMustPass]) {
+        [self passAlert];
+    }
+    
+    if ([self automatic] || [self ai] == [alphaBeta playerTurn]) {
+        [progressIndicator startAnimation:self];
+        [self aiMove];
+        [progressIndicator stopAnimation:self];
+        [self updateViews];
+    }
+}
+
+
+#pragma mark Alerts
+
+/** Displays an alert when "Game Over" is detected. */
+- (void)gameOverAlert
+{
+    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+
+    int winner = [alphaBeta winner];
+    NSString *msg = winner == ai ? @"You lost!" :
+                    !winner      ? @"You managed a draw!" :
+                                   @"You won!";
+    
+    [alert setMessageText:msg];
+    [alert setInformativeText:@"Do you want to play another game?"];
+    [alert addButtonWithTitle:@"Yes"];
+    [alert addButtonWithTitle:@"No"];
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        [self resetGame];
+    }
+}
+
+/** Displays an alert when the "New Game" action is chosen. */
+- (void)newGameAlert
+{
+    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    [alert setMessageText:@"Start a new game"];
+    [alert setInformativeText:@"Are you sure you want to terminate the current game and start a new one?"];
+    [alert addButtonWithTitle:@"Yes"];
+    [alert addButtonWithTitle:@"No"];
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        [self resetGame];
+    }
+}
+
+- (void)passAlert
+{
+    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    [alert setMessageText:@"No move possible"];
+    [alert setInformativeText:@"You cannot make a move and are forced to pass."];
+    [alert addButtonWithTitle:@"Ok"];
+    [alert runModal];
+    [self move:[NSNull null]];
+}
+
+
+#pragma mark IBActions
+
+/**
+Performs undo twice (once for AI, once for human) 
+and updates views in between.
+*/
+- (IBAction)undo:(id)sender
+{
+    [alphaBeta undoLastMove];
+    [self updateViews];
+    [alphaBeta undoLastMove];
+    [self autoMove];
+}
+
+/** Initiate a new game. */
+- (IBAction)newGame:(id)sender
+{
+    if ([alphaBeta countMoves]) {
+        [self newGameAlert];
+    }
+    else {
+        [self resetGame];
+    }
+}
+
+- (IBAction)toggleAutomatic:(id)sender
+{
+    [self setAutomatic: [self automatic] ? NO : YES];
+    [self autoMove];
+}
+
+
+#pragma mark Accessors
+
+- (void)setAutomatic:(BOOL)x { automatic = x; }
+- (BOOL)automatic { return automatic; }
+
+- (void)setAi:(unsigned)x { ai = x; }
+- (unsigned)ai { return ai; }
+
+- (void)setLevel:(unsigned)x { level = x; }
+- (unsigned)level { return level; }
+
+- (void)setAlphaBeta:(id)x
+{
+    if (alphaBeta != x) {
+        [alphaBeta release];
+        alphaBeta = [x retain];
+    }
+}
+- (id)alphaBeta { return alphaBeta; }
+
 
 @end

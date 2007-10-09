@@ -24,8 +24,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @class BoardView;
 
-@interface Desdemona : SBGame
+@interface Desdemona : NSObject
 {
+    BOOL automatic;
+    unsigned ai, level;
+    SBAlphaBeta *alphaBeta;
+
+    IBOutlet NSProgressIndicator *progressIndicator;
+
     IBOutlet BoardView *board;
 
     IBOutlet NSTextField *black;
@@ -33,5 +39,31 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 }
 
 - (void)clickAtRow:(int)r col:(int)c;
+
+- (IBAction)undo:(id)sender;
+- (IBAction)newGame:(id)sender;
+- (IBAction)toggleAutomatic:(id)sender;
+
+- (void)setAutomatic:(BOOL)x;
+- (BOOL)automatic;
+
+- (void)setLevel:(unsigned)x;
+- (unsigned)level;
+
+- (void)setAi:(unsigned)x;
+- (unsigned)ai;
+
+- (void)setAlphaBeta:(id)x;
+- (id)alphaBeta;
+
+- (id)state;
+- (void)move:(id)move;
+- (void)aiMove;
+- (void)updateViews;
+- (void)autoMove;
+- (void)resetGame;
+
+- (void)gameOverAlert;
+- (void)passAlert;
 
 @end
