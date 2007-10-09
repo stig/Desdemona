@@ -19,12 +19,14 @@ enclosure: $(DMG)
 	@echo    ' type="application/octet-stream"/>'
 	@echo 	 "</item>"
 
-site: Site/style.css Site/index.html Site/appcast.xml
+_site: Site/*
 	rm -rf _site; cp -r Site _site
 	perl -pi -e 's{__DMGURL__}{$(DMGURL)}g' _site/*.html
 	perl -pi -e 's{__VERSION__}{$(VERSION)}g' _site/*.html
 
-upload-site: 
+site: _site
+
+upload-site: _site
 	rsync -e ssh -ruv --delete _site/ --exclude files stig@brautaset.org:code/$(NAME)/
 
 
