@@ -1,5 +1,5 @@
 NAME=Desdemona
-VERSION=0.4
+VERSION=0.4.1
 
 INSTALLPATH=/tmp/build/Release/$(NAME).app
 RELEASENAME=$(NAME)_$(VERSION)

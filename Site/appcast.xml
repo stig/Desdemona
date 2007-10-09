@@ -8,8 +8,9 @@
         <description>Most recent changes with links to updates.</description> 
         <language>en</language> 
 
+
         <item>
-            <title>Desdemona 0.4</title>
+            <title>Desdemona 0.4.1</title>
             <description><![CDATA[
 
                 <p>Fixed a nasty bug in the AI which could lead it to
@@ -28,8 +29,21 @@
                 before. However, at level 10 it will now take about 22
                 seconds to search for a move, up from about 10 seconds
                 previously. (Because of the bugfixes, however, the
-                previous version would have to use about <em>5 minutes
-                or more</em> to perform as well!)</p>
+                versions prior to 0.4 would have to use about <em>5
+                minutes or more</em> to perform as well!)</p>
+
+            ]]></description>
+            <pubDate>Tue, Oct  9 2007 08:39:40 BST</pubDate>
+            <enclosure url='http://code.brautaset.org/Desdemona/files/Desdemona_0.4.1.dmg' 
+                length='262413' type="application/octet-stream"/>
+        </item>
+
+        <item>
+            <title>Desdemona 0.4</title>
+            <description><![CDATA[
+                <p>Sorry! I had faile to include all the necessary
+                libraries in the .app, so it would only run on my
+                machine. Don't try to install this.</p>
 
             ]]></description>
             <pubDate>Mon, Oct  8 2007 22:45:14 BST</pubDate>
