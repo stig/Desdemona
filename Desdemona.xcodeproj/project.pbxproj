@@ -14,6 +14,9 @@
 		5362B2440C8A2CBF005A0C19 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5362B2360C8A2BDB005A0C19 /* AlphaBeta.framework */; };
 		5362B2450C8A2CC1005A0C19 /* SBReversi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5362B2380C8A2BDB005A0C19 /* SBReversi.framework */; };
 		5362B2460C8A2CC6005A0C19 /* BoardGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5362B2140C8A2BC7005A0C19 /* BoardGame.framework */; };
+		5374CA410CBB639000CBAA1E /* BoardGame.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5362B2140C8A2BC7005A0C19 /* BoardGame.framework */; };
+		5374CA420CBB639B00CBAA1E /* AlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5362B2360C8A2BDB005A0C19 /* AlphaBeta.framework */; };
+		5374CA470CBB639F00CBAA1E /* SBReversi.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5362B2380C8A2BDB005A0C19 /* SBReversi.framework */; };
 		539AB00B0BECD25400908522 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539AB00A0BECD25400908522 /* Sparkle.framework */; };
 		539AB0490BECD34100908522 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 539AB00A0BECD25400908522 /* Sparkle.framework */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
@@ -95,6 +98,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5374CA420CBB639B00CBAA1E /* AlphaBeta.framework in CopyFiles */,
+				5374CA470CBB639F00CBAA1E /* SBReversi.framework in CopyFiles */,
+				5374CA410CBB639000CBAA1E /* BoardGame.framework in CopyFiles */,
 				539AB0490BECD34100908522 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,7 +126,7 @@
 		535024F00B3ACE7A0012DAE7 /* Desdemona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Desdemona.m; sourceTree = "<group>"; };
 		539AB00A0BECD25400908522 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = /Library/Frameworks/Sparkle.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Desdemona.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desdemona.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* Desdemona.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Desdemona.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7E519480BFF68C7006956FE /* BoardGame.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BoardGame.xcodeproj; path = vendor/BoardGame/BoardGame.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
