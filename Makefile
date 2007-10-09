@@ -1,11 +1,12 @@
 NAME=Desdemona
 VERSION=0.4.1
 
-INSTALLPATH=/tmp/build/Release/$(NAME).app
+INSTALLEDAPP=/tmp/$(NAME).dst$(HOME)/Applications/$(NAME).app
 RELEASENAME=$(NAME)_$(VERSION)
 DMG=$(RELEASENAME).dmg
 DMGURL=http://code.brautaset.org/$(NAME)/files/$(DMG)
 SCPUP=stig@brautaset.org:code/$(NAME)/files/$(DMG)
+
 
 enclosure: $(DMG)
 	@echo    "<item>"
@@ -18,23 +19,29 @@ enclosure: $(DMG)
 	@echo    ' type="application/octet-stream"/>'
 	@echo 	 "</item>"
 
-
 site: Site/style.css Site/index.html Site/appcast.xml
 	rm -rf _site; cp -r Site _site
 	perl -pi -e 's{__DMGURL__}{$(DMGURL)}g' _site/*.html
 	perl -pi -e 's{__VERSION__}{$(VERSION)}g' _site/*.html
 
-upload-site: site
+upload-site: 
 	rsync -e ssh -ruv --delete _site/ --exclude files stig@brautaset.org:code/$(NAME)/
 
-install: *.m
-	setCFBundleVersion.pl $(VERSION)
-	xcodebuild -target $(NAME) install
 
-$(DMG): dmg
-dmg: install
-	rm -rf $(DMG)
-	hdiutil create -fs HFS+ -volname $(RELEASENAME) -srcfolder $(INSTALLPATH) $(DMG)
+
+$(INSTALLEDAPP): *.m vendor/*/*.m 
+	setCFBundleVersion.pl $(VERSION)
+	-chmod -R +w /tmp/Frameworks ; rm -rf /tmp/Frameworks
+	-chmod -R +w /tmp/$(NAME).dst ; rm -rf /tmp/$(NAME).dst
+	xcodebuild -target $(NAME) clean install
+
+install: $(INSTALLEDAPP)
+
+$(DMG): $(INSTALLEDAPP) 
+	-rm -rf $(DMG)
+	hdiutil create -fs HFS+ -volname $(RELEASENAME) -srcfolder $(INSTALLEDAPP) $(DMG)
+
+dmg: $(DMG)
 
 upload-dmg: $(DMG)
 	curl --head $(DMGURL) 2>/dev/null | grep -q "404 Not Found" || false
