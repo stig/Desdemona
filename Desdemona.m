@@ -57,7 +57,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [self setAlphaBeta:[[SBAlphaBeta alloc] initWithState:st]];
 
     [self setLevel:[defaults integerForKey:@"ai_level"]];
-    [self setAi: 2];
+    [self setAi:2];
     [self setAutomatic: NO];    /* Should the AI move for both players? */
     [self autoMove];
 }
@@ -66,18 +66,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)updateViews
 {
-    SBReversiState *s = [self state];
-    SBReversiStateCount counts = [s countSquares];
+    SBReversiState *state = [alphaBeta currentState];
+    SBReversiStateCount counts = [state countSquares];
     [white setIntValue:counts.c[3 - [self ai]]];
     [black setIntValue:counts.c[[self ai]]];
-    [board setBoard:[[self state] board]];
+    [board setBoard:[state board]];
     [board setNeedsDisplay:YES];
     [[board window] display];
 }
 
 - (void)clickAtRow:(int)y col:(int)x
 {
-    [self move:[[self state] moveForCol:y andRow:x]];
+    SBReversiState *state = [alphaBeta currentState];
+    [self move:[state moveForCol:y andRow:x]];
 }
 
 
@@ -109,12 +110,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     @finally {
         [self autoMove];
     }
-}
-
-/** Return the current state (pass-through to SBAlphaBeta). */
-- (id)state
-{
-    return [alphaBeta currentState];
 }
 
 /** Figure out if the AI should move "by itself". */
