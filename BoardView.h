@@ -24,9 +24,8 @@
 
 @interface BoardView : NSMatrix
 {
-    NSArray *disks;
-    NSArray *state;
-    int rows, cols;
+    NSArray *tiles;     // holds the themed tiles
+    NSArray *target;    // the target board
 }
 
 - (void)setTheme:(id)ctrl;

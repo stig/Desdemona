@@ -27,50 +27,58 @@
 - (void)setTheme:(id)this
 {
     id sq = [this tilesWithSize:NSMakeSize(100, 100) forRows:4 columns:8];
-    [disks release];
-    disks = [sq retain];
+    [tiles release];
+    tiles = [sq retain];
 }
 
 - (void)drawState
 {
-    int r, c;
-    for (r = 0; r < rows; r++) {
-        for (c = 0; c < cols; c++) {
-            int square = [[[state objectAtIndex:r] objectAtIndex:c] intValue];
-            square = square == 1 
-                ? 1 : square == 2
-                    ? 31 : 0;
-
+    for (unsigned r = 0; r < [target count]; r++) {
+        NSArray *row = [target objectAtIndex:r];
+        for (unsigned c = 0; c < [row count]; c++) {
+            int square = [[row objectAtIndex:c] intValue];
             NSImageCell *ic = [self cellAtRow:r column:c];
-            [ic setImage:[disks objectAtIndex:square]];
+            [ic setImage:[tiles objectAtIndex:square]];
             [ic setImageFrameStyle:NSImageFrameNone];
             [self drawCell:ic];
         }
     }
-    [self setNeedsDisplay:YES];
+//    [self setNeedsDisplay:YES];
 }
 
 - (void)setBoard:(id)this
-{
-    if (state != this) {
-        [state release];
-        state = [this retain];
-        
-        rows = [this count];
-        cols = [[this lastObject] count];
-        
-        int r, c;
-        [self getNumberOfRows:&r columns:&c];
-        if (r != rows || c != cols) {
-            [self renewRows:rows columns:cols];
-            
-            /* such.. a.. hack... - make the matrix resize, as this is
-               the only way I've found to get the cells to resize. */
-            NSSize s = [self frame].size;
-            [self setFrameSize:NSMakeSize(100,100)];
-            [self setFrameSize:s];
+{ 
+    // translate from player number to tile number
+    NSMutableArray *board = [NSMutableArray new];
+    for (unsigned r = 0; r < [this count]; r++) {
+        NSArray *row = [this objectAtIndex:r];
+        NSMutableArray *newRow = [NSMutableArray array];
+        for (unsigned c = 0; c < [row count]; c++) {
+            int player = [[row objectAtIndex:c] intValue];
+            int tile = !player ? 0 : player == 1 ? 1 : 31;
+            [newRow addObject:[NSNumber numberWithInt:tile]];
         }
+        [board addObject:newRow];
     }
+
+    [target release];
+    target = board;
+
+    // Resize the matrix if we have different dimensions from before.
+    int r, c;
+    unsigned rows = [this count];
+    unsigned cols = [[this lastObject] count];
+    [self getNumberOfRows:&r columns:&c];
+    if (r != rows || c != cols) {
+        [self renewRows:rows columns:cols];
+        
+        /* such.. a.. hack... - make the matrix resize, as this is
+           the only way I've found to get the cells to resize. */
+        NSSize s = [self frame].size;
+        [self setFrameSize:NSMakeSize(100,100)];
+        [self setFrameSize:s];
+    }
+    
     [self drawState];
 }
 
