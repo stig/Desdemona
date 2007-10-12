@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #import "SBReversiState.h"
 
+#define opponent(x) (3 - player)
+
 @implementation SBReversiState
 
 
@@ -47,8 +49,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         }
         board[size/2-1][size/2] = player;
         board[size/2][size/2-1] = player;
-        board[size/2-1][size/2-1] = 3 - player;
-        board[size/2][size/2] = 3 - player;
+        board[size/2-1][size/2-1] = opponent(player);
+        board[size/2][size/2] = opponent(player);
     }
     return self;
 }
@@ -98,13 +100,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (BOOL)isDraw
 {
     SBReversiStateCount count = [self countSquares];
-    return count.c[player] == count.c[3 - player];
+    return count.c[player] == count.c[opponent(player)];
 }
 
 - (BOOL)isWin
 {
     SBReversiStateCount count = [self countSquares];
-    return count.c[player] > count.c[3 - player];
+    return count.c[player] > count.c[opponent(player)];
 }
 
 - (double)fitness
@@ -114,7 +116,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     SBReversiStateCount counts;
 
     me = player;
-    you = 3 - me;
+    you = opponent(me);
 
     moves = [self legalMoves];
     if (!moves) {
@@ -129,9 +131,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
     mine = [moves count];
 
-    player = 3 - player;
+    player = opponent(player);
     moves = [self legalMoves];
-    player = 3 - player;
+    player = opponent(player);
 
     diff = mine - [moves count];
 
@@ -146,7 +148,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (BOOL)validMove:(int)me col:(int)x row:(int)y
 {
     int tx, ty;
-    int not_me = 3 - me;
+    int not_me = opponent(me);
 
     /* slot must not already be occupied */
     if (board[x][y] != 0)
@@ -237,7 +239,7 @@ again:
 
     if (![moves count]) {
         if (me == player) {
-            player = 3 - player;
+            player = opponent(player);
             goto again;
         }
     }
@@ -264,7 +266,7 @@ again:
 - (id)moveForCol:(int)x andRow:(int)y
 {
     int me = player;
-    int not_me = 3 - me;
+    int not_me = opponent(me);
     int tx, ty;
 
     if (x == -1 && y == -1) {
@@ -451,7 +453,7 @@ again:
             board[ col ][ row ] = player;
         }
     }
-    player = 3 - player;
+    player = opponent(player);
 }
 
 - (int)pieceAtRow:(int)r col:(int)c
