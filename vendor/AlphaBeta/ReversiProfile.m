@@ -28,21 +28,21 @@ int main(int argc, char **argv)
 
     int skip = [[opts objectForKey:@"--skip"] intValue];
     for (int i = 0; i < skip; i++)
-        [ab applyMoveFromSearchWithPly:1];
+        [ab performMoveFromSearchWithDepth:1];
 
     int fixed = [[opts objectForKey:@"--time"] isKindOfClass:[NSNull class]];
     int ply = [[opts objectForKey:@"--ply"] intValue];
     for (int i = 0; i < [[opts objectForKey:@"--count"] intValue]; i++) {
         NSDate *date = [NSDate date];
         if (fixed)
-            [ab moveFromSearchWithPly:ply];
+            [ab moveFromSearchWithDepth:ply];
         else
             [ab moveFromSearchWithInterval:[[opts objectForKey:@"--time"] doubleValue]];
 
         printf("%u %lf %u %u (visited/time/ply/skip)\n",
-            [ab countStatesVisited],
+            [ab stateCountForSearch],
             (double)-[date timeIntervalSinceNow],
-            fixed ? ply : [ab plyReachedForSearch],
+            fixed ? ply : [ab depthForSearch],
             skip
         );
     }

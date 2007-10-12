@@ -89,7 +89,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     // sequential levels to suitable intervals for search. At least
     // for Reversi, where x+1 often reaches one more ply than x.
     NSTimeInterval interval = exp(level) / 1000.0;
-    id st = [alphaBeta applyMoveFromSearchWithInterval:interval];
+    id st = [alphaBeta performMoveFromSearchWithInterval:interval];
 
     if (st) {
         [self autoMove];
@@ -102,7 +102,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)move:(id)m
 {
     @try {
-        [alphaBeta applyMove:m];
+        [alphaBeta performMove:m];
     }
     @catch (id any) {
         NSLog(@"Illegal move attempted: %@", m);
@@ -121,11 +121,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         [self setAutomatic: NO];
         [self gameOverAlert];
     }
-    else if ([alphaBeta currentPlayerMustPass]) {
+    else if ([alphaBeta isForcedPass]) {
         [self passAlert];
     }
     
-    if ([self automatic] || [self ai] == [alphaBeta playerTurn]) {
+    if ([self automatic] || [self ai] == [alphaBeta currentPlayer]) {
         [progressIndicator startAnimation:self];
         [self aiMove];
         [progressIndicator stopAnimation:self];
@@ -196,7 +196,7 @@ and updates views in between.
 /** Initiate a new game. */
 - (IBAction)newGame:(id)sender
 {
-    if ([alphaBeta countMoves]) {
+    if ([alphaBeta countPerformedMoves]) {
         [self newGameAlert];
     }
     else {

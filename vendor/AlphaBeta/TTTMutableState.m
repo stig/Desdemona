@@ -23,23 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @implementation TTTMutableState
 
-- (void)transformWithMove:(id)m
-{
-    int row = [[m objectForKey:@"row"] intValue];
-    int col = [[m objectForKey:@"col"] intValue];
-
-    if (row > 2 || row < 0 || col > 2 || col < 0) {
-        [NSException raise:@"not a valid move" format:@"Invalid move (%d, %d)", row, col];
-
-    } else if (board[col][row]) {
-        [NSException raise:@"square busy" format:@"Move already taken (%d, %d)", row, col];
-    }
-    
-    board[col][row] = player;
-    player = 3 - player;
-}
-
-- (void)undoTransformWithMove:(id)m
+- (void)undoMove:(id)m
 {
     int row = [[m objectForKey:@"row"] intValue];
     int col = [[m objectForKey:@"col"] intValue];

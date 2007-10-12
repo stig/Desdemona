@@ -5,17 +5,65 @@ v0.3 @ 2007-XX-XX)
   - The iterative search routines would end a search early if it found
     an early end state (rather than if _all_ the 'leaf' states it saw were
     early end states).
-* Speeded up search a bit by not computing available moves if we have
+
+* Speeded up search a bit by not computing legal moves if we have
   reached the maximum search depth.
-* Added an -endStateScore method to both the state protocols.
-* Added -playerTurn method to SBAlphaBeta. For simplicity SBAlphaBeta
+
+* Added -currentPlayer method. For simplicity SBAlphaBeta
   enumerates the players 1 and 2, regardless of how the states
   internally thinks of them, and 1 _always starts_.
-* Added -winner method to SBAlphaBeta now that it is capable of deducing
-  the winner of a game.
+
+* Added -winner method to SBAlphaBeta to allow it to answer "who won
+  then?" queries. There's an additional *optional* category your states
+  must implement to use this method.
+
 * Renamed the project (not the classes) and added an AlphaBeta.h header.
-* Greatly improved the documentation.
+
 * Greatly improved the timekeeping of the iterative search.
+
+* Destill the documentation from in-code doxygen-style to be external
+  and hand-written. This makes it simpler to write good, coherent
+  documentation that reads well. 
+
+* Take a copy of the current state at the beginning of each search.
+  This ensures that while we're in a search we'll always be returning
+  the same state. (This is useful when using multiple threads.)
+
+  The current version shows a small decrease in performance over what
+  has been benchmarked before. Searching to ply 9 went up to about
+  27.5 seconds from about 26 seconds. At lower plies the difference is
+  pretty much insignificant.
+
+* Add note about Gnome Iagno heritage in the Reversi state class.
+  (Dunno how that was lost.)
+
+* Renamed protocols:
+  s/SBMutableAlphaBetaState/SBUndoableAlphaBetaSearching/g
+  s/SBAlphaBetaState/SBAlphaBetaSearching/g
+
+* Cleaned up logic in a couple of places now that the protocols have a
+  proper subset / superset relationship.
+
+* Removed the separate protocol header. The state protocols now live
+  in the main class header instead.
+
+* Made the required state protocol a proper subset of the optional
+  state protocol. All states must now implement the NSCopying protocol.
+
+* Renamed almost all the methods. (Again. Sorry.)
+  s/currentPlayerMustPass/isForcedPass/g
+  s/applyMoveFrom(\w+)/performMoveFrom\1/g
+  s/moveFromSearchWithPly/moveFromSearchWithDepth/g
+  s/undoTransformWithMove/undoMove/g
+  s/countStatesVisited/stateCountForSearch/g
+  s/plyReachedForSearch/depthForSearch/g
+  s/playerTurn/currentPlayer/g
+  s/countMoves/countPerformedMoves/g
+  s/applyMove/performMove/g                 (controller)
+  s/movesAvailable/currentLegalMoves/g      (controller)
+  s/movesAvailable/legalMoves/              (state protocols)
+  s/currentFitness/fitness/g                (state protocols)
+
 
 v0.2 @ 2007-03-27
 
@@ -24,11 +72,15 @@ replacement for version 0.1. Rather, this is a "back to sanity" release.
 
 * Classes and interfaces have received a prefix to make their names more
   unique.
+
 * The interfaces for states have been renamed to SBAlphaBetaState and
   SBMutableAlphaBetaState.
+
 * There are now some minor restrictions on moves, which allows us to do
   more error checking in the controller.
+
 * Several confusing "convenience" methods have been dropped.
+
 * Many methods have been renamed for clarity.
 
 v0.1 @ 2006-03-11

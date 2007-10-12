@@ -1,0 +1,363 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Alpha-Beta game-tree search</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+</head>
+
+<body>
+
+<h1>The AlphaBeta framework</h1>
+
+<div id="toc">
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#protocols">Protocols</a></li>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#resources">Resources</a></li>
+<li><a href="#maturity">Maturity</a></li>
+<li><a href="#bugs">Bugs</a></li>
+<li><a href="#author">Author</a></li>
+</ul>
+</div>
+
+<p><em>AlphaBeta</em> is a Cocoa Objective-C framework encapsulating
+the Alpha-Beta game-tree search algorithm. It can be used to create
+computer players for a whole range of games including Chess, Checkers,
+Go, Reversi/Othello, Connect-4 and Tic-Tac-Toe to mention but a
+few.</p>
+
+<p>More specifically, Alpha-Beta search can be used in all two-player
+<a href="http://en.wikipedia.org/wiki/Zero-sum">zero sum</a> <a
+href="http://en.wikipedia.org/wiki/Perfect_information">perfect
+information</a> games. The term <em>two-player</em> just means that
+there must be two opposing sides. (Football is considered two-player,
+for example.) A <em>zero sum</em> game is one where an advantage for
+one player is an equally large disadvantage for the other. <em>Perfect
+information</em> basically rules out any game that has an element of
+chance. This last rule disqualifies Yatzee, Poker and&mdash;most
+definitely&mdash;Jenga.</p>
+
+<p>The framework aims to be easy to use: there's no need for prior
+experience with AI (Artificial Intelligence). You don't actually have
+to learn anything about game-tree search in order to use this
+framework. Should you desire to, the <a
+href="#resources">resources</a> section has links to more information
+about game-tree search and relevant algorithms.</p>
+
+
+<h2 id="overview">Overview</h2>
+
+<p>To use AlphaBeta you need to initialise an instance of SBAlphaBeta
+with an instance of your game state class. This instance will be used
+as the initial state of the game. A state is a discrete game
+state&mdash;a point in time between moves. A move contains the
+information required for transforming a state into its successor.</p>
+
+<p>AlphaBeta does not care what types your states are. Only that they
+implement the <a href="#alphabetasearching">SBAlphaBetaSearching</a>
+protocol. If you wish you could implement this protocol as a category
+on an existing class. Neither does AlphaBeta care about the type of
+your moves. (With an exception for <em>pass moves</em>. These must be
+represented by an NSNull instance.) They must implement a simple
+informal protocol. </p>
+
+<p>Though not required it is advised that you override -description to
+return something sensible for both states and moves. This can make
+debugging easier if you make a false step and feed SBAlphaBeta
+unexpected data, as the exceptions thrown will make more sense.</p>
+
+<h2 id="protocols">Protocols</h2>
+
+<p>The protocols listed below are defined in the
+<code>SBAlphaBeta.h</code> header file. Don't include this directly
+though. Include the <code>AlphaBeta/AlphaBeta.h</code> header
+instead.</p>
+
+
+<h3>SBAlphaBetaSearching [required]</h3>
+
+<p>Your state class <em>must</em> implement all the methods specified
+by this protocol. In addition to the NSCoding protocol, its methods
+and their responsebilities are:</p>
+
+<dl>
+
+<dt><pre>- (double)fitness;</pre></dt>
+<dd><p>This method should return the _fitness_ of the state. The
+fitness is a number indicating how fortuitous the state is for the
+current player. (I.e. the probability of winning after reaching this
+state.)</p>
+        
+<p>Use a large positive number to indicate that a state is very good,
+or a large negative number for very bad.</p> </dd>
+
+<dt><pre>- (NSArray *)legalMoves;</pre></dt>
+
+<dd><p>This method must be implemented to return an array of all the
+legal moves available to the current player.</p>
+        
+<p>Return an empty array to signify that there are no moves possible
+and that this is an end state. (A.k.a. "leaf state".)</p>
+        
+<p>Return an array containing a single NSNull instance to signify that
+the current player is forced to pass. (If your game supports this.) If
+passing is always an option, this method must always return a pass
+move.</p></dd>
+
+<dt><pre>- (void)applyMove:(id)m;</pre></dt>
+
+<dd><p>Must transform a state into its successor given a valid move.
+Must be implemented to handle pass moves, if your game supports these.
+Given a pass move, this method must at the very least update the
+receiver's idea of which player's turn it is.</p></dd>
+
+</dl>
+
+<h3>Informal protocol for moves [required]</h3>
+
+<p>Moves <em>must</em> implement the following informal protocol.
+NSArray, NSDictionary, NSString and NSNumber already implement it so
+if you define your moves in terms of these you get this protocol for
+free.</p>
+
+<pre>
+-(BOOL)isEqual:(id)object;
+-(unsigned)hash;
+</pre>
+
+
+<h3>SBAlphaBetaStatus [optional]</h3>
+
+<p>Implement this <em>optional</em> protocol if you want AlphaBeta to
+be able to tell you which player won at the end of the game. It adds
+the following methods:</p>
+
+<dl>
+
+<dt><pre>- (BOOL)isDraw;</pre></dt>
+
+<dd><p>Must be implemented to return <code>YES</code> if this state
+is a draw, i.e. none of the players won. This method is <em>only</em>
+called by AlphaBeta at the end of a game.</p></dd>
+
+<dt><pre>- (BOOL)isWin;</pre></dt>
+
+<dd><p>Must be implemented to return <code>YES</code> if this state is
+a win <em>from the perspective of the current player</em>. This method
+is <em>only</em> called by AlphaBeta at the end of a game.</p></dd>
+
+
+</dl>
+
+
+<h3>SBUndoableAlphaBetaSearch [optional]</h3>
+
+<p>AlphaBeta normally calls -copy on your states a lot during search.
+If calling -copy is particularly expensive your states may
+<em>optionally</em> implement this protocol. It contains only one
+method:</p>
+
+<dl>
+<dt><pre>- (void)undoMove:(id)m;</pre></dt>
+
+<dd><p>This is the opposite of -applyMove:. The move passed to it will
+always be the <em>last</em> move that was applied to the receiver with
+-applyMove:. The effect of this method should be to produce the
+previous state.</p>
+
+<p>This means that each move returned by -legalMoves must contain
+enough information to revert the move. For Reversi, for example, each
+move could be an array of co-ordinates: the first is the slot to put
+the current piece, the remaining are for pieces to flip.</p>
+
+</p></dd>
+
+</dl>
+
+<p>If you go down this route it is possible that you have to make
+changes to the -legalMoves and -applyMove: methods. The moves returned
+by -legalMoves must contain enough information to perform an undo
+operation. This can mean creating them might become more expensive. On
+the other hand, having more information in the moves might help make
+-applyMove: faster.</p>
+
+<p>Consider Reversi as an example. If you use undoable states your
+moves must contain a list of all the slots that were flipped, in
+addition to the slot where you put your piece. It is impossible to
+deduce this information from just a set of co-ordinates.</p>
+
+<p>A word of warning: you have to do some profiling to find out what
+works best for your specific case. In my implementation of Reversi
+there is no appreciative difference in performance of the two.</p>
+
+<h2 id="methods">Methods of SBAlphaBeta</h2>
+
+<p>The SBAlphaBeta class provides the following methods. They are
+defined in the <code>SBAlphaBeta.h</code> header file. Don't include
+this directly though. Include the <code>AlphaBeta/AlphaBeta.h</code>
+header instead.</p>
+
+
+<h3>Object creation and initialisation</h3>
+<dl>
+<dt><pre>+ (id)newWithState:(id)this</pre></dt>
+<dd><p>This method is a shortcut for calling alloc & initWithState:.</p></dd>
+
+<dt><pre>- (id)initWithState:(id)this</pre></dt>
+<dd><p>Initialises an SBAlphaBeta object with a starting state.</p></dd>
+</dl>
+
+<h3>The current state of affairs</h3>
+
+<dl>
+<dt><pre>- (id)currentState</pre></dt>
+<dd><p>Returns the current state. </p></dd>
+
+<dt><pre>- (unsigned)currentPlayer</pre></dt>
+<dd><p>Returns 1 or 2, depending on whose turn it is to move. "Player
+1" is (arbitrarily) defined to be the player whose turn it is to play
+at the start of the game, which is not necessarily the same as the
+state itself thinks of as player 1. (It may not think of the players
+in those terms; it may use @"a" or @"b" instead.) </p></dd>
+
+<dt><pre>- (double)currentFitness</pre></dt>
+<dd><p>Returns currentFitness from the current state. </p></dd>
+
+<dt><pre>- (NSArray *)currentLegalMoves</pre></dt>
+<dd><p>Returns available moves from the current state. </p></dd>
+
+<dt><pre>- (BOOL)isForcedPass</pre></dt>
+
+<dd><p>Returns true if the current player is forced to pass. (I.e.,
+her only legal move is a pass move.) </p></dd>
+
+<dt><pre>- (BOOL)isGameOver</pre></dt>
+
+<dd><p>Returns true if the game is finished, false otherwise.
+</p></dd>
+
+<dt><pre>- (unsigned)winner</pre></dt>
+
+<dd><p>Returns 1 or 2 for the winning player, or 0 if the game ended
+in a draw. (This method is only available if your states implement the
+SBAlphaBetaStatus protocol.) </p></dd>
+
+</dl>
+
+<h3>Performing and undoing moves</h3>
+
+<dl>
+<dt><pre>- (id)performMove:(id)m</pre></dt>
+
+<dd><p>Apply the given move to the current state. Returns the new
+current state. </p></dd>
+
+<dt><pre>- (id)performMoveFromSearchWithDepth:(unsigned)depth</pre></dt>
+
+<dd><p>Performs a fixed-depth search to the given <code>depth</code>
+and applies the best move found. </p></dd>
+
+<dt>
+<pre>- (id)performMoveFromSearchWithInterval:(NSTimeInterval)interval</pre>
+</dt>
+
+<dd><p>Performs an iterative search for up to <code>interval</code>
+seconds and applies the best move found. </p></dd>
+
+<dt><pre>- (id)undoLastMove</pre></dt>
+
+<dd><p>Undo one position from the given state. Returns the new current
+state. </p></dd>
+
+</dl>
+
+
+<h3>Searching for moves</h3>
+
+<dl>
+
+<dt><pre>- (id)moveFromSearchWithDepth:(unsigned)depth</pre></dt>
+<dd><p>Returns the best move found from a fixed-depth search to
+<code>depth</code>. </p></dd>
+
+<dt><pre>- (id)moveFromSearchWithInterval:(NSTimeInterval)interval</pre></dt>
+<dd><p>Returns the best move found from an iterative search for
+<code>interval</code> seconds. Fractional seconds are supported, so an
+interval of 0.3 makes for a search that lasts up to 300 milliseconds.
+</p></dd>
+
+</dl>
+
+<h3>Enquiring about the past</h3>
+
+<dl>
+
+<dt><pre>- (id)lastMove</pre></dt>
+
+<dd><p>Returns the last move that was applied. </p></dd>
+
+<dt><pre>- (unsigned)countPerformedMoves</pre></dt>
+
+<dd><p>Returns a count of the number of moves since the initial state.
+</p></dd>
+
+<dt><pre>- (unsigned)depthForSearch</pre></dt>
+
+<dd><p>Return the depth reached by the last iterative search. The
+returned value is undefined if no iterative search has been executed
+yet. </p></dd>
+
+<dt><pre>- (unsigned)stateCountForSearch</pre></dt>
+
+<dd><p>Return the number of states visited by the last search. </p>
+
+<p>If the last search was an iterative one, the number of visited
+states is accumulated across all the <em>completed</em> iterations. </p></dd>
+
+</dl>
+
+<h2 id="maturity">Code & interface maturity</h2>
+
+<p>The underlying code is quite mature and by now pretty well tested.
+However I'm still not entirely happy with the interface. Thus the API
+may still change between releases. (The broad strokes are there, so if
+something <em>does</em> change you should find it relatively simple to
+update to any new versions.)</p>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+<li><a href="__URL__/news.xml">News</a> (RSS).</li>
+<li><a href="__DMGURL__">AlphaBeta embedded framework</a> disk image.</li>
+<li>Subversion: <a href="http://svn.brautaset.org/AlphaBeta/trunk">http://svn.brautaset.org/AlphaBeta/trunk</a>.</li>
+<li><a href="__CODE__/Desdemona/">Desdemona</a>, <a
+href="__CODE__/Auberon/">Auberon</a>, and <a
+href="__CODE__/Phage/">Phage</a> use this framework
+to provide their AIs.</li>
+<li>Guide to <a href="http://blog.brautaset.org/2007/09/22/embedding-cocoa-frameworks/">embedding frameworks in Cocoa</a>.</li>
+<li><a href="http://blog.brautaset.org/2007/08/17/game-tree-search-the-minimax-and-alpha-beta-algorithms/">Game-tree search: the MiniMax and Alpha-Beta algorithms</a>.</li>
+<li>Wikipedia <a href="http://en.wikipedia.org/wiki/Game_tree">Game tree</a> article.</li>
+</ul>
+
+<h2 id="bugs">Bugs</h2>
+
+<p>None known. Bug reports are very welcome and will be acted upon
+swiftly.</p>
+
+<h2 id="author">Author</h2>
+
+<p>The AlphaBeta Framework is written by <a
+href="mailto:stig@brautaset.org">Stig Brautaset</a>, yours truly, and
+released under the revised BSD license. You are welcome to email me
+with any queries.</p>
+
+<p><a href="__CODE__/">__CODE__</a>
+lists more code by me. I occasionally announce new projects on my <a
+href="http://blog.brautaset.org/">blog</a>. It also contains the
+definite list of ways to <a
+href="http://blog.brautaset.org/about/">contact me</a>. </p>
+
+</body>
+</html>

@@ -6,28 +6,42 @@ DMG=$(RELEASENAME).dmg
 
 UP=stig@brautaset.org:code/files/
 DMGURL=http://code.brautaset.org/files/$(DMG)
+FRAMEWORK=/tmp/Frameworks/$(NAME).framework
 
-site:
-	rm -rf build/html
-	doxygen 
-	perl -pi -e 's{__VERSION__}{$(VERSION)}g' build/html/*.html
-	perl -pi -e 's{__DMGURL__}{$(DMGURL)}g' build/html/*.html
+_site: Docs/* Makefile
+	rm -rf _site ; mkdir _site
+	cp Docs/*.html Docs/*.css _site
+	perl -pi -e 's{__DMGURL__}{$(DMGURL)}g' _site/*
+	perl -pi -e 's{__VERSION__}{$(VERSION)}g' _site/*
+	perl -pi -e 's{__CODE__}{http://code.brautaset.org}g' _site/*
+	perl -pi -e 's{__URL__}{http://code.brautaset.org/$(NAME)}g' _site/*
 
-upload-site: site
-	curl --head $(DMGURL) 2>/dev/null | grep -q "200 OK" 
-	rsync -ruv --delete build/html/ stig@brautaset.org:code/$(NAME)/
+site: _site
 
-dmg: 	
-	rm -rf build/tmp/ $(DMG)
+upload-site: _site
+	curl --head $(DMGURL) 2>/dev/null | grep -q "200 OK"
+	false # for now. I don't want to risk uploading yet.
+	rsync -ruv --delete _site/ --exclude files stig@brautaset.org:code/$(NAME)/
+
+install: $(FRAMEWORK)
+
+$(FRAMEWORK): *.m Makefile
 	setCFBundleVersion.pl $(VERSION)
-	xcodebuild -target $(NAME) clean
+	-chmod -R +w .fwk ; rm -rf .fwk
+	-chmod -R +w /tmp/Frameworks ; rm -rf /tmp/Frameworks
+	-chmod -R +w /tmp/$(NAME).dst ; rm -rf /tmp/$(NAME).dst
 	xcodebuild -target Tests
 	xcodebuild -target $(NAME) install
-	mkdir -p build/tmp
-	mv /tmp/Frameworks/$(NAME).framework build/tmp
-	hdiutil create -fs HFS+ -volname $(RELEASENAME) -srcfolder build/tmp $(DMG)
+	mkdir .fwk ; cp -rp $(FRAMEWORK) .fwk
+	
 
-upload-dmg: dmg
-	curl --head $(DMGURL) 2>/dev/null | grep -q "200 OK" && echo "$(DMG) already uploaded" && false
-	scp $(DMG) $(UP)
+$(DMG): $(FRAMEWORK) 
+	-rm -rf $(DMG)
+	hdiutil create -fs HFS+ -volname $(RELEASENAME) -srcfolder .fwk $(DMG)
+
+dmg: $(DMG)
+
+upload-dmg: $(DMG)
+	curl --head $(DMGURL) 2>/dev/null | grep -q "404 Not Found" || false
+	scp $(DMG) stig@brautaset.org:code/$(NAME)/files/$(DMG)
 

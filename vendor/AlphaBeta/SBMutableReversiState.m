@@ -23,22 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @implementation SBMutableReversiState
 
--(void)transformWithMove:(id)move
-{
-    if (![self isPassMove:move]) {
-        [self validateMove:move];
-        NSEnumerator *e = [move objectEnumerator];
-        id m;
-        while (m = [e nextObject]) {
-            int row = [[m objectForKey:@"row"] intValue];
-            int col = [[m objectForKey:@"col"] intValue];
-            board[ col ][ row ] = player;
-        }
-    }
-    player = 3 - player;
-}
-
-- (void)undoTransformWithMove:(id)move
+- (void)undoMove:(id)move
 {
     if (![self isPassMove:move]) {
         [self validateMove:move];

@@ -15,7 +15,7 @@ All measurements are taken with a shell loop similar to the following:
             /tmp/build/Release/ReversiProfile 100 $ply $mutable | avg
     done ; echo ; done
 
-What waries is the ply and the number of runs to average over (the first
+What varies is the ply and the number of runs to average over (the first
 argument to ReversiProfile; 100 in this case).
 
 INITIAL MEASUREMENTS
@@ -81,12 +81,13 @@ And another set of 100 runs each:
     Mutable/ply: 1/9 - n/a
 
 We see that now there is no practical difference between the two types
-of states. It is interesting to observe the differences in the standard deviation
-of mutable and immutable results in the initial measurements, and how
-these disappeared in the secondary ones.
- At this point I found a couple of bugs with the alpha-beta
-pruning; fixing these caused _massive_ speedups for search and the
-results now became:
+of states. It is interesting to observe the differences in the
+standard deviation of mutable and immutable results in the initial
+measurements, and how these disappeared in the secondary ones.
+
+At this point I found a couple of bugs with the alpha-beta pruning;
+fixing these caused _massive_ speedups for search and the results now
+became:
     
     Mutable/ply: 0/3 - count/avg/stddev: 10 0.017673 0.000326
     Mutable/ply: 1/3 - count/avg/stddev: 10 0.017812 0.000346

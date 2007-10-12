@@ -54,7 +54,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     STAssertEquals(c.c[2], (unsigned)2, nil);
 
     id moves;
-    STAssertNotNil(moves = [st movesAvailable], nil);
+    STAssertNotNil(moves = [st legalMoves], nil);
     STAssertEquals([moves count], (unsigned)4, nil);
     int i;
     for (i = 0; i < 4; i++) {
@@ -71,36 +71,36 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)test02IllegalMoveThrows
 {
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     id st = [ab currentState];
     
-    STAssertThrows([ab applyMove:[st moveForCol:0 andRow:0]], nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    STAssertEquals([ab countMoves], (unsigned)0, nil);
+    STAssertThrows([ab performMove:[st moveForCol:0 andRow:0]], nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
 
-    STAssertThrows([ab applyMove:[st moveForCol:0 andRow:-10]], nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    STAssertEquals([ab countMoves], (unsigned)0, nil);
+    STAssertThrows([ab performMove:[st moveForCol:0 andRow:-10]], nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
     
-    STAssertThrows([ab applyMove:[st moveForCol:3 andRow:4]], nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    STAssertEquals([ab countMoves], (unsigned)0, nil);
+    STAssertThrows([ab performMove:[st moveForCol:3 andRow:4]], nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
 }
 
-- (void)test03PlayerTurn
+- (void)test03currentPlayer
 {
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
 
-    [ab applyMoveFromSearchWithPly:1];
-    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    [ab performMoveFromSearchWithDepth:1];
+    STAssertEquals([ab currentPlayer], (unsigned)2, nil);
 
     [ab undoLastMove];
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
 }
 
 - (void)test04StateAndFitness
 {
-    STAssertTrue([ab playerTurn] == 1, nil);
+    STAssertTrue([ab currentPlayer] == 1, nil);
     STAssertTrue([ab currentFitness] == 0.0, @"got: %f", [ab currentFitness]);
 
     id st = [ab currentState];
@@ -111,15 +111,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
     STAssertEqualObjects([st description], @"1: 00000000 00000000 00000000 00021000 00012000 00000000 00000000 00000000", nil);
 
-    st = [ab applyMove:[st moveForCol:3 andRow:2]];
+    st = [ab performMove:[st moveForCol:3 andRow:2]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-3.0, 0.0001, @"got %f", [st currentFitness]);
     STAssertEqualObjects([st description], @"2: 00000000 00000000 00010000 00011000 00012000 00000000 00000000 00000000", nil);
 
-    st = [ab applyMove:[st moveForCol:4 andRow:2]];
+    st = [ab performMove:[st moveForCol:4 andRow:2]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)0.0, 0.0001, @"got %f", [st currentFitness]);
     STAssertEqualObjects([st description], @"1: 00000000 00000000 00012000 00012000 00012000 00000000 00000000 00000000", nil);
 
-    st = [ab applyMove:[st moveForCol:5 andRow:5]];
+    st = [ab performMove:[st moveForCol:5 andRow:5]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-2.0, 0.0001, @"got %f", [st currentFitness]);
     STAssertEqualObjects([st description], @"2: 00000000 00000000 00012000 00012000 00011000 00000100 00000000 00000000", nil);
 }
@@ -137,8 +137,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         /* _Must_ finish in less time than the interval */
         STAssertTrue( duration < interval, @"%f <= %f", duration, interval);
 
-        /* We should really tolerate finishing up to 10% early... */
-        double accuracy = interval * 0.98;
+        /* We should really tolerate finishing up to 3% early... */
+        double accuracy = interval * 0.97;
         STAssertTrue( duration > accuracy, @"%f <= %f", duration, accuracy);
     }
 }
@@ -146,8 +146,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)test06iterativeSearchAlwaysReachesPly1
 {
     STAssertNotNil([ab moveFromSearchWithInterval:0.0], nil);
-    STAssertEquals([ab countStatesVisited], (unsigned)4, nil);
-    STAssertEquals([ab plyReachedForSearch], (unsigned)1, nil);
+    STAssertEquals([ab stateCountForSearch], (unsigned)4, nil);
+    STAssertEquals([ab depthForSearch], (unsigned)1, nil);
 }
 
 @end

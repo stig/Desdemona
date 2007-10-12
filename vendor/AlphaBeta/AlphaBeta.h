@@ -23,4 +23,3 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     Main header file for external code to use.
  */
 #import <AlphaBeta/SBAlphaBeta.h>
-#import <AlphaBeta/SBAlphaBetaState.h>
