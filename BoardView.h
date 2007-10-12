@@ -22,10 +22,13 @@
 
 #import "Desdemona.h"
 
+#define MAXSIZE 20
+
 @interface BoardView : NSMatrix
 {
-    NSArray *tiles;     // holds the themed tiles
-    NSArray *target;    // the target board
+    unsigned target[MAXSIZE][MAXSIZE];
+    unsigned current[MAXSIZE][MAXSIZE];
+    NSArray *tiles; // holds the themed tiles
 }
 
 - (void)setTheme:(id)ctrl;

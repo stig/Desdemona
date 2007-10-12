@@ -33,44 +33,57 @@
 
 - (void)drawState
 {
-    for (unsigned r = 0; r < [target count]; r++) {
-        NSArray *row = [target objectAtIndex:r];
-        for (unsigned c = 0; c < [row count]; c++) {
-            int square = [[row objectAtIndex:c] intValue];
+    int rows, cols;
+    [self getNumberOfRows:&rows columns:&cols];
+
+    unsigned up = 0;
+    for (unsigned r = 0; r < rows; r++) {
+        for (unsigned c = 0; c < cols; c++) {
+            if (current[r][c] != target[r][c]) {
+                up++;
+
+                if (!current[r][c])
+                    current[r][c] = target[r][c];
+
+                else if (current[r][c] > target[r][c])
+                    current[r][c]--;
+
+                else
+                    current[r][c]++;
+
+            }
+        }
+    }
+
+    for (unsigned r = 0; r < rows; r++) {
+        for (unsigned c = 0; c < cols; c++) {
             NSImageCell *ic = [self cellAtRow:r column:c];
-            [ic setImage:[tiles objectAtIndex:square]];
+            [ic setImage:[tiles objectAtIndex:current[r][c]]];
             [ic setImageFrameStyle:NSImageFrameNone];
             [self drawCell:ic];
         }
     }
-//    [self setNeedsDisplay:YES];
+	
+	if (up)
+		[self drawState];
 }
 
 - (void)setBoard:(id)this
 { 
     // translate from player number to tile number
-    NSMutableArray *board = [NSMutableArray new];
     for (unsigned r = 0; r < [this count]; r++) {
         NSArray *row = [this objectAtIndex:r];
-        NSMutableArray *newRow = [NSMutableArray array];
         for (unsigned c = 0; c < [row count]; c++) {
             int player = [[row objectAtIndex:c] intValue];
-            int tile = !player ? 0 : player == 1 ? 1 : 31;
-            [newRow addObject:[NSNumber numberWithInt:tile]];
+            target[r][c] = !player ? 0 : player == 1 ? 1 : 31;
         }
-        [board addObject:newRow];
     }
-
-    [target release];
-    target = board;
 
     // Resize the matrix if we have different dimensions from before.
     int r, c;
-    unsigned rows = [this count];
-    unsigned cols = [[this lastObject] count];
     [self getNumberOfRows:&r columns:&c];
-    if (r != rows || c != cols) {
-        [self renewRows:rows columns:cols];
+    if (r != [this count] || c != [[this lastObject] count]) {
+        [self renewRows:[this count] columns:[[this lastObject] count]];
         
         /* such.. a.. hack... - make the matrix resize, as this is
            the only way I've found to get the cells to resize. */
@@ -78,7 +91,7 @@
         [self setFrameSize:NSMakeSize(100,100)];
         [self setFrameSize:s];
     }
-    
+
     [self drawState];
 }
 
