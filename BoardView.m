@@ -60,7 +60,6 @@
             NSImageCell *ic = [self cellAtRow:r column:c];
             [ic setImage:[tiles objectAtIndex:current[r][c]]];
             [ic setImageFrameStyle:NSImageFrameNone];
-            [self drawCell:ic];
         }
     }
 	
