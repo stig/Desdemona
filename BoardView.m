@@ -20,15 +20,15 @@
  */
 #import "BoardView.h"
 #import "Desdemona.h"
-#import "NSImage+Tiles.h"
 
 @implementation BoardView
 
 - (void)setTheme:(id)this
 {
-    id sq = [this tilesWithSize:NSMakeSize(100, 100) forRows:4 columns:8];
-    [tiles release];
-    tiles = [sq retain];
+    if (tiles != this) {
+        [tiles release];
+        tiles = [this retain];
+    }
 }
 
 - (void)drawState

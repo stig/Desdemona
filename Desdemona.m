@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #import "Desdemona.h"
 #import "BoardView.h"
+#import "NSImage+Tiles.h"
+
 
 @implementation Desdemona
 
@@ -36,7 +38,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)awakeFromNib
 {
     [[board window] makeKeyAndOrderFront:self];
-    [board setTheme:[NSImage imageNamed:@"classic"]];
+    NSImage *theme = [NSImage imageNamed:@"classic"];
+    NSArray *tiles = [theme tilesWithSize:NSMakeSize(100, 100) forRows:4 columns:8];
+    [board setTheme:tiles];
     [self resetGame];
 }
 
