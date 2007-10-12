@@ -57,7 +57,9 @@
     for (r = 0; r < rows; r++) {
         for (c = 0; c < cols; c++) {
             int square = [[[state objectAtIndex:r] objectAtIndex:c] intValue];
-            square = square == 1 ? 31 : square == 2 ? 1  : 0;
+            square = square == 1 
+                ? 1 : square == 2
+                    ? 31 : 0;
 
             NSImageCell *ic = [self cellAtRow:r column:c];
             [ic setImage:[disks objectAtIndex:square]];
