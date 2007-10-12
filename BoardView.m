@@ -20,35 +20,15 @@
  */
 #import "BoardView.h"
 #import "Desdemona.h"
+#import "NSImage+Tiles.h"
 
 @implementation BoardView
 
 - (void)setTheme:(id)this
 {
-    id sq = [NSMutableArray array];
-    
-    /* create array of images for animation of square flippings */
-    NSSize imgsize = [this size];
-    for (int i = 0; i < 32; i++) {
-        id img = [[NSImage alloc] initWithSize:NSMakeSize(100, 100)];
-        
-        /* fugly, but the simplest way of determining the source rectancle */
-        NSRect src = NSMakeRect(imgsize.width / 8.0 * (i % 8),
-                                imgsize.height - (imgsize.height / 4.0) * (1 + i / 8),
-                                imgsize.width / 8.0,
-                                imgsize.height / 4.0);
-        
-        [img lockFocus];
-        [this drawInRect:NSMakeRect(0, 0, 100, 100)
-                fromRect:src
-               operation:NSCompositeCopy
-                fraction:1.0];
-        [img unlockFocus];
-        [sq addObject:[img autorelease]];
-    }
-    
+    id sq = [this tilesWithSize:NSMakeSize(100, 100) forRows:4 columns:8];
     [disks release];
-    disks = [sq copy];
+    disks = [sq retain];
 }
 
 - (void)drawState

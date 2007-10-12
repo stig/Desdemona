@@ -90,6 +90,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     // for Reversi, where x+1 often reaches one more ply than x.
     NSTimeInterval interval = exp(level) / 1000.0;
     id st = [alphaBeta performMoveFromSearchWithInterval:interval];
+    NSLog(@"Reached a depth of %u", [alphaBeta depthForSearch]);
+
 
     if (st) {
         [self autoMove];
