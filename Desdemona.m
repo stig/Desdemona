@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #import "Desdemona.h"
-#import "BoardView.h"
 #import "NSImage+Tiles.h"
 
 
@@ -39,8 +38,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     [[board window] makeKeyAndOrderFront:self];
     NSImage *theme = [NSImage imageNamed:@"classic"];
-    NSArray *tiles = [theme tilesWithSize:NSMakeSize(100, 100) forRows:4 columns:8];
-    [board setTheme:tiles];
+    tiles = [theme tilesWithSize:NSMakeSize(100, 100) forRows:4 columns:8];
+    [tiles retain];
     [self resetGame];
 }
 
@@ -73,15 +72,37 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     SBReversiStateCount counts = [state countSquares];
     [white setIntValue:counts.c[3 - [self ai]]];
     [black setIntValue:counts.c[[self ai]]];
-    [board setBoard:[state board]];
-    [board setNeedsDisplay:YES];
-    [[board window] display];
-}
+    
+    NSArray *this = [state board];
+    
+    // Resize the matrix if we have different dimensions from before.
+    int r, c;
+    [board getNumberOfRows:&r columns:&c];
+    if (r != [this count] || c != [[this lastObject] count]) {
+        [board renewRows:[this count] columns:[[this lastObject] count]];
+        
+        /* such.. a.. hack... - make the matrix resize, as this is
+           the only way I've found to get the cells to resize. */
+        NSSize s = [board frame].size;
+        [board setFrameSize:NSMakeSize(100,100)];
+        [board setFrameSize:s];
+    }
 
-- (void)clickAtRow:(int)y col:(int)x
-{
-    SBReversiState *state = [alphaBeta currentState];
-    [self move:[state moveForCol:y andRow:x]];
+    for (unsigned r = 0; r < [this count]; r++) {
+        NSArray *row = [this objectAtIndex:r];
+        for (unsigned c = 0; c < [row count]; c++) {
+            int player = [[row objectAtIndex:c] intValue];
+        
+            // translate from player number to tile number
+            int square = !player ? 0 : player == 1 ? 1 : 31;
+
+            NSImageCell *ic = [board cellAtRow:r column:c];
+            [ic setImage:[tiles objectAtIndex:square]];
+            [ic setImageFrameStyle:NSImageFrameNone];
+        }
+    }
+
+    [board setNeedsDisplay:YES];
 }
 
 
@@ -185,6 +206,22 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 
 #pragma mark IBActions
+
+- (IBAction)moveAction:(id)sender
+{
+    int c = [sender selectedColumn];
+    int r = [sender selectedRow];
+
+    SBReversiState *state = [alphaBeta currentState];
+    id move = [state moveForCol:c andRow:r];
+
+    if ([[alphaBeta currentLegalMoves] containsObject:move]) {
+       [self move:move];
+
+    } else {
+        NSLog(@"Not a legal move: [%d,%d]", r, c);
+    }
+}
 
 /**
 Performs undo twice (once for AI, once for human) 

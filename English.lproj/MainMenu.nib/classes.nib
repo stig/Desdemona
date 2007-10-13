@@ -9,9 +9,15 @@
         }, 
         {CLASS = BoardView; LANGUAGE = ObjC; SUPERCLASS = NSMatrix; }, 
         {
+            ACTIONS = {moveAction = id; newGame = id; toggleAutomatic = id; undo = id; }; 
             CLASS = Desdemona; 
             LANGUAGE = ObjC; 
-            OUTLETS = {black = NSTextField; board = BoardView; white = NSTextField; }; 
+            OUTLETS = {
+                black = NSTextField; 
+                board = BoardView; 
+                progressIndicator = NSProgressIndicator; 
+                white = NSTextField; 
+            }; 
             SUPERCLASS = ABController; 
         }, 
         {CLASS = DesdemonaBoard; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 

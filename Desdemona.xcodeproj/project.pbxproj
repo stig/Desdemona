@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5307C7A90BED2F8300AD99B2 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5307C7A80BED2F8300AD99B2 /* Credits.rtf */; };
-		535024CF0B3ACD370012DAE7 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024CB0B3ACD370012DAE7 /* BoardView.m */; };
 		535024D00B3ACD370012DAE7 /* classic.png in Resources */ = {isa = PBXBuildFile; fileRef = 535024CC0B3ACD370012DAE7 /* classic.png */; };
 		535024F10B3ACE7A0012DAE7 /* Desdemona.m in Sources */ = {isa = PBXBuildFile; fileRef = 535024F00B3ACE7A0012DAE7 /* Desdemona.m */; };
 		5362B2440C8A2CBF005A0C19 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5362B2360C8A2BDB005A0C19 /* AlphaBeta.framework */; };
@@ -105,8 +104,6 @@
 		5307C7A80BED2F8300AD99B2 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		53350E350BC07C3800E83830 /* AlphaBeta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AlphaBeta.xcodeproj; path = vendor/AlphaBeta/AlphaBeta.xcodeproj; sourceTree = SOURCE_ROOT; };
 		53350E690BC07DED00E83830 /* AlphaBeta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlphaBeta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		535024CA0B3ACD370012DAE7 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
-		535024CB0B3ACD370012DAE7 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		535024CC0B3ACD370012DAE7 /* classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classic.png; sourceTree = "<group>"; };
 		535024EF0B3ACE7A0012DAE7 /* Desdemona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Desdemona.h; sourceTree = "<group>"; };
 		535024F00B3ACE7A0012DAE7 /* Desdemona.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Desdemona.m; sourceTree = "<group>"; };
@@ -139,8 +136,6 @@
 				E7D0C03C0CBFA2F3002BD434 /* NSImage+Tiles.m */,
 				535024EF0B3ACE7A0012DAE7 /* Desdemona.h */,
 				535024F00B3ACE7A0012DAE7 /* Desdemona.m */,
-				535024CA0B3ACD370012DAE7 /* BoardView.h */,
-				535024CB0B3ACD370012DAE7 /* BoardView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -331,7 +326,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				535024CF0B3ACD370012DAE7 /* BoardView.m in Sources */,
 				535024F10B3ACE7A0012DAE7 /* Desdemona.m in Sources */,
 				E7D0C03E0CBFA2F3002BD434 /* NSImage+Tiles.m in Sources */,
 			);

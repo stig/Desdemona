@@ -30,6 +30,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     BOOL automatic;
     unsigned ai, level;
     SBAlphaBeta *alphaBeta;
+    NSArray *tiles;
 
     IBOutlet NSProgressIndicator *progressIndicator;
 
@@ -39,8 +40,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     IBOutlet NSTextField *white;
 }
 
-- (void)clickAtRow:(int)r col:(int)c;
-
+- (IBAction)moveAction:(id)sender;
 - (IBAction)undo:(id)sender;
 - (IBAction)newGame:(id)sender;
 - (IBAction)toggleAutomatic:(id)sender;
