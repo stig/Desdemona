@@ -159,7 +159,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /** Displays an alert when "Game Over" is detected. */
 - (void)gameOverAlert
 {
-    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    NSAlert *alert = [[NSAlert new] autorelease];
 
     int winner = [alphaBeta winner];
     NSString *msg = winner == ai ? @"You lost!" :
@@ -178,7 +178,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /** Displays an alert when the "New Game" action is chosen. */
 - (void)newGameAlert
 {
-    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    NSAlert *alert = [[NSAlert new] autorelease];
     [alert setMessageText:@"Start a new game"];
     [alert setInformativeText:@"Are you sure you want to terminate the current game and start a new one?"];
     [alert addButtonWithTitle:@"Yes"];
@@ -190,7 +190,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)passAlert
 {
-    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    NSAlert *alert = [[NSAlert new] autorelease];
     [alert setMessageText:@"No move possible"];
     [alert setInformativeText:@"You cannot make a move and are forced to pass."];
     [alert addButtonWithTitle:@"Ok"];
