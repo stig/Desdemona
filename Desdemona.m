@@ -22,6 +22,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #import "Desdemona.h"
 #import "NSImage+Tiles.h"
 
+#import <SBReversi/SBReversiState.h>
+
+
 
 @implementation Desdemona
 
@@ -59,12 +62,47 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [alphaBeta release];
     alphaBeta = [SBAlphaBeta newWithState:st];
 
+    // Set AI level so it stays the same throughout the game.
     [self setLevel:[defaults integerForKey:@"ai_level"]];
     [self setAi:2];
     [self autoMove];
 }
 
 #pragma mark Actions
+
+- (void)animateBoard
+{
+    id state = [alphaBeta currentState];
+    unsigned size = [state boardSize];
+
+    unsigned done = YES;
+    for (unsigned r = 0; r < size; r++) {
+        for (unsigned c = 0; c < size; c++) {
+            int target = [state pieceAtRow:r col:c];
+
+            if (current[r][c] != target) {
+                done = NO;
+
+                if      (!current[r][c])            current[r][c] = target;
+                else if (current[r][c] > target)    current[r][c]--;
+                else                                current[r][c]++;
+            }
+        }
+    }
+
+    for (unsigned r = 0; r < size; r++) {
+        for (unsigned c = 0; c < size; c++) {
+            NSImageCell *ic = [board cellAtRow:r column:c];
+            [ic setImage:[tiles objectAtIndex:current[r][c]]];
+            [ic setImageFrameStyle:NSImageFrameNone];
+        }
+    }
+
+    [board setNeedsDisplay:YES];
+    
+    if (!done)
+        [self animateBoard];
+}
 
 - (void)updateViews
 {
@@ -87,17 +125,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         [board setFrameSize:s];
     }
 
-    for (unsigned r = 0; r < size; r++) {
-        for (unsigned c = 0; c < size; c++) {
-            int player = [state pieceAtRow:r col:c];
-        
-            NSImageCell *ic = [board cellAtRow:r column:c];
-            [ic setImage:[tiles objectAtIndex:player]];
-            [ic setImageFrameStyle:NSImageFrameNone];
-        }
-    }
-
-    [board setNeedsDisplay:YES];
+    [self animateBoard];
 }
 
 

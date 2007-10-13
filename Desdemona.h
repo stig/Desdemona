@@ -20,13 +20,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #import <Cocoa/Cocoa.h>
-#import <SBReversi/SBReversiState.h>
 
 @class BoardView;
 @class SBAlphaBeta;
 
+#define MAXBOARDSIZE 16
+
 @interface Desdemona : NSObject
 {
+    unsigned current[MAXBOARDSIZE][MAXBOARDSIZE];
     unsigned ai, level;
     SBAlphaBeta *alphaBeta;
     NSArray *tiles;
