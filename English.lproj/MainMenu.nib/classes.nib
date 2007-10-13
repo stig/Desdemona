@@ -7,20 +7,18 @@
             OUTLETS = {progressIndicator = NSProgressIndicator; }; 
             SUPERCLASS = NSObject; 
         }, 
-        {CLASS = BoardView; LANGUAGE = ObjC; SUPERCLASS = NSMatrix; }, 
         {
             ACTIONS = {moveAction = id; newGame = id; undo = id; }; 
             CLASS = Desdemona; 
             LANGUAGE = ObjC; 
             OUTLETS = {
                 black = NSTextField; 
-                board = BoardView; 
+                board = NSMatrix; 
                 progressIndicator = NSProgressIndicator; 
                 white = NSTextField; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
-        {CLASS = DesdemonaBoard; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {checkForUpdates = id; }; 
