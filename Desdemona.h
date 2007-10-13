@@ -27,7 +27,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @interface Desdemona : NSObject
 {
-    BOOL automatic;
     unsigned ai, level;
     SBAlphaBeta *alphaBeta;
     NSArray *tiles;
@@ -43,10 +42,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (IBAction)moveAction:(id)sender;
 - (IBAction)undo:(id)sender;
 - (IBAction)newGame:(id)sender;
-- (IBAction)toggleAutomatic:(id)sender;
-
-- (void)setAutomatic:(BOOL)x;
-- (BOOL)automatic;
 
 - (void)setLevel:(unsigned)x;
 - (unsigned)level;

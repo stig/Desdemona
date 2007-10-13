@@ -60,7 +60,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
     [self setLevel:[defaults integerForKey:@"ai_level"]];
     [self setAi:2];
-    [self setAutomatic: NO];    /* Should the AI move for both players? */
     [self autoMove];
 }
 
@@ -144,14 +143,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [self updateViews];
     
     if ([alphaBeta isGameOver]) {
-        [self setAutomatic: NO];
         [self gameOverAlert];
     }
     else if ([alphaBeta isForcedPass]) {
         [self passAlert];
     }
     
-    if ([self automatic] || [self ai] == [alphaBeta currentPlayer]) {
+    if ([self ai] == [alphaBeta currentPlayer]) {
         [progressIndicator startAnimation:self];
         [self aiMove];
         [progressIndicator stopAnimation:self];
@@ -246,17 +244,8 @@ and updates views in between.
     }
 }
 
-- (IBAction)toggleAutomatic:(id)sender
-{
-    [self setAutomatic: [self automatic] ? NO : YES];
-    [self autoMove];
-}
-
 
 #pragma mark Accessors
-
-- (void)setAutomatic:(BOOL)x { automatic = x; }
-- (BOOL)automatic { return automatic; }
 
 - (void)setAi:(unsigned)x { ai = x; }
 - (unsigned)ai { return ai; }
