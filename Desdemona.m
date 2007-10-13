@@ -79,11 +79,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     for (unsigned r = 0; r < size; r++) {
         for (unsigned c = 0; c < size; c++) {
             int target = [state pieceAtRow:r col:c];
-
             if (current[r][c] != target) {
                 done = NO;
 
-                if      (!current[r][c])            current[r][c] = target;
+                if      (!current[r][c] || !target) current[r][c] = target;
                 else if (current[r][c] > target)    current[r][c]--;
                 else                                current[r][c]++;
             }
@@ -98,10 +97,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         }
     }
 
+    if (!done && [alphaBeta countPerformedMoves]) {
+        SEL selector = @selector(animateBoard);
+        NSMethodSignature *signature = [Desdemona instanceMethodSignatureForSelector:selector];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+        [invocation setSelector:selector];
+        [invocation setTarget:self];
+        
+        [NSTimer scheduledTimerWithTimeInterval:0.1
+                                     invocation:invocation
+                                        repeats:NO];
+    }
+
     [board setNeedsDisplay:YES];
-    
-    if (!done)
-        [self animateBoard];
 }
 
 - (void)updateViews
