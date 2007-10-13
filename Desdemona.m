@@ -213,9 +213,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     int r = [sender selectedRow];
 
     SBReversiState *state = [alphaBeta currentState];
-    id move = [state moveForCol:c andRow:r];
+    id move = [state moveForCol:r andRow:c];
 
-    if ([[alphaBeta currentLegalMoves] containsObject:move]) {
+    if ([[state legalMoves] containsObject:move]) {
        [self move:move];
 
     } else {
