@@ -34,8 +34,6 @@ typedef struct _ReversiStateCount {
     int board[MAXSIZE][MAXSIZE];
 }
 
-- (NSArray *)board;
-- (int)boardSize;
 - (id)initWithBoardSize:(int)theSize;
 - (SBReversiStateCount)countSquares;
 - (id)moveForCol:(int)x andRow:(int)y;
@@ -45,9 +43,8 @@ typedef struct _ReversiStateCount {
 
 - (NSDictionary *)moveWithCol:(int)c andRow:(int)r;
 
-/* for the View */
+- (int)boardSize;
 - (int)pieceAtRow:(int)row col:(int)col;
-- (void)getRows:(int*)rows cols:(int*)cols;
 
 @end
 

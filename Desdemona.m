@@ -71,14 +71,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     SBReversiStateCount counts = [state countSquares];
     [white setIntValue:counts.c[3 - [self ai]]];
     [black setIntValue:counts.c[[self ai]]];
-    
-    NSArray *this = [state board];
+
+    int size = [state boardSize];
     
     // Resize the matrix if we have different dimensions from before.
     int r, c;
     [board getNumberOfRows:&r columns:&c];
-    if (r != [this count] || c != [[this lastObject] count]) {
-        [board renewRows:[this count] columns:[[this lastObject] count]];
+    if (r != size || c != size) {
+        [board renewRows:size columns:size];
         
         /* such.. a.. hack... - make the matrix resize, as this is
            the only way I've found to get the cells to resize. */
@@ -87,16 +87,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         [board setFrameSize:s];
     }
 
-    for (unsigned r = 0; r < [this count]; r++) {
-        NSArray *row = [this objectAtIndex:r];
-        for (unsigned c = 0; c < [row count]; c++) {
-            int player = [[row objectAtIndex:c] intValue];
+    for (unsigned r = 0; r < size; r++) {
+        for (unsigned c = 0; c < size; c++) {
+            int player = [state pieceAtRow:r col:c];
         
-            // translate from player number to tile number
-            int square = !player ? 0 : player == 1 ? 1 : 31;
-
             NSImageCell *ic = [board cellAtRow:r column:c];
-            [ic setImage:[tiles objectAtIndex:square]];
+            [ic setImage:[tiles objectAtIndex:player]];
             [ic setImageFrameStyle:NSImageFrameNone];
         }
     }

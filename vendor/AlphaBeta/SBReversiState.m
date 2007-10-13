@@ -67,18 +67,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return NSCopyObject(self, 0, zone);
 }
 
-- (NSArray *)board
-{
-    id r = [NSMutableArray array];
-    for (int i = 0; i < size; i++) {
-        id c = [NSMutableArray array];
-        for (int j = 0; j < size; j++)
-            [c addObject:[NSNumber numberWithInt: board[i][j]]];
-        [r addObject:c];
-    }
-    return r;
-}
-
 - (int)boardSize
 {
     return size;
@@ -458,12 +446,9 @@ again:
 
 - (int)pieceAtRow:(int)r col:(int)c
 {
+    if (board[r][c] == 2)
+        return 31;
     return board[r][c];
-}
-
-- (void)getRows:(int *)rows cols:(int *)cols
-{
-    *rows = *cols = size;
 }
 
 
