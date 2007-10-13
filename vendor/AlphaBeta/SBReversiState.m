@@ -21,6 +21,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #import "SBReversiState.h"
 
+typedef struct {
+    unsigned c[3];
+} SBReversiStateCount;
+
 #define opponent(x) (3 - player)
 
 @implementation SBReversiState
@@ -74,27 +78,35 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (SBReversiStateCount)countSquares
 {
-    int i, j;
     SBReversiStateCount count = {{0}};
-    for (i = 0; i < size; i++) {
-        for (j = 0; j < size; j++) {
+    for (unsigned i = 0; i < size; i++) {
+        for (unsigned j = 0; j < size; j++) {
             count.c[ board[i][j] ]++;
         }
     }
     return count;
 }
 
+- (unsigned)playerCount
+{
+    SBReversiStateCount count = [self countSquares];
+    return count.c[player];
+}
+
+- (unsigned)opponentCount
+{
+    SBReversiStateCount count = [self countSquares];
+    return count.c[opponent(player)];
+}
 
 - (BOOL)isDraw
 {
-    SBReversiStateCount count = [self countSquares];
-    return count.c[player] == count.c[opponent(player)];
+    return [self playerCount] == [self opponentCount];
 }
 
 - (BOOL)isWin
 {
-    SBReversiStateCount count = [self countSquares];
-    return count.c[player] > count.c[opponent(player)];
+    return [self playerCount] > [self opponentCount];
 }
 
 - (double)fitness

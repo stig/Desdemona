@@ -21,10 +21,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #import <AlphaBeta/AlphaBeta.h>
 
-typedef struct _ReversiStateCount {
-    unsigned c[3];
-} SBReversiStateCount;
-
 #define MAXSIZE 20
 
 @interface SBReversiState : NSObject <SBAlphaBetaSearching, SBAlphaBetaStatus> {
@@ -35,7 +31,6 @@ typedef struct _ReversiStateCount {
 }
 
 - (id)initWithBoardSize:(int)theSize;
-- (SBReversiStateCount)countSquares;
 - (id)moveForCol:(int)x andRow:(int)y;
 
 - (BOOL)isPassMove:(id)m;
@@ -45,6 +40,9 @@ typedef struct _ReversiStateCount {
 
 - (int)boardSize;
 - (int)pieceAtRow:(int)row col:(int)col;
+
+- (unsigned)playerCount;
+- (unsigned)opponentCount;
 
 @end
 

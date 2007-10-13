@@ -48,10 +48,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)test01LegalMoves
 {
     id st = [ab currentState];
-    SBReversiStateCount c = [st countSquares];
-    STAssertEquals(c.c[0], (unsigned)60, nil);
-    STAssertEquals(c.c[1], (unsigned)2, nil);
-    STAssertEquals(c.c[2], (unsigned)2, nil);
+    STAssertEquals([st playerCount], (unsigned)2, nil);
+    STAssertEquals([st opponentCount], (unsigned)2, nil);
 
     id moves;
     STAssertNotNil(moves = [st legalMoves], nil);
@@ -104,10 +102,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     STAssertTrue([ab currentFitness] == 0.0, @"got: %f", [ab currentFitness]);
 
     id st = [ab currentState];
-    SBReversiStateCount c = [st countSquares];
-    STAssertEquals(c.c[0], (unsigned)60, nil);
-    STAssertEquals(c.c[1], (unsigned)2, nil);
-    STAssertEquals(c.c[2], (unsigned)2, nil);
+    STAssertEquals([st playerCount], (unsigned)2, nil);
+    STAssertEquals([st opponentCount], (unsigned)2, nil);
 
     STAssertEqualObjects([st description], @"1: 00000000 00000000 00000000 00021000 00012000 00000000 00000000 00000000", nil);
 

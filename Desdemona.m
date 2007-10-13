@@ -68,9 +68,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)updateViews
 {
     SBReversiState *state = [alphaBeta currentState];
-    SBReversiStateCount counts = [state countSquares];
-    [white setIntValue:counts.c[3 - [self ai]]];
-    [black setIntValue:counts.c[[self ai]]];
+    [white setIntValue:[state opponentCount]];
+    [black setIntValue:[state playerCount]];
 
     int size = [state boardSize];
     
