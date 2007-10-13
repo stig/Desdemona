@@ -56,7 +56,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
                 [defaults integerForKey:@"boardsize"]]
                     autorelease];
 
-    [self setAlphaBeta:[[SBAlphaBeta alloc] initWithState:st]];
+    [alphaBeta release];
+    alphaBeta = [SBAlphaBeta newWithState:st];
 
     [self setLevel:[defaults integerForKey:@"ai_level"]];
     [self setAi:2];
@@ -247,15 +248,6 @@ and updates views in between.
 
 - (void)setLevel:(unsigned)x { level = x; }
 - (unsigned)level { return level; }
-
-- (void)setAlphaBeta:(id)x
-{
-    if (alphaBeta != x) {
-        [alphaBeta release];
-        alphaBeta = [x retain];
-    }
-}
-- (id)alphaBeta { return alphaBeta; }
 
 
 @end
