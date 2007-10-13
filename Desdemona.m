@@ -106,9 +106,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)updateViews
 {
+    unsigned p = [alphaBeta currentPlayer];
     SBReversiState *state = [alphaBeta currentState];
-    [white setIntValue:[state opponentCount]];
-    [black setIntValue:[state playerCount]];
+    [white setIntValue:p == ai ? [state opponentCount] : [state playerCount]];
+    [black setIntValue:p == ai ? [state playerCount]   : [state opponentCount]];
 
     int size = [state boardSize];
     
