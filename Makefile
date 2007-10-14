@@ -1,5 +1,5 @@
 NAME=Desdemona
-VERSION=0.4.1
+VERSION=$(strip $(shell /Developer/Tools/agvtool vers -terse))
 
 INSTALLEDAPP=/tmp/$(NAME).dst$(HOME)/Applications/$(NAME).app
 RELEASENAME=$(NAME)_$(VERSION)
@@ -30,7 +30,6 @@ upload-site: _site
 
 
 $(INSTALLEDAPP): *.m vendor/*/*.m Makefile
-	setCFBundleVersion.pl $(VERSION)
 	-chmod -R +w /tmp/Frameworks ; rm -rf /tmp/Frameworks
 	-chmod -R +w /tmp/$(NAME).dst ; rm -rf /tmp/$(NAME).dst
 	xcodebuild -target $(NAME) clean install
