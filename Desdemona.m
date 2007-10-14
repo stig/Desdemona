@@ -97,16 +97,27 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         }
     }
 
-    if (!done && [alphaBeta countPerformedMoves]) {
+    if (!done) {
         SEL selector = @selector(animateBoard);
         NSMethodSignature *signature = [Desdemona instanceMethodSignatureForSelector:selector];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
         [invocation setSelector:selector];
         [invocation setTarget:self];
         
-        [NSTimer scheduledTimerWithTimeInterval:0.1
+        [NSTimer scheduledTimerWithTimeInterval:0.025
                                      invocation:invocation
                                         repeats:NO];
+
+    } else {
+        if ([alphaBeta isGameOver]) {
+            [self gameOverAlert];
+
+        } else if ([alphaBeta currentPlayer] != [self ai] && [alphaBeta isForcedPass]) {
+            [self passAlert];
+
+        } else if ([alphaBeta currentPlayer] == [self ai]) {
+            [self aiMove];
+        }
     }
 
     [board setNeedsDisplay:YES];
@@ -141,33 +152,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /** Make the AI perform a move. */
 - (void)aiMove
 {
-    // This turns out to be a pretty good formula for going from
-    // sequential levels to suitable intervals for search. At least
-    // for Reversi, where x+1 often reaches one more ply than x.
-    NSTimeInterval interval = exp(level) / 1000.0;
-    id st = [alphaBeta performMoveFromSearchWithInterval:interval];
-    NSLog(@"Reached a depth of %u", [alphaBeta depthForSearch]);
+    if ([self ai] == [alphaBeta currentPlayer]) {
+        [progressIndicator startAnimation:self];
 
+        // This turns out to be a pretty good formula for going from
+        // sequential levels to suitable intervals for search. At least
+        // for Reversi, where x+1 often reaches one more ply than x.
+        NSTimeInterval interval = exp(level) / 1000.0;
+        [alphaBeta performMoveFromSearchWithInterval:interval];
+        [self updateViews];
 
-    if (st) {
-        [self autoMove];
-    } else {
-        NSLog(@"AI cannot move");
+        [progressIndicator stopAnimation:self];
     }
-}
 
-/** Perform the given move. */
-- (void)move:(id)m
-{
-    @try {
-        [alphaBeta performMove:m];
-    }
-    @catch (id any) {
-        NSLog(@"Illegal move attempted: %@", m);
-    }
-    @finally {
-        [self autoMove];
-    }
+    if ([self ai] == [alphaBeta currentPlayer])
+        NSLog(@"AI cannot move!");
 }
 
 /** Figure out if the AI should move "by itself". */
@@ -175,17 +174,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     [self updateViews];
     
-    if ([alphaBeta isGameOver]) {
-        [self gameOverAlert];
-    }
-    else if ([alphaBeta isForcedPass]) {
-        [self passAlert];
-    }
-    
     if ([self ai] == [alphaBeta currentPlayer]) {
-        [progressIndicator startAnimation:self];
         [self aiMove];
-        [progressIndicator stopAnimation:self];
         [self updateViews];
     }
 }
@@ -232,7 +222,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [alert setInformativeText:@"You cannot make a move and are forced to pass."];
     [alert addButtonWithTitle:@"Ok"];
     [alert runModal];
-    [self move:[NSNull null]];
+    [alphaBeta performMove:[NSNull null]];
+    [self aiMove];
 }
 
 
@@ -246,10 +237,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     SBReversiState *state = [alphaBeta currentState];
     id move = [state moveForCol:r andRow:c];
 
-    if ([[state legalMoves] containsObject:move]) {
-       [self move:move];
-
-    } else {
+    @try {
+       [alphaBeta performMove:move];
+       [self updateViews];
+    }
+    @catch (id e) {
         NSLog(@"Not a legal move: [%d,%d]", r, c);
     }
 }
@@ -260,9 +252,10 @@ and updates views in between.
 */
 - (IBAction)undo:(id)sender
 {
+    if ([self ai] != [alphaBeta currentPlayer])
+        [alphaBeta undoLastMove];
     [alphaBeta undoLastMove];
     [self updateViews];
-    [alphaBeta undoLastMove];
     [self autoMove];
 }
 
