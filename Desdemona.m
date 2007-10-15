@@ -104,7 +104,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         [invocation setSelector:selector];
         [invocation setTarget:self];
         
-        [NSTimer scheduledTimerWithTimeInterval:0.025
+        [NSTimer scheduledTimerWithTimeInterval:0.02
                                      invocation:invocation
                                         repeats:NO];
 
