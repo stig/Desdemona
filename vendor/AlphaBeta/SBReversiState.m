@@ -148,32 +148,32 @@ typedef struct {
 - (BOOL)validMove:(int)me col:(int)x row:(int)y
 {
     int tx, ty;
-    int not_me = opponent(me);
+    int opponent = opponent(me);
 
     /* slot must not already be occupied */
     if (board[x][y] != 0)
         return NO;
 
     /* left */
-    for (tx = x - 1; tx >= 0 && board[tx][y] == not_me; tx--)
+    for (tx = x - 1; tx >= 0 && board[tx][y] == opponent; tx--)
         ;
     if (tx >= 0 && tx != x - 1 && board[tx][y] == me)
         return YES;
 
     /* right */
-    for (tx = x + 1; tx < size && board[tx][y] == not_me; tx++)
+    for (tx = x + 1; tx < size && board[tx][y] == opponent; tx++)
         ;
     if (tx < size && tx != x + 1 && board[tx][y] == me)
         return YES;
 
     /* up */
-    for (ty = y - 1; ty >= 0 && board[x][ty] == not_me; ty--)
+    for (ty = y - 1; ty >= 0 && board[x][ty] == opponent; ty--)
         ;
     if (ty >= 0 && ty != y - 1 && board[x][ty] == me)
         return YES;
 
     /* down */
-    for (ty = y + 1; ty < size && board[x][ty] == not_me; ty++)
+    for (ty = y + 1; ty < size && board[x][ty] == opponent; ty++)
         ;
     if (ty < size && ty != y + 1 && board[x][ty] == me)
         return YES;
@@ -181,7 +181,7 @@ typedef struct {
     /* up/left */
     tx = x - 1;
     ty = y - 1;
-    while (tx >= 0 && ty >= 0 && board[tx][ty] == not_me) {
+    while (tx >= 0 && ty >= 0 && board[tx][ty] == opponent) {
         tx--;
         ty--;
     }
@@ -191,7 +191,7 @@ typedef struct {
     /* up/right */
     tx = x - 1;
     ty = y + 1;
-    while (tx >= 0 && ty < size && board[tx][ty] == not_me) {
+    while (tx >= 0 && ty < size && board[tx][ty] == opponent) {
         tx--;
         ty++;
     }
@@ -201,7 +201,7 @@ typedef struct {
     /* down/right */
     tx = x + 1;
     ty = y + 1;
-    while (tx < size && ty < size && board[tx][ty] == not_me) {
+    while (tx < size && ty < size && board[tx][ty] == opponent) {
         tx++;
         ty++;
     }
@@ -211,7 +211,7 @@ typedef struct {
     /* down/left */
     tx = x + 1;
     ty = y - 1;
-    while (tx < size && ty >= 0 && board[tx][ty] == not_me) {
+    while (tx < size && ty >= 0 && board[tx][ty] == opponent) {
         tx++;
         ty--;
     }
@@ -266,7 +266,7 @@ again:
 - (id)moveForCol:(int)x andRow:(int)y
 {
     int me = player;
-    int not_me = opponent(me);
+    int opponent = opponent(me);
     int tx, ty;
 
     if (x == -1 && y == -1) {
@@ -287,44 +287,44 @@ again:
     NSMutableArray *arr = [NSMutableArray arrayWithObject:[self moveWithCol:x andRow:y]];
 
     /* left */
-    for (tx = x - 1; tx >= 0 && board[tx][y] == not_me; tx--)
+    for (tx = x - 1; tx >= 0 && board[tx][y] == opponent; tx--)
         ;
     if (tx >= 0 && tx != x - 1 && board[tx][y] == me) {
         tx = x - 1;
-        while (tx >= 0 && board[tx][y] == not_me) {
+        while (tx >= 0 && board[tx][y] == opponent) {
             [arr addObject:[self moveWithCol:tx andRow:y]];
             tx--;
         }
     }
 
     /* right */
-    for (tx = x + 1; tx < size && board[tx][y] == not_me; tx++)
+    for (tx = x + 1; tx < size && board[tx][y] == opponent; tx++)
         ;
     if (tx < size && tx != x + 1 && board[tx][y] == me) {
         tx = x + 1;
-        while (tx < size && board[tx][y] == not_me) {
+        while (tx < size && board[tx][y] == opponent) {
             [arr addObject:[self moveWithCol:tx andRow:y]];
             tx++;
         }
     }
 
     /* up */
-    for (ty = y - 1; ty >= 0 && board[x][ty] == not_me; ty--)
+    for (ty = y - 1; ty >= 0 && board[x][ty] == opponent; ty--)
         ;
     if (ty >= 0 && ty != y - 1 && board[x][ty] == me) {
         ty = y - 1;
-        while (ty >= 0 && board[x][ty] == not_me) {
+        while (ty >= 0 && board[x][ty] == opponent) {
             [arr addObject:[self moveWithCol:x andRow:ty]];
             ty--;
         }
     }
 
     /* down */
-    for (ty = y + 1; ty < size && board[x][ty] == not_me; ty++)
+    for (ty = y + 1; ty < size && board[x][ty] == opponent; ty++)
         ;
     if (ty < size && ty != y + 1 && board[x][ty] == me) {
         ty = y + 1;
-        while (ty < size && board[x][ty] == not_me) {
+        while (ty < size && board[x][ty] == opponent) {
             [arr addObject:[self moveWithCol:x andRow:ty]];
             ty++;
         }
@@ -333,14 +333,14 @@ again:
     /* up/left */
     tx = x - 1;
     ty = y - 1;
-    while (tx >= 0 && ty >= 0 && board[tx][ty] == not_me) {
+    while (tx >= 0 && ty >= 0 && board[tx][ty] == opponent) {
         tx--;
         ty--;
     }
     if (tx >= 0 && ty >= 0 && tx != x - 1 && ty != y - 1 && board[tx][ty] == me) {
         tx = x - 1;
         ty = y - 1;
-        while (tx >= 0 && ty >= 0 && board[tx][ty] == not_me) {
+        while (tx >= 0 && ty >= 0 && board[tx][ty] == opponent) {
             [arr addObject:[self moveWithCol:tx andRow:ty]];
             tx--;
             ty--;
@@ -350,14 +350,14 @@ again:
     /* up/right */
     tx = x - 1;
     ty = y + 1;
-    while (tx >= 0 && ty < size && board[tx][ty] == not_me) {
+    while (tx >= 0 && ty < size && board[tx][ty] == opponent) {
         tx--;
         ty++;
     }
     if (tx >= 0 && ty < size && tx != x - 1 && ty != y + 1 && board[tx][ty] == me) {
         tx = x - 1;
         ty = y + 1;
-        while (tx >= 0 && ty < size && board[tx][ty] == not_me) {
+        while (tx >= 0 && ty < size && board[tx][ty] == opponent) {
             [arr addObject:[self moveWithCol:tx andRow:ty]];
             tx--;
             ty++;
@@ -367,14 +367,14 @@ again:
     /* down/right */
     tx = x + 1;
     ty = y + 1;
-    while (tx < size && ty < size && board[tx][ty] == not_me) {
+    while (tx < size && ty < size && board[tx][ty] == opponent) {
         tx++;
         ty++;
     }
     if (tx < size && ty < size && tx != x + 1 && ty != y + 1 && board[tx][ty] == me) {
         tx = x + 1;
         ty = y + 1;
-        while (tx < size && ty < size && board[tx][ty] == not_me) {
+        while (tx < size && ty < size && board[tx][ty] == opponent) {
             [arr addObject:[self moveWithCol:tx andRow:ty]];
             tx++;
             ty++;
@@ -384,14 +384,14 @@ again:
     /* down/left */
     tx = x + 1;
     ty = y - 1;
-    while (tx < size && ty >= 0 && board[tx][ty] == not_me) {
+    while (tx < size && ty >= 0 && board[tx][ty] == opponent) {
         tx++;
         ty--;
     }
     if (tx < size && ty >= 0 && tx != x + 1 && ty != y - 1 && board[tx][ty] == me) {
         tx = x + 1;
         ty = y - 1;
-        while (tx < size && ty >= 0 && board[tx][ty] == not_me) {
+        while (tx < size && ty >= 0 && board[tx][ty] == opponent) {
             [arr addObject:[self moveWithCol:tx andRow:ty]];
             tx++;
             ty--;
