@@ -242,6 +242,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
        [self updateViews];
     }
     @catch (id e) {
+        [[NSSound soundNamed:@"Basso"] play];
         NSLog(@"Not a legal move: [%d,%d]", r, c);
     }
 }
