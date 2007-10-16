@@ -30,17 +30,20 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 + (void)initialize
 {
+    // Register default preferences.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
         @"3",           @"ai_level",
         @"8",           @"boardsize",
+        @"classic",     @"theme",
         nil]];
 }
 
 - (void)awakeFromNib
 {
     [[board window] makeKeyAndOrderFront:self];
-    NSImage *theme = [NSImage imageNamed:@"classic"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSImage *theme = [NSImage imageNamed:[defaults valueForKey:@"theme"]];
     tiles = [theme tilesWithSize:NSMakeSize(100, 100) forRows:4 columns:8];
     [tiles retain];
     [self resetGame];
