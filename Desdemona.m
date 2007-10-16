@@ -41,12 +41,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)awakeFromNib
 {
-    [[board window] makeKeyAndOrderFront:self];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSImage *theme = [NSImage imageNamed:[defaults valueForKey:@"theme"]];
     tiles = [theme tilesWithSize:NSMakeSize(100, 100) forRows:4 columns:8];
     [tiles retain];
+    
     [self resetGame];
+
+    // Make the window show now we've painted it for the first time
+    [[board window] makeKeyAndOrderFront:self];
 }
 
 - (void)dealloc
