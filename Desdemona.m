@@ -69,6 +69,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #pragma mark Actions
 
+- (void)invokeSelector:(SEL)selector withDelay:(NSTimeInterval)theInterval
+{
+    NSMethodSignature *signature = [Desdemona instanceMethodSignatureForSelector:selector];
+
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setSelector:selector];
+    [invocation setTarget:self];
+    
+    [NSTimer scheduledTimerWithTimeInterval:theInterval
+                                 invocation:invocation
+                                    repeats:NO];
+}
+
 - (void)animateBoard
 {
     id state = [alphaBeta currentState];
@@ -97,15 +110,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     }
 
     if (!done) {
-        SEL selector = @selector(animateBoard);
-        NSMethodSignature *signature = [Desdemona instanceMethodSignatureForSelector:selector];
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-        [invocation setSelector:selector];
-        [invocation setTarget:self];
-        
-        [NSTimer scheduledTimerWithTimeInterval:0.02
-                                     invocation:invocation
-                                        repeats:NO];
+        [self invokeSelector: @selector(animateBoard) withDelay: 0.02];
 
     } else {
         if ([alphaBeta isGameOver]) {
