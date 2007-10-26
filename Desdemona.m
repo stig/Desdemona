@@ -35,6 +35,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         @"3",           @"ai_level",
         @"8",           @"boardsize",
         @"classic",     @"theme",
+        @"0.6",         @"animationDuration",
         nil]];
 }
 
@@ -110,7 +111,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     }
 
     if (!done) {
-        [self invokeSelector: @selector(animateBoard) withDelay: 0.02];
+        float duration = [[NSUserDefaults standardUserDefaults] floatForKey:@"animationDuration"];
+        [self invokeSelector: @selector(animateBoard) withDelay: duration / [tiles count]];
 
     } else {
         if ([alphaBeta isGameOver]) {
