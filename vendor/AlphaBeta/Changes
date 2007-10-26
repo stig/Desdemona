@@ -1,5 +1,7 @@
 v0.3 @ 2007-XX-XX)
 
+* Changed to using the modified BSD license.
+
 * Fixed several major bugs:
   - Alpha-Beta cut-offs are now in effect. This speeds up searches enormously.
   - The iterative search routines would end a search early if it found

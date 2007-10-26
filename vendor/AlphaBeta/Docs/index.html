@@ -63,7 +63,7 @@ your moves. (With an exception for <em>pass moves</em>. These must be
 represented by an NSNull instance.) They must implement a simple
 informal protocol. </p>
 
-<p>Though not required it is advised that you override -description to
+<p>Though not required it is advised that you override <code>-description</code> to
 return something sensible for both states and moves. This can make
 debugging easier if you make a false step and feed SBAlphaBeta
 unexpected data, as the exceptions thrown will make more sense.</p>
@@ -80,18 +80,17 @@ instead.</p>
 
 <p>Your state class <em>must</em> implement all the methods specified
 by this protocol. In addition to the NSCoding protocol, its methods
-and their responsebilities are:</p>
+and their responsibilities are:</p>
 
 <dl>
 
 <dt><pre>- (double)fitness;</pre></dt>
-<dd><p>This method should return the _fitness_ of the state. The
-fitness is a number indicating how fortuitous the state is for the
-current player. (I.e. the probability of winning after reaching this
-state.)</p>
-        
-<p>Use a large positive number to indicate that a state is very good,
-or a large negative number for very bad.</p> </dd>
+
+<dd><p>This method should return a state's <em>fitness</em>: a number
+indicating how fortuitous the state is for the current player. That
+is, the probability of winning after reaching this state. Use a large
+positive number to indicate that a state is very good, or a large
+negative number for very bad.</p></dd>
 
 <dt><pre>- (NSArray *)legalMoves;</pre></dt>
 
@@ -99,10 +98,10 @@ or a large negative number for very bad.</p> </dd>
 legal moves available to the current player.</p>
         
 <p>Return an empty array to signify that there are no moves possible
-and that this is an end state. (A.k.a. "leaf state".)</p>
+and that this is an end state, also known as a <em>leaf state</em>.</p>
         
 <p>Return an array containing a single NSNull instance to signify that
-the current player is forced to pass. (If your game supports this.) If
+the current player is forced to pass if your game supports this. If
 passing is always an option, this method must always return a pass
 move.</p></dd>
 
@@ -154,20 +153,20 @@ is <em>only</em> called by AlphaBeta at the end of a game.</p></dd>
 
 <h3>SBUndoableAlphaBetaSearch [optional]</h3>
 
-<p>AlphaBeta normally calls -copy on your states a lot during search.
-If calling -copy is particularly expensive your states may
+<p>AlphaBeta normally calls <code>-copy</code> on your states a lot during search.
+If calling <code>-copy</code> is particularly expensive your states may
 <em>optionally</em> implement this protocol. It contains only one
 method:</p>
 
 <dl>
 <dt><pre>- (void)undoMove:(id)m;</pre></dt>
 
-<dd><p>This is the opposite of -applyMove:. The move passed to it will
+<dd><p>This is the opposite of <code>-applyMove:</code>. The move passed to it will
 always be the <em>last</em> move that was applied to the receiver with
--applyMove:. The effect of this method should be to produce the
+<code>-applyMove:</code>. The effect of this method should be to produce the
 previous state.</p>
 
-<p>This means that each move returned by -legalMoves must contain
+<p>This means that each move returned by <code>-legalMoves</code> must contain
 enough information to revert the move. For Reversi, for example, each
 move could be an array of co-ordinates: the first is the slot to put
 the current piece, the remaining are for pieces to flip.</p>
@@ -177,11 +176,11 @@ the current piece, the remaining are for pieces to flip.</p>
 </dl>
 
 <p>If you go down this route it is possible that you have to make
-changes to the -legalMoves and -applyMove: methods. The moves returned
-by -legalMoves must contain enough information to perform an undo
+changes to the <code>-legalMoves</code> and <code>-applyMove:</code> methods. The moves returned
+by <code>-legalMoves</code> must contain enough information to perform an undo
 operation. This can mean creating them might become more expensive. On
 the other hand, having more information in the moves might help make
--applyMove: faster.</p>
+<code>-applyMove:</code> faster.</p>
 
 <p>Consider Reversi as an example. If you use undoable states your
 moves must contain a list of all the slots that were flipped, in
@@ -190,7 +189,7 @@ deduce this information from just a set of co-ordinates.</p>
 
 <p>A word of warning: you have to do some profiling to find out what
 works best for your specific case. In my implementation of Reversi
-there is no appreciative difference in performance of the two.</p>
+there is little discernable difference in performance of the two.</p>
 
 <h2 id="methods">Methods of SBAlphaBeta</h2>
 
@@ -203,7 +202,7 @@ header instead.</p>
 <h3>Object creation and initialisation</h3>
 <dl>
 <dt><pre>+ (id)newWithState:(id)this</pre></dt>
-<dd><p>This method is a shortcut for calling alloc & initWithState:.</p></dd>
+<dd><p>This method is a shortcut for calling <code>-alloc</code> and <code>-initWithState:</code>.</p></dd>
 
 <dt><pre>- (id)initWithState:(id)this</pre></dt>
 <dd><p>Initialises an SBAlphaBeta object with a starting state.</p></dd>
@@ -216,11 +215,11 @@ header instead.</p>
 <dd><p>Returns the current state. </p></dd>
 
 <dt><pre>- (unsigned)currentPlayer</pre></dt>
-<dd><p>Returns 1 or 2, depending on whose turn it is to move. "Player
-1" is (arbitrarily) defined to be the player whose turn it is to play
-at the start of the game, which is not necessarily the same as the
+<dd><p>Returns 1 or 2, depending on whose turn it is to move. <em>Player
+1</em> is arbitrarily defined to be the player whose turn it is to play
+at the start of the game. This is not necessarily the same as the
 state itself thinks of as player 1. (It may not think of the players
-in those terms; it may use @"a" or @"b" instead.) </p></dd>
+as @"a" or @"b" instead, for example.)</p></dd>
 
 <dt><pre>- (double)currentFitness</pre></dt>
 <dd><p>Returns currentFitness from the current state. </p></dd>
@@ -230,8 +229,8 @@ in those terms; it may use @"a" or @"b" instead.) </p></dd>
 
 <dt><pre>- (BOOL)isForcedPass</pre></dt>
 
-<dd><p>Returns true if the current player is forced to pass. (I.e.,
-her only legal move is a pass move.) </p></dd>
+<dd><p>Returns true if the current player is forced to pass, that is
+her only legal move is a pass move. </p></dd>
 
 <dt><pre>- (BOOL)isGameOver</pre></dt>
 
@@ -241,8 +240,8 @@ her only legal move is a pass move.) </p></dd>
 <dt><pre>- (unsigned)winner</pre></dt>
 
 <dd><p>Returns 1 or 2 for the winning player, or 0 if the game ended
-in a draw. (This method is only available if your states implement the
-SBAlphaBetaStatus protocol.) </p></dd>
+in a draw. This method is only available if your states implement the
+SBAlphaBetaStatus protocol. </p></dd>
 
 </dl>
 
@@ -326,16 +325,24 @@ may still change between releases. (The broad strokes are there, so if
 something <em>does</em> change you should find it relatively simple to
 update to any new versions.)</p>
 
+<p>I maintain three games written in Cocoa for Mac OS X that all use
+this library for their AI: <a
+href="__CODE__/Desdemona/">Desdemona</a>, <a
+href="__CODE__/Auberon/">Auberon</a>, and <a
+href="__CODE__/Phage/">Phage</a>.</p>
+
+
 <h2 id="resources">Resources</h2>
 
+<p>No downloadable binary yet, as things are still in a bit of a flux.
+You can get it from Subversion though. (Link below.)</p>
+
 <ul>
+<!-- Not ready yet. 
 <li><a href="__URL__/news.xml">News</a> (RSS).</li>
 <li><a href="__DMGURL__">AlphaBeta embedded framework</a> disk image.</li>
+-->
 <li>Subversion: <a href="http://svn.brautaset.org/AlphaBeta/trunk">http://svn.brautaset.org/AlphaBeta/trunk</a>.</li>
-<li><a href="__CODE__/Desdemona/">Desdemona</a>, <a
-href="__CODE__/Auberon/">Auberon</a>, and <a
-href="__CODE__/Phage/">Phage</a> use this framework
-to provide their AIs.</li>
 <li>Guide to <a href="http://blog.brautaset.org/2007/09/22/embedding-cocoa-frameworks/">embedding frameworks in Cocoa</a>.</li>
 <li><a href="http://blog.brautaset.org/2007/08/17/game-tree-search-the-minimax-and-alpha-beta-algorithms/">Game-tree search: the MiniMax and Alpha-Beta algorithms</a>.</li>
 <li>Wikipedia <a href="http://en.wikipedia.org/wiki/Game_tree">Game tree</a> article.</li>

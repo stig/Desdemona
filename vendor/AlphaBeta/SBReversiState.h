@@ -36,7 +36,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (BOOL)isPassMove:(id)m;
 - (void)validateMove:(id)move;
 
-- (NSDictionary *)moveWithCol:(int)c andRow:(int)r;
+- (NSNumber *)moveWithCol:(int)c andRow:(int)r;
 
 - (int)boardSize;
 - (int)pieceAtRow:(int)row col:(int)col;

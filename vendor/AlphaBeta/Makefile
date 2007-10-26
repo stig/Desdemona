@@ -19,8 +19,7 @@ _site: Docs/* Makefile
 site: _site
 
 upload-site: _site
-	curl --head $(DMGURL) 2>/dev/null | grep -q "200 OK"
-	false # for now. I don't want to risk uploading yet.
+#	curl --head $(DMGURL) 2>/dev/null | grep -q "200 OK"
 	rsync -ruv --delete _site/ --exclude files stig@brautaset.org:code/$(NAME)/
 
 install: $(FRAMEWORK)

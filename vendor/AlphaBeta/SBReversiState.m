@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2007 Stig Brautaset. All rights reserved.
+Copyright (C) 2006,2007 Stig Brautaset. All rights reserved.
  
 This file is part of AlphaBeta.
 
@@ -252,12 +252,11 @@ again:
     return moves;
 }
 
-- (NSDictionary *)moveWithCol:(int)c andRow:(int)r
+
+
+- (NSNumber *)moveWithCol:(int)c andRow:(int)r
 {
-    return [NSDictionary dictionaryWithObjectsAndKeys:
-        [NSNumber numberWithInt: c], @"col",
-        [NSNumber numberWithInt: r], @"row",
-        nil];
+    return [NSNumber numberWithInt: r * [self boardSize] + c];
 }
 
 // This code is adapted from code that existed in Gnome Iagno
@@ -448,8 +447,8 @@ again:
         NSEnumerator *e = [move objectEnumerator];
         id m;
         while (m = [e nextObject]) {
-            int row = [[m objectForKey:@"row"] intValue];
-            int col = [[m objectForKey:@"col"] intValue];
+            int row = [m intValue] / size;
+            int col = [m intValue] % size;
             board[ col ][ row ] = player;
         }
     }
