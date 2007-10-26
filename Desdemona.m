@@ -53,12 +53,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [[board window] makeKeyAndOrderFront:self];
 }
 
-- (void)dealloc
-{
-    [alphaBeta release];
-    [super dealloc];
-}
-
 - (void)resetGame
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
