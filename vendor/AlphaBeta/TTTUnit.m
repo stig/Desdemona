@@ -96,6 +96,11 @@ interlinked, so it makes sense to test them together. -applyMove and
     STAssertEquals([ab countPerformedMoves], (unsigned)2, nil);
     STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     STAssertEqualObjects([[ab currentState] description], @"100 020 000", nil);
+
+    [ab setState:[ab currentState]];
+    STAssertNil([ab lastMove], nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
 }
 
 /* Case 1: game over because one of the players won.
@@ -344,7 +349,6 @@ interlinked, so it makes sense to test them together. -applyMove and
     }
     STAssertEquals(visited, acc, @"ply: %u, acc: %u", ply, acc);
 }
-
 
 
 @end

@@ -35,15 +35,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 - (id)init
 {
-    [NSException raise:@"abort"
-                format:@"Use -initWithState: instead"];
-    return nil;
+    if (self = [super init]) {
+        stateHistory = [NSMutableArray new];
+        moveHistory = [NSMutableArray new];
+    }
+    
+    return self;
 }
-
 
 - (id)initWithState:(id)this
 {
-    if (self = [super init]) {
+    if (self = [self init]) {
         if ([this conformsToProtocol:@protocol(SBUndoableAlphaBetaSearching)])
             mutableStates = YES;
         
@@ -51,8 +53,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             [NSException raise:@"not-a-state"
                         format:@"State %@ lacks necessary methods", this];
 
-        stateHistory = [[NSMutableArray arrayWithObject:this] retain];
-        moveHistory = [NSMutableArray new];
+        [self setState:this];
     }
     return self;
 }
@@ -69,6 +70,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     [super dealloc];
 }
 
+- (void)setState:(id)x
+{
+    [moveHistory removeAllObjects];
+    [stateHistory removeAllObjects];
+    [stateHistory addObject:x];
+}
 
 #pragma mark Private methods
 

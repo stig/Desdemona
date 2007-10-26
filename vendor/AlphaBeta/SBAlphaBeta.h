@@ -77,6 +77,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 + (id)newWithState:(id)this;
 - (id)initWithState:(id)this;
 
+- (void)setState:(id)x;
+
 - (id)currentState;
 - (double)currentFitness;
 - (NSArray *)currentLegalMoves;

@@ -201,11 +201,27 @@ header instead.</p>
 
 <h3>Object creation and initialisation</h3>
 <dl>
-<dt><pre>+ (id)newWithState:(id)this</pre></dt>
-<dd><p>This method is a shortcut for calling <code>-alloc</code> and <code>-initWithState:</code>.</p></dd>
 
-<dt><pre>- (id)initWithState:(id)this</pre></dt>
-<dd><p>Initialises an SBAlphaBeta object with a starting state.</p></dd>
+    <dt><pre>- (id)init</pre></dt>
+
+    <dd><p>Initialises an SBAlphaBeta object. You need to call
+    -setState: with an instance of your state class next.</p></dd>
+    
+    <dt><pre>- (id)initWithState:(id)this</pre></dt>
+
+    <dd><p>Initialises an SBAlphaBeta object with a starting state. If
+    you use this there is no need to call -setState:.</p></dd>
+    
+    <dt><pre>+ (id)newWithState:(id)this</pre></dt>
+
+    <dd><p>This method is a shortcut for calling <code>-alloc</code>
+    and <code>-initWithState:</code>.</p></dd>
+    
+    <dt><pre>- (void)setState:(id)x</pre></dt>
+
+    <dd><p>Sets the initial state of the game to the given state. Removes
+    all existing history of states and moves first.</p></dd>
+
 </dl>
 
 <h3>The current state of affairs</h3>

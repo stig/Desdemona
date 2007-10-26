@@ -25,7 +25,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #import <SBReversi/SBReversiState.h>
 
 
-
 @implementation Desdemona
 
 + (void)initialize
@@ -46,6 +45,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     tiles = [theme tilesWithSize:NSMakeSize(100, 100) forRows:4 columns:8];
     [tiles retain];
     
+    alphaBeta = [SBAlphaBeta new];
+    
     [self resetGame];
 
     // Make the window show now we've painted it for the first time
@@ -61,12 +62,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)resetGame
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    id st = [[[SBReversiState alloc] initWithBoardSize:
-                [defaults integerForKey:@"boardsize"]]
-                    autorelease];
+    id st = [[SBReversiState alloc] initWithBoardSize:
+                [defaults integerForKey:@"boardsize"]];
 
-    [alphaBeta release];
-    alphaBeta = [SBAlphaBeta newWithState:st];
+    [alphaBeta setState:[st autorelease]];
 
     // Set AI level so it stays the same throughout the game.
     [self setLevel:[defaults integerForKey:@"ai_level"]];
