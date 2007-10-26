@@ -29,9 +29,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "SBAlphaBeta.h"
 
+@interface SBAlphaBeta (Private)
+
+- (id)successorByApplying:(id)m to:(id)state;
+- (void)undoApplying:(id)m to:(id)state;
+- (double)abWithState:(id)current alpha:(double)alpha beta:(double)beta plyLeft:(unsigned)ply;
+
+@end
+
 @implementation SBAlphaBeta
 
-#pragma mark Creation & Cleanup
+#pragma mark Creation & Initialisation
 
 - (id)init
 {
@@ -76,6 +84,60 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     [stateHistory removeAllObjects];
     [stateHistory addObject:x];
 }
+
+
+#pragma mark The current state of affairs
+
+- (id)currentState
+{
+    return [stateHistory lastObject];
+}
+
+- (unsigned)currentPlayer
+{
+    return ([self countPerformedMoves] % 2) + 1;
+}
+
+- (double)currentFitness
+{
+    return [[self currentState] fitness];
+}
+
+- (NSArray *)currentLegalMoves
+{
+    return [[self currentState] legalMoves];
+}
+
+- (BOOL)isGameOver
+{
+    NSArray *a = [self currentLegalMoves];
+    return [a count] ? NO : YES;
+}
+
+- (BOOL)isForcedPass
+{
+    id mvs = [self currentLegalMoves];
+    if (mvs && [mvs count] == 1)
+        if ([[mvs lastObject] isKindOfClass:[NSNull class]])
+            return YES;
+    return NO;
+}
+
+- (unsigned)winner
+{
+    if (![self isGameOver])
+        [NSException raise:@"game-not-over"
+                    format:@"Cannot determine winner; game has not ended yet"];
+
+    id state = [self currentState];
+    if ([state isDraw])
+        return 0;
+
+    return [state isWin]
+        ? [self currentPlayer]
+        : 3 - [self currentPlayer];
+}
+
 
 #pragma mark Private methods
 
@@ -173,12 +235,6 @@ cut:
     return best;
 }
 
-- (id)performMoveFromSearchWithDepth:(unsigned)ply
-{
-    id best = [self moveFromSearchWithDepth:ply];
-    return best ? [self performMove:best] : nil;
-}
-
 - (id)moveFromSearchWithInterval:(NSTimeInterval)interval
 {
     id best = nil;
@@ -253,13 +309,7 @@ time_is_up:
     return [self moveFromSearchWithDepth:1];
 }
 
-- (id)performMoveFromSearchWithInterval:(NSTimeInterval)interval
-{
-    id best = [self moveFromSearchWithInterval:interval];
-    return best ? [self performMove:best] : nil;
-}    
-
-#pragma mark Methods
+#pragma mark Performing and undoing moves
 
 - (id)performMove:(id)m
 {
@@ -277,6 +327,17 @@ time_is_up:
     return state;
 }
 
+- (id)performMoveFromSearchWithDepth:(unsigned)ply
+{
+    id best = [self moveFromSearchWithDepth:ply];
+    return best ? [self performMove:best] : nil;
+}
+
+- (id)performMoveFromSearchWithInterval:(NSTimeInterval)interval
+{
+    id best = [self moveFromSearchWithInterval:interval];
+    return best ? [self performMove:best] : nil;
+}
 
 - (id)undoLastMove
 {
@@ -285,10 +346,7 @@ time_is_up:
     return [self currentState];
 }
 
-- (id)currentState
-{
-    return [stateHistory lastObject];
-}
+#pragma mark Enquiring about the past
 
 - (id)lastMove
 {
@@ -300,33 +358,6 @@ time_is_up:
     return [moveHistory count];
 }
 
-- (unsigned)currentPlayer
-{
-    return ([self countPerformedMoves] % 2) + 1;
-}
-
-- (unsigned)winner
-{
-    if (![self isGameOver])
-        [NSException raise:@"game-not-over"
-                    format:@"Cannot determine winner; game has not ended yet"];
-
-    id state = [self currentState];
-    if ([state isDraw])
-        return 0;
-
-    return [state isWin]
-        ? [self currentPlayer]
-        : 3 - [self currentPlayer];
-}
-
-
-- (BOOL)isGameOver
-{
-    NSArray *a = [self currentLegalMoves];
-    return [a count] ? NO : YES;
-}
-
 - (unsigned)depthForSearch
 {
     return plyReached;
@@ -335,28 +366,6 @@ time_is_up:
 - (unsigned)stateCountForSearch
 {
     return statesVisited;
-}
-
-
-- (BOOL)isForcedPass
-{
-    id mvs = [self currentLegalMoves];
-    if (mvs && [mvs count] == 1)
-        if ([[mvs lastObject] isKindOfClass:[NSNull class]])
-            return YES;
-    return NO;
-}
-
-#pragma mark Simple forwarders
-
-- (double)currentFitness
-{
-    return [[self currentState] fitness];
-}
-
-- (NSArray *)currentLegalMoves
-{
-    return [[self currentState] legalMoves];
 }
 
 

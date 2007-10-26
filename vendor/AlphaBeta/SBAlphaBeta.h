@@ -84,23 +84,20 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 - (NSArray *)currentLegalMoves;
 - (unsigned)currentPlayer;
 
-- (id)performMove:(id)m;
-- (id)undoLastMove;
-
-- (id)lastMove;
-- (unsigned)countPerformedMoves;
-
 - (BOOL)isGameOver;
 - (BOOL)isForcedPass;
 - (unsigned)winner;
 
-/* search methods */
 - (id)moveFromSearchWithDepth:(unsigned)ply;
 - (id)moveFromSearchWithInterval:(NSTimeInterval)interval;
+
+- (id)performMove:(id)m;
 - (id)performMoveFromSearchWithDepth:(unsigned)ply;
 - (id)performMoveFromSearchWithInterval:(NSTimeInterval)interval;
+- (id)undoLastMove;
 
-/* metadata releated to previous search */
+- (id)lastMove;
+- (unsigned)countPerformedMoves;
 - (unsigned)stateCountForSearch;
 - (unsigned)depthForSearch;
 
