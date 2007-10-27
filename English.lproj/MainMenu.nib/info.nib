@@ -8,15 +8,12 @@
 	<dict>
 		<key>29</key>
 		<string>181 537 205 44 0 0 1280 778 </string>
-		<key>630</key>
-		<string>884 131 202 371 0 0 1280 778 </string>
 	</dict>
 	<key>IBFramework Version</key>
 	<string>446.1</string>
 	<key>IBOpenObjects</key>
 	<array>
 		<integer>539</integer>
-		<integer>630</integer>
 		<integer>21</integer>
 	</array>
 	<key>IBSystem Version</key>
