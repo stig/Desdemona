@@ -24,6 +24,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #import <SBReversi/SBReversiState.h>
 
+@interface Desdemona (Private)
+
+- (void)invokeSelector:(SEL)selector withDelay:(NSTimeInterval)theInterval;
+- (void)animateFlips;
+
+@end
 
 @implementation Desdemona
 
@@ -65,10 +71,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     // Set AI level so it stays the same throughout the game.
     [self setLevel:[defaults integerForKey:@"ai_level"]];
     [self setAi:2];
-    [self autoMove];
+    [self updateViews];
+//    [self autoMove];
 }
 
-#pragma mark Actions
+#pragma mark Utility methods
 
 - (void)invokeSelector:(SEL)selector withDelay:(NSTimeInterval)theInterval
 {
@@ -83,7 +90,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
                                     repeats:NO];
 }
 
-- (void)animateBoard
+#pragma mark Update views
+
+- (void)animateFlips
 {
     id state = [alphaBeta currentState];
     unsigned size = [state boardSize];
@@ -102,17 +111,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         }
     }
 
-    for (unsigned r = 0; r < size; r++) {
-        for (unsigned c = 0; c < size; c++) {
-            NSImageCell *ic = [board cellAtRow:r column:c];
-            [ic setImage:[tiles objectAtIndex:current[r][c]]];
-            [ic setImageFrameStyle:NSImageFrameNone];
-        }
-    }
-
     if (!done) {
+
+        for (unsigned r = 0; r < size; r++) {
+            for (unsigned c = 0; c < size; c++) {
+                NSImageCell *ic = [board cellAtRow:r column:c];
+                [ic setImage:[tiles objectAtIndex:current[r][c]]];
+                [ic setImageFrameStyle:NSImageFrameNone];
+            }
+        }
+
         float duration = [[NSUserDefaults standardUserDefaults] floatForKey:@"animationDuration"];
-        [self invokeSelector: @selector(animateBoard) withDelay: duration / [tiles count]];
+        [self invokeSelector: @selector(animateFlips) withDelay: duration / [tiles count]];
 
     } else {
         if ([alphaBeta isGameOver]) {
@@ -151,7 +161,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         [board setFrameSize:s];
     }
 
-    [self animateBoard];
+    [self animateFlips];
 }
 
 
@@ -178,8 +188,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /** Figure out if the AI should move "by itself". */
 - (void)autoMove
 {
-    [self updateViews];
-    
     if ([self ai] == [alphaBeta currentPlayer]) {
         [self aiMove];
         [self updateViews];
