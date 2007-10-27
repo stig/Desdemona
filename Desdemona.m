@@ -125,15 +125,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         [self invokeSelector: @selector(animateFlips) withDelay: duration / [tiles count]];
 
     } else {
-        if ([alphaBeta isGameOver]) {
-            [self gameOverAlert];
+        [self autoMove];
 
-        } else if ([alphaBeta currentPlayer] != [self ai] && [alphaBeta isForcedPass]) {
-            [self passAlert];
-
-        } else if ([alphaBeta currentPlayer] == [self ai]) {
-            [self aiMove];
-        }
     }
 
     [board setNeedsDisplay:YES];
@@ -188,7 +181,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /** Figure out if the AI should move "by itself". */
 - (void)autoMove
 {
-    if ([self ai] == [alphaBeta currentPlayer]) {
+    if ([alphaBeta isGameOver]) {
+        [self gameOverAlert];
+
+    } else if ([alphaBeta currentPlayer] != [self ai] && [alphaBeta isForcedPass]) {
+        [self passAlert];
+
+    } else if ([alphaBeta currentPlayer] == [self ai]) {
         [self aiMove];
         [self updateViews];
     }
