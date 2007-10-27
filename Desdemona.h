@@ -49,12 +49,4 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)setAi:(unsigned)x;
 - (unsigned)ai;
 
-- (void)aiMove;
-- (void)updateViews;
-- (void)autoMove;
-- (void)resetGame;
-
-- (void)gameOverAlert;
-- (void)passAlert;
-
 @end

@@ -29,6 +29,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)invokeSelector:(SEL)selector withDelay:(NSTimeInterval)theInterval;
 - (void)animateFlips;
 
+- (void)updateViews;
+- (void)autoMove;
+- (void)resetGame;
+
+- (void)gameOverAlert;
+- (void)passAlert;
+
+
 @end
 
 @implementation Desdemona
@@ -158,26 +166,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 }
 
 
-/** Make the AI perform a move. */
-- (void)aiMove
-{
-    if ([self ai] == [alphaBeta currentPlayer]) {
-        [progressIndicator startAnimation:self];
-
-        // This turns out to be a pretty good formula for going from
-        // sequential levels to suitable intervals for search. At least
-        // for Reversi, where x+1 often reaches one more ply than x.
-        NSTimeInterval interval = exp(level) / 1000.0;
-        [alphaBeta performMoveFromSearchWithInterval:interval];
-        [self updateViews];
-
-        [progressIndicator stopAnimation:self];
-    }
-
-    if ([self ai] == [alphaBeta currentPlayer])
-        NSLog(@"AI cannot move!");
-}
-
 /** Figure out if the AI should move "by itself". */
 - (void)autoMove
 {
@@ -188,8 +176,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         [self passAlert];
 
     } else if ([alphaBeta currentPlayer] == [self ai]) {
-        [self aiMove];
+        [progressIndicator startAnimation:self];
+
+        // This turns out to be a pretty good formula for going from
+        // sequential levels to suitable intervals for search. At least
+        // for Reversi, where x+1 often reaches one more ply than x.
+        NSTimeInterval interval = exp([self level]) / 1000.0;
+        [alphaBeta performMoveFromSearchWithInterval:interval];
         [self updateViews];
+
+        [progressIndicator stopAnimation:self];
     }
 }
 
@@ -236,7 +232,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [alert addButtonWithTitle:@"Ok"];
     [alert runModal];
     [alphaBeta performMove:[NSNull null]];
-    [self aiMove];
+    [self autoMove];
 }
 
 
