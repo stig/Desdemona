@@ -38,6 +38,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @end
 
+// Keys for use in preferences
+static NSString * const aiLevel          = @"ai_level";
+static NSString * const boardSize        = @"boardsize";
+static NSString * const animationDelay   = @"animationDelay";
+static NSString * const aiPlayerStarts   = @"aiPlayerStarts";
+
 @implementation Desdemona
 
 + (void)initialize
@@ -45,23 +51,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     // Register default preferences.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
-        @"3",           @"ai_level",
-        @"8",           @"boardsize",
-        @"classic",     @"theme",
-        @"0.6",         @"animationDuration",
-        @"0",           @"aiPlayerStarts",
+        @"3",   aiLevel,
+        @"8",   boardSize,
+        @"0.6", animationDelay,
+        @"0",   aiPlayerStarts,
         nil]];
 }
 
 - (void)awakeFromNib
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSImage *theme = [NSImage imageNamed:[defaults valueForKey:@"theme"]];
+    NSImage *theme = [NSImage imageNamed:@"classic"];
     tiles = [theme tilesWithSize:NSMakeSize(100, 100) forRows:4 columns:8];
     [tiles retain];
     
     alphaBeta = [SBAlphaBeta new];
-    
+	
     [self resetGame];
 
     // Make the window show now we've painted it for the first time
@@ -74,13 +78,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     id st = [[SBReversiState alloc] initWithBoardSize:
-                [defaults integerForKey:@"boardsize"]];
+                [defaults integerForKey:boardSize]];
 
     [alphaBeta setState:[st autorelease]];
 
     // Set AI level so it stays the same throughout the game.
-    [self setLevel:[defaults integerForKey:@"ai_level"]];
-    [self setAi:[defaults boolForKey:@"aiPlayerStarts"] ? 1 : 2 ];
+    [self setLevel:[defaults integerForKey:aiLevel]];
+    [self setAi:[defaults boolForKey:aiPlayerStarts] ? 1 : 2 ];
     [self updateViews];
 }
 
@@ -126,7 +130,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
             }
         }
 
-        float duration = [[NSUserDefaults standardUserDefaults] floatForKey:@"animationDuration"];
+        float duration = [[NSUserDefaults standardUserDefaults] floatForKey:animationDelay];
         [self invokeSelector: @selector(animateFlips) withDelay: duration / [tiles count]];
 
     } else {
