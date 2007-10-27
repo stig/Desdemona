@@ -36,7 +36,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)gameOverAlert;
 - (void)passAlert;
 
-
 @end
 
 @implementation Desdemona
@@ -68,6 +67,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [[board window] makeKeyAndOrderFront:self];
 }
 
+#pragma mark Private
+
 - (void)resetGame
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -83,8 +84,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //    [self autoMove];
 }
 
-#pragma mark Utility methods
-
 - (void)invokeSelector:(SEL)selector withDelay:(NSTimeInterval)theInterval
 {
     NSMethodSignature *signature = [Desdemona instanceMethodSignatureForSelector:selector];
@@ -97,8 +96,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
                                  invocation:invocation
                                     repeats:NO];
 }
-
-#pragma mark Update views
 
 - (void)animateFlips
 {
@@ -189,8 +186,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     }
 }
 
-
-#pragma mark Alerts
 
 /** Displays an alert when "Game Over" is detected. */
 - (void)gameOverAlert
