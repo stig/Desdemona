@@ -49,6 +49,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         @"8",           @"boardsize",
         @"classic",     @"theme",
         @"0.6",         @"animationDuration",
+        @"0",           @"aiPlayerStarts",
         nil]];
 }
 
@@ -79,9 +80,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
     // Set AI level so it stays the same throughout the game.
     [self setLevel:[defaults integerForKey:@"ai_level"]];
-    [self setAi:2];
+    [self setAi:[defaults boolForKey:@"aiPlayerStarts"] ? 1 : 2 ];
     [self updateViews];
-//    [self autoMove];
 }
 
 - (void)invokeSelector:(SEL)selector withDelay:(NSTimeInterval)theInterval
