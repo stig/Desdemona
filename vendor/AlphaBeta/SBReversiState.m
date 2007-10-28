@@ -457,8 +457,6 @@ again:
 
 - (int)pieceAtRow:(int)r col:(int)c
 {
-    if (board[r][c] == 2)
-        return 31;
     return board[r][c];
 }
 

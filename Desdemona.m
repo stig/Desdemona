@@ -110,6 +110,9 @@ static NSString * const aiPlayerStarts   = @"aiPlayerStarts";
     for (unsigned r = 0; r < size; r++) {
         for (unsigned c = 0; c < size; c++) {
             int target = [state pieceAtRow:r col:c];
+            if (target == 2)
+                target = [tiles count]-1;
+            
             if (current[r][c] != target) {
                 done = NO;
 
