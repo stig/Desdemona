@@ -84,6 +84,8 @@ static NSString * const aiPlayerStarts   = @"aiPlayerStarts";
 
     // Set AI level so it stays the same throughout the game.
     [self setLevel:[defaults integerForKey:aiLevel]];
+    
+    // Set AI to be player 1 or 2, depending on whether it starts.
     [self setAi:[defaults boolForKey:aiPlayerStarts] ? 1 : 2 ];
     [self updateViews];
 }
