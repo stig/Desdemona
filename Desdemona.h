@@ -23,11 +23,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @class BoardView;
 @class SBAlphaBeta;
+@class DesdemonaState;
 
 #define MAXBOARDSIZE 16
 
 @interface Desdemona : NSObject
 {
+    DesdemonaState *aiTurn;
+    DesdemonaState *humanTurn;
+    DesdemonaState *currentState;
+    
     unsigned current[MAXBOARDSIZE][MAXBOARDSIZE];
     unsigned ai, level;
     SBAlphaBeta *alphaBeta;
@@ -48,5 +53,23 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)setAi:(unsigned)x;
 - (unsigned)ai;
+
+- (id)aiTurn;
+- (id)humanTurn;
+- (void)setCurrentState:(id)x;
+
+- (id)alphaBeta;
+
+@end
+
+@interface Desdemona (DesdemonaDelegate)
+
+- (void)updateViews;
+- (void)autoMove;
+- (void)resetGame;
+
+- (void)newGameAlert;
+- (void)gameOverAlert;
+- (void)passAlert;
 
 @end

@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #import "Desdemona.h"
 #import "NSImage+Tiles.h"
+#import "DesdemonaState.h"
 
 #import <SBReversi/SBReversiState.h>
 
@@ -28,13 +29,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)invokeSelector:(SEL)selector withDelay:(NSTimeInterval)theInterval;
 - (void)animateFlips;
-
-- (void)updateViews;
-- (void)autoMove;
-- (void)resetGame;
-
-- (void)gameOverAlert;
-- (void)passAlert;
 
 @end
 
@@ -60,6 +54,13 @@ static NSString * const aiPlayerStarts   = @"aiPlayerStarts";
 
 - (void)awakeFromNib
 {
+    // The different states we can be in.
+    aiTurn = [[ComputerTurn alloc] initWithDelegate:self];
+    humanTurn = [[HumanTurn alloc] initWithDelegate:self];
+
+    // The default state we start in.
+    currentState = humanTurn;
+    
     NSImage *theme = [NSImage imageNamed:@"classic"];
     tiles = [theme tilesWithSize:NSMakeSize(100, 100) forRows:4 columns:8];
     [tiles retain];
@@ -87,6 +88,11 @@ static NSString * const aiPlayerStarts   = @"aiPlayerStarts";
     
     // Set AI to be player 1 or 2, depending on whether it starts.
     [self setAi:[defaults boolForKey:aiPlayerStarts] ? 1 : 2 ];
+
+    // We _might_ have to make the AI the starter
+    if ([alphaBeta currentPlayer] == [self ai])
+        currentState = aiTurn;
+    
     [self updateViews];
 }
 
@@ -188,8 +194,8 @@ static NSString * const aiPlayerStarts   = @"aiPlayerStarts";
         // sequential levels to suitable intervals for search. At least
         // for Reversi, where x+1 often reaches one more ply than x.
         NSTimeInterval interval = exp([self level]) / 1000.0;
-        [alphaBeta performMoveFromSearchWithInterval:interval];
-        [self updateViews];
+        id move = [alphaBeta moveFromSearchWithInterval:interval];
+        [currentState computerMove:move];
 
         [progressIndicator stopAnimation:self];
     }
@@ -235,7 +241,7 @@ static NSString * const aiPlayerStarts   = @"aiPlayerStarts";
     [alert setInformativeText:@"You cannot make a move and are forced to pass."];
     [alert addButtonWithTitle:@"Ok"];
     [alert runModal];
-    [alphaBeta performMove:[NSNull null]];
+    [currentState humanMove:[NSNull null]];
     [self autoMove];
 }
 
@@ -250,14 +256,7 @@ static NSString * const aiPlayerStarts   = @"aiPlayerStarts";
     SBReversiState *state = [alphaBeta currentState];
     id move = [state moveForCol:r andRow:c];
 
-    @try {
-       [alphaBeta performMove:move];
-       [self updateViews];
-    }
-    @catch (id e) {
-        [[NSSound soundNamed:@"Basso"] play];
-        NSLog(@"Not a legal move: [%d,%d]", r, c);
-    }
+    [currentState humanMove:move];
 }
 
 /**
@@ -266,22 +265,13 @@ and updates views in between.
 */
 - (IBAction)undo:(id)sender
 {
-    if ([self ai] != [alphaBeta currentPlayer])
-        [alphaBeta undoLastMove];
-    [alphaBeta undoLastMove];
-    [self updateViews];
-    [self autoMove];
-}
+    [currentState performUndo];
+}    
 
 /** Initiate a new game. */
 - (IBAction)newGame:(id)sender
 {
-    if ([alphaBeta countPerformedMoves]) {
-        [self newGameAlert];
-    }
-    else {
-        [self resetGame];
-    }
+    [currentState performReset];
 }
 
 
@@ -293,5 +283,24 @@ and updates views in between.
 - (void)setLevel:(unsigned)x { level = x; }
 - (unsigned)level { return level; }
 
+- (id)alphaBeta
+{
+    return alphaBeta;
+}
+
+- (id)humanTurn
+{
+    return humanTurn;
+}
+
+- (id)aiTurn
+{
+    return aiTurn;
+}
+
+- (void)setCurrentState:(id)x
+{
+    currentState = x;
+}
 
 @end
