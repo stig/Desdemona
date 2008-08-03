@@ -1,5 +1,5 @@
 NAME=Desdemona
-VERSION=$(strip $(shell /Developer/Tools/agvtool vers -terse))
+VERSION=$(strip $(shell agvtool vers -terse))
 
 INSTALLEDAPP=/tmp/$(NAME).dst$(HOME)/Applications/$(NAME).app
 RELEASENAME=$(NAME)_$(VERSION)
